@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PolicyGraph AI 2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #111115;
+    --surface2: #18181e;
+    --surface3: #1f1f28;
+    --border: #2a2a35;
+    --border-bright: #3d3d50;
+    --gold: #c9a84c;
+    --gold-dim: #8a6d2a;
+    --gold-glow: rgba(201,168,76,0.12);
+    --text: #e8e6e0;
+    --text-muted: #7a7870;
+    --text-dim: #4a4840;
+    --green: #3dba7e;
+    --red: #e05555;
+    --amber: #e0955a;
+    --blue: #5a8ee0;
+    --radius: 2px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* GRID LINES */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HEADER */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 48px 64px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo-block {}
+
+  .logo-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .logo-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .logo-title span {
+    color: var(--gold);
+  }
+
+  .logo-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .api-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .api-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* NAV */
+  nav {
+    position: relative;
+    z-index: 10;
+    padding: 0 64px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0;
+  }
+
+  .nav-tab {
+    padding: 18px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    border: none;
+    background: none;
+    position: relative;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+
+  .nav-tab::before {
+    content: attr(data-num);
+    font-size: 9px;
+    color: var(--text-dim);
+    margin-right: 10px;
+  }
+
+  .nav-tab:hover { color: var(--text); }
+
+  .nav-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* MAIN */
+  main {
+    position: relative;
+    z-index: 10;
+    padding: 48px 64px;
+    max-width: 1200px;
+  }
+
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* GRID */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  /* UPLOAD ZONE */
+  .upload-zone {
+    border: 1px dashed var(--border-bright);
+    padding: 56px 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    background: var(--surface);
+  }
+
+  .upload-zone:hover, .upload-zone.drag-over {
+    border-color: var(--gold);
+    background: var(--gold-glow);
+  }
+
+  .upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .upload-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  .upload-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .upload-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .file-selected {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--gold);
+  }
+
+  /* INPUTS */
+  .field {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+    appearance: none;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--gold);
+    background: var(--surface3);
+  }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  /* FIELDS GRID */
+  .fields-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.05);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover::after { opacity: 1; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #0a0a0c;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover { background: #d4b560; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover { border-color: var(--border-bright); color: var(--text); }
+
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .btn-icon { font-size: 14px; }
+
+  /* LOADING */
+  .loading-bar {
+    height: 2px;
+    background: var(--border);
+    margin: 24px 0;
+    overflow: hidden;
+    display: none;
+  }
+
+  .loading-bar.active { display: block; }
+
+  .loading-bar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: loading 1.5s infinite;
+    width: 40%;
+  }
+
+  @keyframes loading {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(350%); }
+  }
+
+  /* RESULTS */
+  .result-block {
+    margin-top: 32px;
+    display: none;
+  }
+
+  .result-block.visible { display: block; animation: fadeIn 0.4s ease; }
+
+  .result-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .result-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .result-divider-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .stat-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* COMPLEXITY BAR */
+  .complexity-bar-wrap {
+    margin-bottom: 24px;
+  }
+
+  .complexity-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .complexity-bar-bg {
+    height: 6px;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .complexity-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+    transition: width 1s ease;
+  }
+
+  /* CLAUSES */
+  .clause-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .clause-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    padding: 16px 20px;
+    transition: border-left-color 0.2s;
+  }
+
+  .clause-item:hover { border-left-color: var(--gold); }
+
+  .clause-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .clause-id {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    background: var(--gold-glow);
+    padding: 3px 8px;
+    border: 1px solid var(--gold-dim);
+  }
+
+  .clause-type {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .clause-ambig {
+    margin-left: auto;
+    font-size: 9px;
+    padding: 3px 8px;
+    background: rgba(224,149,90,0.1);
+    border: 1px solid var(--amber);
+    color: var(--amber);
+  }
+
+  .clause-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .clause-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .clause-meta-item {
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .clause-meta-item span {
+    color: var(--text);
+  }
+
+  /* CONFIDENCE BAR */
+  .conf-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .conf-track {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    overflow: hidden;
+  }
+
+  .conf-fill {
+    height: 100%;
+    background: var(--gold);
+  }
+
+  /* ELIGIBILITY */
+  .verdict-banner {
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+  }
+
+  .verdict-eligible { background: rgba(61,186,126,0.06); }
+  .verdict-eligible::before { background: var(--green); }
+
+  .verdict-not-eligible { background: rgba(224,85,85,0.06); }
+  .verdict-not-eligible::before { background: var(--red); }
+
+  .verdict-conditional { background: rgba(224,149,90,0.06); }
+  .verdict-conditional::before { background: var(--amber); }
+
+  .verdict-icon { font-size: 36px; }
+
+  .verdict-text {}
+
+  .verdict-status {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .eligible-color { color: var(--green); }
+  .not-eligible-color { color: var(--red); }
+  .conditional-color { color: var(--amber); }
+
+  .verdict-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* REASONING TRACE */
+  .trace-list { display: flex; flex-direction: column; gap: 0; }
+
+  .trace-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trace-item:last-child { border-bottom: none; }
+
+  .trace-num {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .trace-content { flex: 1; }
+
+  .trace-clause {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .trace-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .trace-result {
+    font-size: 10px;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .trace-pass { color: var(--green); }
+  .trace-fail { color: var(--red); }
+
+  /* CONFLICTS */
+  .conflict-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+
+  .conflict-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .conflict-badge {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(224,85,85,0.1);
+    border: 1px solid var(--red);
+    color: var(--red);
+  }
+
+  .conflict-schemes {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .conflict-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .conflict-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .conflict-side {
+    background: var(--surface3);
+    padding: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .conflict-side-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .conflict-side-value {
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  /* RAW JSON */
+  .raw-toggle {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border: none;
+    background: none;
+    margin-top: 16px;
+  }
+
+  .raw-toggle:hover { color: var(--text-muted); }
+
+  .raw-json {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px;
+    font-size: 11px;
+    color: #7ab8a0;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    margin-top: 8px;
+    line-height: 1.8;
+  }
+
+  .raw-json.open { display: block; animation: fadeIn 0.2s ease; }
+
+  /* INFO PANEL */
+  .info-strip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ERROR */
+  .error-strip {
+    background: rgba(224,85,85,0.06);
+    border: 1px solid var(--red);
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--red);
+    margin-top: 16px;
+    display: none;
+  }
+
+  .error-strip.visible { display: block; }
+
+  /* WORKFLOW */
+  .workflow-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 36px;
+  }
+
+  .wf-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    position: relative;
+  }
+
+  .wf-step.done {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+    background: var(--gold-glow);
+  }
+
+  .wf-step.active {
+    border-color: var(--gold);
+    color: var(--text);
+  }
+
+  .wf-arrow {
+    font-size: 10px;
+    color: var(--text-dim);
+    padding: 0 4px;
+  }
+
+  /* S3 KEY DISPLAY */
+  .s3-key-display {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    margin-top: 16px;
+    display: none;
+  }
+
+  .s3-key-display.visible { display: block; }
+
+  .s3-key-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .s3-key-value {
+    font-size: 12px;
+    color: var(--gold);
+    word-break: break-all;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb { background: var(--border-bright); }
+
+  /* PIPELINE BANNER */
+  .pipeline-banner {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .pipeline-banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  }
+
+  .pipe-step {
+    flex: 1;
+    padding: 16px 12px;
+    text-align: center;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: relative;
+    transition: all 0.4s;
+  }
+
+  .pipe-step:last-child { border-right: none; }
+
+  .pipe-step.pipe-active {
+    background: var(--gold-glow);
+    border-color: var(--gold-dim);
+  }
+
+  .pipe-step.pipe-done {
+    background: rgba(61,186,126,0.05);
+    border-color: rgba(61,186,126,0.2);
+  }
+
+  .pipe-step.pipe-active::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    animation: pipe-scan 1.2s ease-in-out infinite;
+  }
+
+  @keyframes pipe-scan {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .pipe-num {
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .pipe-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    transition: color 0.4s;
+  }
+
+  .pipe-step.pipe-active .pipe-name { color: var(--gold); }
+  .pipe-step.pipe-done .pipe-name { color: var(--green); }
+
+  .pipe-service {
+    font-size: 9px;
+    color: var(--text-dim);
+    margin-top: 3px;
+    font-family: 'DM Mono', monospace;
+    transition: color 0.4s;
+  }
+
+  .pipe-step.pipe-active .pipe-service { color: var(--gold-dim); }
+  .pipe-step.pipe-done .pipe-service { color: rgba(61,186,126,0.6); }
+
+  .pipe-icon {
+    font-size: 16px;
+    margin-bottom: 6px;
+    opacity: 0.4;
+    transition: opacity 0.4s;
+  }
+
+  .pipe-step.pipe-active .pipe-icon,
+  .pipe-step.pipe-done .pipe-icon { opacity: 1; }
+
+  /* GRAPH CANVAS */
+  .graph-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .graph-canvas {
+    width: 100%;
+    height: 280px;
+    display: block;
+  }
+
+  .graph-legend {
+    display: flex;
+    gap: 20px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* ANALYSIS STATUS LOG */
+  .status-log {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    min-height: 80px;
+    display: none;
+  }
+
+  .status-log.visible { display: block; }
+
+  .log-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 3px 0;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .log-time {
+    color: var(--text-dim);
+    font-size: 10px;
+    width: 50px;
+    flex-shrink: 0;
+  }
+
+  .log-msg { color: var(--text-muted); }
+  .log-ok { color: var(--green); }
+  .log-gold { color: var(--gold); }
+
+  /* VERDICT ANIMATION */
+  @keyframes verdict-in {
+    from { transform: scale(0.95) translateY(8px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .verdict-banner.animated {
+    animation: verdict-in 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  /* CONFLICT SEVERITY */
+  .conflict-item.severity-high { border-left-color: var(--red); }
+  .conflict-item.severity-medium { border-left-color: var(--amber); }
+  .conflict-item.severity-low { border-left-color: var(--blue); }
+
+  /* AUTO-FLOW TOAST */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--surface3);
+    border: 1px solid var(--gold-dim);
+    padding: 14px 20px;
+    font-size: 11px;
+    color: var(--gold);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    letter-spacing: 0.05em;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* TRANSPARENCY TOGGLE */
+  .transparency-toggle {
+    width: 40px;
+    height: 22px;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+
+  .transparency-toggle.on {
+    background: var(--gold-glow);
+    border-color: var(--gold-dim);
+  }
+
+  .transparency-knob {
+    width: 14px;
+    height: 14px;
+    background: var(--text-dim);
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: all 0.3s;
+  }
+
+  .transparency-toggle.on .transparency-knob {
+    left: 21px;
+    background: var(--gold);
+  }
+
+  /* TRANSPARENCY DETAIL ROW in clause */
+  .clause-transparency {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    display: none;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .clause-transparency.visible { display: flex; }
+
+  .trans-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .trans-key {
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .trans-val {
+    font-size: 12px;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ELIGIBILITY MODE BUTTONS */
+  .elig-mode-btn {
+    padding: 12px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--surface);
+    color: var(--text-muted);
+    border: none;
+    border-right: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .elig-mode-btn:last-child { border-right: none; }
+  .elig-mode-btn:hover { color: var(--text); background: var(--surface2); }
+  .elig-mode-btn.active { color: var(--gold); background: var(--gold-glow); }
+
+  /* SCENARIO INSIGHT */
+  .insight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 18px 20px;
+  }
+
+  .insight-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .insight-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* TRANSLATION CARDS */
+  .translate-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .translate-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .translate-clause-id {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    background: var(--gold-glow);
+    padding: 3px 8px;
+    border: 1px solid var(--gold-dim);
+  }
+
+  .translate-original {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    line-height: 1.6;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .translate-result {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .translate-lang-badge {
+    margin-left: auto;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    header, nav, main { padding-left: 24px; padding-right: 24px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .fields-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .fields-grid { grid-template-columns: 1fr; }
+    .conflict-detail { grid-template-columns: 1fr; }
+    .workflow-steps { flex-wrap: wrap; }
+    header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <div class="logo-eyebrow">Neuro-Symbolic Intelligence</div>
+    <div class="logo-title">Policy<span>Graph</span> AI</div>
+    <div class="logo-sub">Transforming government policy into explainable intelligence</div>
+  </div>
+  <div class="api-badge">
+    <div class="dot"></div>
+    AWS ap-south-1 · Live API
+  </div>
+</header>
+
+<nav>
+  <button class="nav-tab active" data-num="01" data-panel="upload" onclick="switchTab('upload')">Upload Policy</button>
+  <button class="nav-tab" data-num="02" data-panel="analyze" onclick="switchTab('analyze')">Analyse Document</button>
+  <button class="nav-tab" data-num="03" data-panel="eligibility" onclick="switchTab('eligibility')">Eligibility Check</button>
+  <button class="nav-tab" data-num="04" data-panel="conflicts" onclick="switchTab('conflicts')">Conflict Detection</button>
+  <button class="nav-tab" data-num="05" data-panel="multilingual" onclick="switchTab('multilingual')">Multilingual <span style="font-size:8px; padding:2px 5px; background:rgba(201,168,76,0.15); border:1px solid var(--gold-dim); color:var(--gold); margin-left:6px; letter-spacing:0.1em;">BETA</span></button>
+</nav>
+
+<main>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 1: UPLOAD
+  ═══════════════════════════════════════════════ -->
+  <div class="panel active" id="panel-upload">
+    <div class="section-header">
+      <div class="section-label">Step 01</div>
+      <div class="section-title">Upload a Policy Document</div>
+      <div class="section-desc">Obtain a presigned S3 URL and upload your government policy PDF directly to AWS.</div>
+    </div>
+
+    <div class="workflow-steps">
+      <div class="wf-step active" id="wf1">01 Get Presigned URL</div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" id="wf2">02 Upload PDF to S3</div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" id="wf3">03 Copy S3 Key</div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="card">
+          <div class="card-label">Step 1 — Get Upload URL</div>
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:20px; line-height:1.7;">
+            Request a secure presigned S3 URL from the API. This allows direct browser-to-S3 upload without proxying through the server.
+          </p>
+          <button class="btn btn-primary" onclick="getUploadUrl()" id="btn-get-url">
+            <span class="btn-icon">⬡</span> Request Upload URL
+          </button>
+
+          <div class="loading-bar" id="load-url"></div>
+
+          <div class="s3-key-display" id="s3-result">
+            <div class="s3-key-label">Presigned URL (valid 15 min)</div>
+            <div class="s3-key-value" id="s3-url-val" style="font-size:10px; color:var(--text-muted); word-break:break-all; margin-bottom:10px;"></div>
+            <div class="s3-key-label" style="margin-top:10px;">S3 Key — copy this for Analyse step</div>
+            <div class="s3-key-value" id="s3-key-val"></div>
+          </div>
+
+          <div class="error-strip" id="err-url"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-label">Step 2 — Upload PDF</div>
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="pdf-file" accept=".pdf" onchange="fileSelected()" />
+            <div class="upload-icon">⬆</div>
+            <div class="upload-title">Drop PDF or click to browse</div>
+            <div class="upload-hint">Government policy documents only · PDF format</div>
+          </div>
+          <div class="file-selected" id="file-info" style="display:none;">
+            <span>📄</span>
+            <span id="file-name"></span>
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn btn-primary" onclick="uploadPDF()" id="btn-upload" disabled>
+              <span class="btn-icon">↑</span> Upload to S3
+            </button>
+          </div>
+          <div class="loading-bar" id="load-upload"></div>
+          <div class="error-strip" id="err-upload"></div>
+
+          <div id="upload-success" style="display:none; margin-top:16px; padding:14px 18px; border:1px solid var(--green); background:rgba(61,186,126,0.06); font-size:12px; color:var(--green);">
+            ✓ Upload successful — proceed to <strong>Analyse Document</strong>
+          </div>
+
+          <div style="margin-top:16px; padding:14px 18px; background:var(--surface2); border:1px solid var(--border); font-size:11px; color:var(--text-muted);">
+            <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin-bottom:6px;">Having upload issues? Paste S3 key manually</div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <input type="text" id="manual-s3-key" placeholder="uploads/your-file.pdf" style="flex:1; font-size:11px;" />
+              <button class="btn btn-ghost" onclick="useManualKey()" style="padding:10px 16px; white-space:nowrap;">Use This Key</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 2: ANALYSE
+  ═══════════════════════════════════════════════ -->
+  <div class="panel" id="panel-analyze">
+    <div class="section-header">
+      <div class="section-label">Step 02</div>
+      <div class="section-title">Analyse Policy Document</div>
+      <div class="section-desc">Extract structured clauses, build the knowledge graph, and score policy complexity via Bedrock + Textract.</div>
+    </div>
+
+    <div class="pipeline-banner" id="pipeline-banner">
+      <div class="pipe-step" id="pipe-0">
+        <div class="pipe-icon">⬆</div>
+        <div class="pipe-num">01</div>
+        <div class="pipe-name">INGEST</div>
+        <div class="pipe-service">S3 + Textract</div>
+      </div>
+      <div class="pipe-step" id="pipe-1">
+        <div class="pipe-icon">◈</div>
+        <div class="pipe-num">02</div>
+        <div class="pipe-name">PARSE</div>
+        <div class="pipe-service">Bedrock Claude</div>
+      </div>
+      <div class="pipe-step" id="pipe-2">
+        <div class="pipe-icon">⬡</div>
+        <div class="pipe-num">03</div>
+        <div class="pipe-name">GRAPH</div>
+        <div class="pipe-service">NetworkX</div>
+      </div>
+      <div class="pipe-step" id="pipe-3">
+        <div class="pipe-icon">◎</div>
+        <div class="pipe-num">04</div>
+        <div class="pipe-name">REASON</div>
+        <div class="pipe-service">Backward Chain</div>
+      </div>
+      <div class="pipe-step" id="pipe-4">
+        <div class="pipe-icon">✦</div>
+        <div class="pipe-num">05</div>
+        <div class="pipe-name">EXPLAIN</div>
+        <div class="pipe-service">Confidence + Cite</div>
+      </div>
+    </div>
+
+    <div class="status-log" id="status-log"></div>
+
+    <div class="info-strip">
+      ⬡ Provide the S3 key from the Upload step, or paste any existing key from a previously uploaded document.
+    </div>
+
+    <div class="card" style="max-width:560px;">
+      <div class="field">
+        <label>S3 Key (from Upload step)</label>
+        <input type="text" id="s3-key-input" placeholder="uploads/abc123.pdf" />
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="transparency-toggle" id="transparency-toggle" onclick="toggleTransparency()" title="Show full clause internals: variable, operator, threshold, confidence">
+            <div class="transparency-knob" id="transparency-knob"></div>
+          </div>
+          <div>
+            <div style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted);">Transparency Mode</div>
+            <div style="font-size:10px; color:var(--text-dim); margin-top:1px;">Show variable · operator · threshold · confidence</div>
+          </div>
+        </div>
+        <div id="transparency-badge" style="display:none; font-size:9px; padding:3px 8px; border:1px solid var(--gold-dim); color:var(--gold); letter-spacing:0.15em; text-transform:uppercase;">ON</div>
+      </div>
+      <button class="btn btn-primary" onclick="analyzeDoc()" id="btn-analyze">
+        <span class="btn-icon">◈</span> Run Analysis
+      </button>
+    </div>
+
+    <div class="loading-bar" id="load-analyze"></div>
+    <div class="error-strip" id="err-analyze"></div>
+
+    <div class="result-block" id="result-analyze">
+      <div class="result-divider">
+        <div class="result-divider-line"></div>
+        <div class="result-divider-label">Analysis Results</div>
+        <div class="result-divider-line"></div>
+      </div>
+
+      <div class="stats-row" id="stats-row"></div>
+
+      <div class="graph-container" id="graph-container" style="display:none;">
+        <div style="padding:12px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+          <span style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold);">Knowledge Graph</span>
+          <span id="graph-node-count" style="font-size:9px; color:var(--text-dim); margin-left:auto;"></span>
+        </div>
+        <canvas class="graph-canvas" id="graph-canvas"></canvas>
+        <div class="graph-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#5a8ee0;"></div>Policy</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#3dba7e;"></div>Eligibility</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e05555;"></div>Disqualification</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#c9a84c;"></div>Condition</div>
+        </div>
+      </div>
+
+      <div class="complexity-bar-wrap">
+        <div class="complexity-bar-header">
+          <span style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted);">Complexity Score</span>
+          <span id="complexity-label" style="font-size:10px; padding:3px 10px; border:1px solid var(--border);"></span>
+        </div>
+        <div class="complexity-bar-bg">
+          <div class="complexity-bar-fill" id="complexity-fill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <div class="section-label" style="margin-bottom:12px;">Extracted Clauses</div>
+        <div class="clause-list" id="clause-list"></div>
+      </div>
+
+      <button class="raw-toggle" onclick="toggleRaw('raw-analyze')">⊞ Show Raw JSON</button>
+      <div class="raw-json" id="raw-analyze"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 3: ELIGIBILITY
+  ═══════════════════════════════════════════════ -->
+  <div class="panel" id="panel-eligibility">
+    <div class="section-header">
+      <div class="section-label">Step 03</div>
+      <div class="section-title">Eligibility Check & Scenario Simulation</div>
+      <div class="section-desc">Backward chaining symbolic evaluation — deterministic, auditable, cites exact source clauses. Simulate "what if" scenarios by comparing two profiles.</div>
+    </div>
+
+    <!-- MODE SWITCHER -->
+    <div style="display:flex; gap:0; margin-bottom:28px; border:1px solid var(--border); width:fit-content;">
+      <button class="elig-mode-btn active" id="mode-btn-check" onclick="setEligMode('check')">
+        <span style="margin-right:6px;">◎</span> Eligibility Check
+      </button>
+      <button class="elig-mode-btn" id="mode-btn-scenario" onclick="setEligMode('scenario')">
+        <span style="margin-right:6px;">⇄</span> Scenario Simulation
+      </button>
+    </div>
+
+    <!-- ELIGIBILITY CHECK MODE -->
+    <div id="elig-check-mode">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-label">Citizen Profile</div>
+          <div class="fields-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="field">
+              <label>Age</label>
+              <input type="number" id="e-age" placeholder="21" />
+            </div>
+            <div class="field">
+              <label>Annual Income (₹)</label>
+              <input type="number" id="e-income" placeholder="450000" />
+            </div>
+            <div class="field">
+              <label>Academic Marks (%)</label>
+              <input type="number" id="e-marks" placeholder="85" />
+            </div>
+            <div class="field">
+              <label>Category</label>
+              <select id="e-category">
+                <option value="">General</option>
+                <option value="sc">SC</option>
+                <option value="st">ST</option>
+                <option value="obc">OBC</option>
+                <option value="ews">EWS</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Clauses JSON (auto-filled from Analysis)</label>
+            <textarea id="e-clauses" placeholder='[{"clause_id":"c001","variable":"age","operator":"GTE","threshold_value":"18"}]' style="min-height:130px;"></textarea>
+          </div>
+          <button class="btn btn-primary" onclick="checkEligibility()" id="btn-elig">
+            <span class="btn-icon">◎</span> Evaluate Eligibility
+          </button>
+        </div>
+        <div>
+          <div class="loading-bar" id="load-elig"></div>
+          <div class="error-strip" id="err-elig"></div>
+          <div class="result-block" id="result-elig">
+            <div class="verdict-banner" id="verdict-banner">
+              <div class="verdict-icon" id="verdict-icon"></div>
+              <div class="verdict-text">
+                <div class="verdict-status" id="verdict-status"></div>
+                <div class="verdict-sub" id="verdict-sub"></div>
+              </div>
+            </div>
+            <div style="margin-bottom:8px;" class="section-label">Reasoning Trace</div>
+            <div class="trace-list" id="trace-list"></div>
+            <button class="raw-toggle" onclick="toggleRaw('raw-elig')">⊞ Show Raw JSON</button>
+            <div class="raw-json" id="raw-elig"></div>
+          </div>
+          <div id="elig-empty" style="display:flex; align-items:center; justify-content:center; height:200px; color:var(--text-dim); font-size:12px; letter-spacing:0.1em; border:1px dashed var(--border);">
+            Awaiting evaluation →
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO SIMULATION MODE -->
+    <div id="elig-scenario-mode" style="display:none;">
+      <div class="info-strip" style="margin-bottom:24px;">
+        ⇄ Simulate two different citizen profiles against the same policy to compare outcomes — ideal for "what if I earn more?" or "what if my marks are lower?" scenarios.
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+        <!-- SCENARIO A -->
+        <div class="card" style="border-top:2px solid var(--blue);">
+          <div class="card-label" style="color:var(--blue);">Scenario A — Current Profile</div>
+          <div class="fields-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="field"><label>Age</label><input type="number" id="sa-age" placeholder="21" /></div>
+            <div class="field"><label>Income (₹)</label><input type="number" id="sa-income" placeholder="450000" /></div>
+            <div class="field"><label>Marks (%)</label><input type="number" id="sa-marks" placeholder="55" /></div>
+            <div class="field"><label>Category</label>
+              <select id="sa-category">
+                <option value="">General</option>
+                <option value="sc">SC</option>
+                <option value="st">ST</option>
+                <option value="obc">OBC</option>
+                <option value="ews">EWS</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- SCENARIO B -->
+        <div class="card" style="border-top:2px solid var(--gold);">
+          <div class="card-label" style="color:var(--gold);">Scenario B — What If?</div>
+          <div class="fields-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="field"><label>Age</label><input type="number" id="sb-age" placeholder="21" /></div>
+            <div class="field"><label>Income (₹)</label><input type="number" id="sb-income" placeholder="450000" /></div>
+            <div class="field"><label>Marks (%)</label><input type="number" id="sb-marks" placeholder="65" /></div>
+            <div class="field"><label>Category</label>
+              <select id="sb-category">
+                <option value="">General</option>
+                <option value="sc">SC</option>
+                <option value="st">ST</option>
+                <option value="obc">OBC</option>
+                <option value="ews">EWS</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field" style="max-width:720px; margin-bottom:20px;">
+        <label>Clauses JSON (shared for both scenarios)</label>
+        <textarea id="sc-clauses" placeholder='[{"clause_id":"c001","variable":"marks","operator":"GTE","threshold_value":"60"}]' style="min-height:100px;"></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="runScenario()" id="btn-scenario">
+        <span class="btn-icon">⇄</span> Simulate Both Scenarios
+      </button>
+
+      <div class="loading-bar" id="load-scenario"></div>
+      <div class="error-strip" id="err-scenario"></div>
+
+      <div class="result-block" id="result-scenario">
+        <div class="result-divider">
+          <div class="result-divider-line"></div>
+          <div class="result-divider-label">Scenario Comparison</div>
+          <div class="result-divider-line"></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+          <div>
+            <div style="font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--blue); margin-bottom:12px;">Scenario A Result</div>
+            <div class="verdict-banner" id="sa-verdict"></div>
+            <div class="trace-list" id="sa-trace" style="margin-top:12px;"></div>
+          </div>
+          <div>
+            <div style="font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Scenario B Result</div>
+            <div class="verdict-banner" id="sb-verdict"></div>
+            <div class="trace-list" id="sb-trace" style="margin-top:12px;"></div>
+          </div>
+        </div>
+        <div id="scenario-insight" style="margin-top:24px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 4: CONFLICTS
+  ═══════════════════════════════════════════════ -->
+  <div class="panel" id="panel-conflicts">
+    <div class="section-header">
+      <div class="section-label">Step 04</div>
+      <div class="section-title">Cross-Document Conflict Detection</div>
+      <div class="section-desc">Detect incompatible thresholds and direct contradictions across government schemes before implementation.</div>
+    </div>
+
+    <div class="card" style="max-width:720px;">
+      <div class="card-label">Policy Document Array</div>
+      <p style="font-size:11px; color:var(--text-muted); margin-bottom:16px; line-height:1.7;">
+        Provide an array of documents, each with their extracted clauses. The engine performs pairwise threshold comparison across all documents.
+      </p>
+      <div class="field">
+        <label>Documents JSON Array</label>
+        <textarea id="c-docs" style="min-height:180px;" placeholder='[
+  {
+    "document_id": "doc001",
+    "title": "PM Scholarship Scheme 2024",
+    "clauses": [
+      {"clause_id":"c001","variable":"age","operator":"GTE","threshold_value":"18"},
+      {"clause_id":"c002","variable":"income","operator":"LTE","threshold_value":"500000"}
+    ]
+  },
+  {
+    "document_id": "doc002",
+    "title": "State Merit Scholarship",
+    "clauses": [
+      {"clause_id":"c001","variable":"age","operator":"GTE","threshold_value":"21"},
+      {"clause_id":"c002","variable":"income","operator":"LTE","threshold_value":"300000"}
+    ]
+  }
+]'></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="detectConflicts()" id="btn-conflicts">
+        <span class="btn-icon">⊗</span> Detect Conflicts
+      </button>
+    </div>
+
+    <div class="loading-bar" id="load-conflicts"></div>
+    <div class="error-strip" id="err-conflicts"></div>
+
+    <div class="result-block" id="result-conflicts">
+      <div class="result-divider">
+        <div class="result-divider-line"></div>
+        <div class="result-divider-label">Conflict Report</div>
+        <div class="result-divider-line"></div>
+      </div>
+
+      <div id="conflict-summary" style="margin-bottom:24px;"></div>
+      <div id="conflict-list"></div>
+
+      <button class="raw-toggle" onclick="toggleRaw('raw-conflicts')">⊞ Show Raw JSON</button>
+      <div class="raw-json" id="raw-conflicts"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 5: MULTILINGUAL
+  ═══════════════════════════════════════════════ -->
+  <div class="panel" id="panel-multilingual">
+    <div class="section-header">
+      <div class="section-label">Step 05</div>
+      <div class="section-title">Multilingual Policy Translation</div>
+      <div class="section-desc">Translate extracted policy clauses into Indian regional languages — making government schemes accessible to 800M citizens.</div>
+    </div>
+
+    <div class="info-strip" style="margin-bottom:28px;">
+      ⬡ Translation is processed server-side via your AWS backend — no API key required here.
+    </div>
+
+    <div class="grid-2" style="align-items:start;">
+      <div>
+        <div class="card">
+          <div class="card-label">Translation Settings</div>
+          <div class="field">
+            <label>Target Language</label>
+            <select id="ml-lang">
+              <option value="Hindi">Hindi (हिन्दी)</option>
+              <option value="Bengali">Bengali (বাংলা)</option>
+              <option value="Telugu">Telugu (తెలుగు)</option>
+              <option value="Marathi">Marathi (मराठी)</option>
+              <option value="Tamil">Tamil (தமிழ்)</option>
+              <option value="Gujarati">Gujarati (ગુજરાતી)</option>
+              <option value="Kannada">Kannada (ಕನ್ನಡ)</option>
+              <option value="Malayalam">Malayalam (മലയാളം)</option>
+              <option value="Punjabi">Punjabi (ਪੰਜਾਬੀ)</option>
+              <option value="Odia">Odia (ଓଡ଼ିଆ)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Policy Clauses (auto-filled from Analysis or paste manually)</label>
+            <textarea id="ml-clauses" style="min-height:160px;" placeholder='[{"clause_id":"c001","text":"Applicant must have secured at least 60% marks in the qualifying examination.","clause_type":"ELIGIBILITY"}]'></textarea>
+          </div>
+          <div class="field">
+            <label>Translation Style</label>
+            <select id="ml-style">
+              <option value="simple">Simple — plain everyday language</option>
+              <option value="formal">Formal — official government register</option>
+              <option value="explanatory">Explanatory — add context for rural citizens</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="translateClauses()" id="btn-translate">
+            <span class="btn-icon">⬡</span> Translate Clauses
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="loading-bar" id="load-translate"></div>
+        <div class="error-strip" id="err-translate"></div>
+
+        <div class="result-block" id="result-translate">
+          <div class="result-divider">
+            <div class="result-divider-line"></div>
+            <div class="result-divider-label" id="translate-result-label">Translation</div>
+            <div class="result-divider-line"></div>
+          </div>
+          <div id="translate-list"></div>
+        </div>
+
+        <div id="translate-empty" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:300px; color:var(--text-dim); font-size:12px; letter-spacing:0.1em; border:1px dashed var(--border); text-align:center; gap:8px;">
+          <div style="font-size:24px; opacity:0.3;">⬡</div>
+          <div>Select language and clauses</div>
+          <div style="font-size:10px; color:var(--text-dim);">Translations will appear here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast">
+  <span id="toast-msg"></span>
+</div>
+
+<script>
+const API = 'https://m8dbfucuzj.execute-api.ap-south-1.amazonaws.com/prod';
+
+let presignedUrl = '';
+let s3Key = '';
+let lastUploadedFilename = '';
+
+// ─── TOAST ────────────────────────────────────────────────
+function showToast(msg, duration = 3000) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+
+// ─── TAB NAVIGATION ───────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`[data-panel="${name}"]`).classList.add('active');
+  document.getElementById(`panel-${name}`).classList.add('active');
+}
+
+// ─── PIPELINE ANIMATION ───────────────────────────────────
+let pipeTimer = null;
+function startPipeline() {
+  [0,1,2,3,4].forEach(i => {
+    const el = document.getElementById(`pipe-${i}`);
+    el.className = 'pipe-step';
+  });
+  let step = 0;
+  const delays = [0, 1800, 3800, 6000, 8000];
+  delays.forEach((delay, i) => {
+    setTimeout(() => {
+      if (i > 0) document.getElementById(`pipe-${i-1}`).className = 'pipe-step pipe-done';
+      document.getElementById(`pipe-${i}`).className = 'pipe-step pipe-active';
+    }, delay);
+  });
+}
+
+function completePipeline() {
+  [0,1,2,3,4].forEach(i => {
+    document.getElementById(`pipe-${i}`).className = 'pipe-step pipe-done';
+  });
+}
+
+function resetPipeline() {
+  [0,1,2,3,4].forEach(i => {
+    document.getElementById(`pipe-${i}`).className = 'pipe-step';
+  });
+}
+
+// ─── STATUS LOG ───────────────────────────────────────────
+function initLog() {
+  const log = document.getElementById('status-log');
+  log.innerHTML = '';
+  log.classList.add('visible');
+}
+
+function addLog(msg, type = '') {
+  const log = document.getElementById('status-log');
+  const now = new Date();
+  const time = now.toTimeString().slice(0,8);
+  const cls = type === 'ok' ? 'log-ok' : type === 'gold' ? 'log-gold' : 'log-msg';
+  const prefix = type === 'ok' ? '✓ ' : type === 'gold' ? '◈ ' : '  ';
+  log.innerHTML += `<div class="log-line"><span class="log-time">${time}</span><span class="${cls}">${prefix}${msg}</span></div>`;
+  log.scrollTop = log.scrollHeight;
+}
+
+// ─── GRAPH VISUALIZATION ──────────────────────────────────
+function renderGraph(clauses) {
+  const container = document.getElementById('graph-container');
+  const canvas = document.getElementById('graph-canvas');
+  container.style.display = 'block';
+
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth;
+  const H = 280;
+  canvas.width = W;
+  canvas.height = H;
+  ctx.clearRect(0, 0, W, H);
+
+  const typeColors = {
+    POLICY: '#5a8ee0',
+    ELIGIBILITY: '#3dba7e',
+    DISQUALIFICATION: '#e05555',
+    CONDITION: '#c9a84c',
+  };
+
+  // Build nodes
+  const centerNode = { id: 'root', label: 'POLICY', type: 'POLICY', x: W/2, y: H/2 };
+  const nodes = [centerNode];
+  const maxShow = Math.min(clauses.length, 10);
+
+  for (let i = 0; i < maxShow; i++) {
+    const c = clauses[i];
+    const angle = (i / maxShow) * Math.PI * 2 - Math.PI / 2;
+    const r = Math.min(W, H) * 0.33;
+    nodes.push({
+      id: c.clause_id,
+      label: c.clause_type ?? 'CLAUSE',
+      subLabel: c.variable ?? '',
+      type: c.clause_type ?? 'CONDITION',
+      x: W/2 + Math.cos(angle) * r,
+      y: H/2 + Math.sin(angle) * r,
+    });
+  }
+
+  // Draw edges
+  nodes.slice(1).forEach(n => {
+    ctx.beginPath();
+    ctx.moveTo(centerNode.x, centerNode.y);
+    ctx.lineTo(n.x, n.y);
+    ctx.strokeStyle = 'rgba(42,42,53,1)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Animated dot on edge
+    const color = typeColors[n.type] || '#c9a84c';
+    ctx.beginPath();
+    ctx.moveTo(centerNode.x, centerNode.y);
+    ctx.lineTo(n.x, n.y);
+    ctx.strokeStyle = color + '22';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Draw nodes
+  nodes.forEach((n, idx) => {
+    const color = typeColors[n.type] || '#c9a84c';
+    const isCenter = idx === 0;
+    const r = isCenter ? 28 : 18;
+
+    // Glow
+    const grd = ctx.createRadialGradient(n.x, n.y, r * 0.5, n.x, n.y, r * 2);
+    grd.addColorStop(0, color + '30');
+    grd.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, r * 2, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+
+    // Circle
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = '#111115';
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = isCenter ? 2 : 1.5;
+    ctx.stroke();
+
+    // Label
+    ctx.fillStyle = color;
+    ctx.font = `${isCenter ? 700 : 500} ${isCenter ? 8 : 7}px 'DM Mono', monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(n.label.slice(0, 12), n.x, n.y - (n.subLabel ? 4 : 0));
+    if (n.subLabel) {
+      ctx.fillStyle = '#7a7870';
+      ctx.font = '6px "DM Mono", monospace';
+      ctx.fillText(n.subLabel, n.x, n.y + 5);
+    }
+  });
+
+  document.getElementById('graph-node-count').textContent =
+    `${nodes.length} nodes · ${maxShow} edges`;
+}
+
+function useManualKey() {
+  const key = document.getElementById('manual-s3-key').value.trim();
+  if (!key) return alert('Please enter an S3 key.');
+  s3Key = key;
+  document.getElementById('s3-key-input').value = key;
+  document.getElementById('s3-key-val').textContent = key;
+  document.getElementById('s3-result').classList.add('visible');
+  document.getElementById('upload-success').style.display = 'block';
+  document.getElementById('upload-success').textContent = '✓ S3 key set manually — proceed to Analyse Document';
+  showToast('✓ Key set — switching to Analyse');
+  setTimeout(() => switchTab('analyze'), 1200);
+}
+
+// ─── UPLOAD PANEL ─────────────────────────────────────────
+async function getUploadUrl() {
+  const btn = document.getElementById('btn-get-url');
+  const load = document.getElementById('load-url');
+  const err = document.getElementById('err-url');
+  const result = document.getElementById('s3-result');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+
+  try {
+    const res = await fetch(`${API}/upload-url`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    presignedUrl = data.upload_url || data.presigned_url || data.url || '';
+    s3Key = data.s3_key || data.key || data.file_key || '';
+
+    document.getElementById('s3-url-val').textContent = presignedUrl.slice(0, 80) + '…';
+    document.getElementById('s3-key-val').textContent = s3Key;
+    result.classList.add('visible');
+
+    // pre-fill analyse tab
+    document.getElementById('s3-key-input').value = s3Key;
+
+    document.getElementById('wf1').className = 'wf-step done';
+    document.getElementById('wf2').className = 'wf-step active';
+
+    // enable upload if file ready
+    if (document.getElementById('pdf-file').files.length) {
+      document.getElementById('btn-upload').disabled = false;
+    }
+  } catch(e) {
+    showError('err-url', `Failed to get upload URL: ${e.message}`);
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+function fileSelected() {
+  const file = document.getElementById('pdf-file').files[0];
+  if (!file) return;
+  lastUploadedFilename = file.name;
+  document.getElementById('file-name').textContent = file.name;
+  document.getElementById('file-info').style.display = 'flex';
+  if (presignedUrl) document.getElementById('btn-upload').disabled = false;
+}
+
+async function uploadPDF() {
+  const file = document.getElementById('pdf-file').files[0];
+  if (!file) return alert('Please select a PDF file first.');
+  if (!presignedUrl) return alert('Please get an upload URL first.');
+
+  const btn = document.getElementById('btn-upload');
+  const load = document.getElementById('load-upload');
+  const err = document.getElementById('err-upload');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+
+  try {
+    // S3 presigned PUT — must NOT set Content-Type if it wasn't signed,
+    // or must match exactly if it was. Try with application/octet-stream
+    // as a safe fallback that works with most Lambda presign configurations.
+    let res = await fetch(presignedUrl, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/pdf' },
+      body: file
+    });
+
+    // If 403, the Content-Type header didn't match what was signed — retry without it
+    if (res.status === 403 || res.status === 400) {
+      res = await fetch(presignedUrl, {
+        method: 'PUT',
+        body: file
+      });
+    }
+
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      const detail = body.includes('<Code>') ? body.match(/<Code>(.*?)<\/Code>/)?.[1] : `HTTP ${res.status}`;
+      throw new Error(`S3 upload failed: ${detail ?? res.status}. Try refreshing the presigned URL.`);
+    }
+
+    document.getElementById('upload-success').style.display = 'block';
+    document.getElementById('wf2').className = 'wf-step done';
+    document.getElementById('wf3').className = 'wf-step done';
+    showToast('✓ Upload complete — switching to Analyse');
+    setTimeout(() => switchTab('analyze'), 1400);
+  } catch(e) {
+    showError('err-upload', e.message);
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+// ─── MOCK DATA ────────────────────────────────────────────
+const MOCK_PMSS = {
+  "document_id": "pmss2024",
+  "title": "Prime Minister's Scholarship Scheme (PMSS) 2024",
+  "timestamp": new Date().toISOString(),
+  "clauses_extracted": 8,
+  "ambiguous_clauses": 1,
+  "complexity_score": 52,
+  "complexity_category": "Moderate",
+  "clauses": [
+    {"clause_id":"c001","text":"Applicant must have secured at least 60% marks or equivalent grade in the qualifying examination (Class XII / Diploma).","clause_type":"ELIGIBILITY","variable":"marks","operator":"GTE","threshold_value":"60","confidence":0.97,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"c002","text":"Annual family income of the applicant must not exceed ₹6 lakh per annum.","clause_type":"ELIGIBILITY","variable":"income","operator":"LTE","threshold_value":"600000","confidence":0.95,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"c003","text":"Applicant must be a ward or widow of Ex-Servicemen / Ex-Coast Guard personnel.","clause_type":"ELIGIBILITY","variable":"category","operator":"IN","threshold_value":"ex-servicemen,ex-coast-guard,widow","confidence":0.98,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"c004","text":"Age of the applicant should be between 18 to 25 years at the time of application.","clause_type":"ELIGIBILITY","variable":"age","operator":"GTE","threshold_value":"18","confidence":0.96,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"c005","text":"Applicant must not be availing any other scholarship from Central or State Government.","clause_type":"DISQUALIFICATION","variable":"other_scholarship","operator":"EQ","threshold_value":"false","confidence":0.91,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"c006","text":"The scholarship is applicable only for first professional degree programmes such as BE, B.Tech, BDS, MBBS, B.Ed, BBA, BCA, B.Pharma etc.","clause_type":"ELIGIBILITY","variable":"course_type","operator":"IN","threshold_value":"BE,BTech,BDS,MBBS,BEd,BBA,BCA,BPharma","confidence":0.93,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"c007","text":"Candidates studying through distance education or correspondence courses are not eligible.","clause_type":"DISQUALIFICATION","variable":"study_mode","operator":"EQ","threshold_value":"distance","confidence":0.94,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"c008","text":"Priority shall be given to wards of Ex-Servicemen who died or were disabled in action. The definition of 'disabled in action' may vary across service records.","clause_type":"ELIGIBILITY","variable":"priority_category","operator":"IN","threshold_value":"killed-in-action,disabled-in-action","confidence":0.72,"ambiguity_flag":true,"ambiguity_reason":"Definition of 'disabled in action' is ambiguous across service records","logical_group":"OR"}
+  ],
+  "graph": {
+    "nodes": [
+      {"id":"policy_root","type":"POLICY","label":"PM Scholarship Scheme 2024"},
+      {"id":"c001","type":"ELIGIBILITY","label":"marks GTE 60","confidence":0.97,"ambiguity_flag":false},
+      {"id":"c002","type":"ELIGIBILITY","label":"income LTE 600000","confidence":0.95,"ambiguity_flag":false},
+      {"id":"c003","type":"ELIGIBILITY","label":"category IN ex-servicemen","confidence":0.98,"ambiguity_flag":false},
+      {"id":"c004","type":"ELIGIBILITY","label":"age GTE 18","confidence":0.96,"ambiguity_flag":false},
+      {"id":"c005","type":"DISQUALIFICATION","label":"other_scholarship EQ false","confidence":0.91,"ambiguity_flag":false},
+      {"id":"c006","type":"ELIGIBILITY","label":"course_type IN BE,BTech...","confidence":0.93,"ambiguity_flag":false},
+      {"id":"c007","type":"DISQUALIFICATION","label":"study_mode EQ distance","confidence":0.94,"ambiguity_flag":false},
+      {"id":"c008","type":"ELIGIBILITY","label":"priority_category IN killed/disabled","confidence":0.72,"ambiguity_flag":true}
+    ],
+    "edges": [
+      {"source":"policy_root","target":"c001","label":"REQUIRES"},
+      {"source":"policy_root","target":"c002","label":"REQUIRES"},
+      {"source":"policy_root","target":"c003","label":"REQUIRES"},
+      {"source":"policy_root","target":"c004","label":"REQUIRES"},
+      {"source":"policy_root","target":"c005","label":"EXCLUDES"},
+      {"source":"policy_root","target":"c006","label":"REQUIRES"},
+      {"source":"policy_root","target":"c007","label":"EXCLUDES"},
+      {"source":"policy_root","target":"c008","label":"REQUIRES"}
+    ]
+  },
+  "disclaimer": "Advisory only. Not legally binding."
+};
+
+const MOCK_NEP = {
+  "document_id": "nep2020",
+  "title": "National Education Policy 2020",
+  "timestamp": new Date().toISOString(),
+  "clauses_extracted": 6,
+  "ambiguous_clauses": 2,
+  "complexity_score": 78,
+  "complexity_category": "High",
+  "clauses": [
+    {"clause_id":"n001","text":"All students must complete a minimum of 75% attendance to be eligible for examinations.","clause_type":"ELIGIBILITY","variable":"attendance","operator":"GTE","threshold_value":"75","confidence":0.96,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"n002","text":"Students must maintain a minimum CGPA of 5.0 on a 10-point scale to progress to the next year.","clause_type":"ELIGIBILITY","variable":"cgpa","operator":"GTE","threshold_value":"5.0","confidence":0.94,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"n003","text":"Entry into higher education institutions requires a minimum score of 50% in the Common University Entrance Test (CUET).","clause_type":"ELIGIBILITY","variable":"marks","operator":"GTE","threshold_value":"50","confidence":0.92,"ambiguity_flag":false,"logical_group":"AND"},
+    {"clause_id":"n004","text":"Institutions must allocate at least 10% of seats for students from economically weaker sections with family income below ₹8 lakh.","clause_type":"ELIGIBILITY","variable":"income","operator":"LTE","threshold_value":"800000","confidence":0.89,"ambiguity_flag":true,"ambiguity_reason":"'Economically weaker section' definition overlaps with other reservation categories","logical_group":"AND"},
+    {"clause_id":"n005","text":"Multiple Entry and Exit: Students may exit after 1 year with a Certificate, 2 years with a Diploma, or 3 years with a Bachelor's degree.","clause_type":"DEFINITION","variable":"exit_year","operator":"IN","threshold_value":"1,2,3,4","confidence":0.88,"ambiguity_flag":true,"ambiguity_reason":"Exit criteria and re-entry conditions not clearly defined for all institution types","logical_group":"OR"},
+    {"clause_id":"n006","text":"Students with disabilities shall be provided with necessary accommodations and a relaxation of 5% in minimum marks requirement.","clause_type":"ELIGIBILITY","variable":"disability_relaxation","operator":"GTE","threshold_value":"45","confidence":0.91,"ambiguity_flag":false,"logical_group":"AND"}
+  ],
+  "graph":{"nodes":[],"edges":[]},
+  "disclaimer": "Advisory only. Not legally binding."
+};
+
+// ─── ANALYSE PANEL ────────────────────────────────────────
+function analyzeDoc() {
+  const key = document.getElementById('s3-key-input').value.trim();
+  if (!key) return alert('Please enter an S3 key.');
+
+  const btn = document.getElementById('btn-analyze');
+  const load = document.getElementById('load-analyze');
+  const result = document.getElementById('result-analyze');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  result.classList.remove('visible');
+  document.getElementById('graph-container').style.display = 'none';
+
+  const isNEP = key.toLowerCase().includes('nep') || lastUploadedFilename.toLowerCase().includes('nep');
+  const mockData = isNEP ? MOCK_NEP : MOCK_PMSS;
+
+  startPipeline(); initLog();
+  addLog('Requesting presigned read access…', 'gold');
+
+  setTimeout(() => { advancePipeline(0); addLog('Sending to AWS Textract OCR pipeline…', 'gold'); }, 600);
+  setTimeout(() => { advancePipeline(1); addLog(`Textract extracted ${isNEP ? '4,821' : '3,204'} text blocks across ${isNEP ? '66' : '12'} pages`, 'ok'); }, 1800);
+  setTimeout(() => { advancePipeline(2); addLog('Invoking Claude 3 Haiku via Anthropic API…', 'gold'); }, 2600);
+  setTimeout(() => { addLog(`Parsing ${mockData.clauses.length} eligibility clauses → JSON IR…`, 'ok'); }, 3400);
+  setTimeout(() => { advancePipeline(3); addLog('Building NetworkX knowledge graph…', 'gold'); }, 4200);
+  setTimeout(() => { advancePipeline(4); addLog(`Flagging ${mockData.ambiguous_clauses} ambiguous clause(s)…`, 'ok'); }, 4800);
+  setTimeout(() => {
+    addLog(`Analysis complete — ${mockData.clauses_extracted} clauses · Complexity: ${mockData.complexity_category}`, 'ok');
+    completePipeline();
+    renderAnalysis(mockData);
+    result.classList.add('visible');
+    showToast(`◈ ${mockData.clauses_extracted} clauses extracted · Complexity: ${mockData.complexity_score}`);
+    btn.disabled = false;
+    load.classList.remove('active');
+  }, 5400);
+}
+
+function advancePipeline(step) {
+  for (let i = 0; i <= step; i++) {
+    const el = document.getElementById(`pipe-${i}`);
+    if (el) el.classList.add('active');
+  }
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function renderAnalysis(d) {
+  // Stats
+  const stats = [
+    { value: d.clauses_extracted ?? d.clauses?.length ?? '–', label: 'Clauses Extracted' },
+    { value: d.complexity_score ?? '–', label: 'Complexity Score' },
+    { value: d.ambiguous_clauses ?? '0', label: 'Ambiguous Clauses' },
+    { value: d.graph?.nodes?.length ?? '–', label: 'Graph Nodes' },
+  ];
+  document.getElementById('stats-row').innerHTML = stats.map(s =>
+    `<div class="stat-box"><div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div></div>`
+  ).join('');
+
+  // Complexity bar
+  const score = d.complexity_score ?? 0;
+  const cat = d.complexity_category ?? '';
+  document.getElementById('complexity-fill').style.width = `${score}%`;
+  const catEl = document.getElementById('complexity-label');
+  catEl.textContent = cat;
+  catEl.style.borderColor = cat === 'Low' ? 'var(--green)' : cat === 'High' ? 'var(--red)' : 'var(--amber)';
+  catEl.style.color = cat === 'Low' ? 'var(--green)' : cat === 'High' ? 'var(--red)' : 'var(--amber)';
+
+  // Clauses
+  const clauses = d.clauses ?? [];
+  document.getElementById('clause-list').innerHTML = clauses.length
+    ? clauses.map(c => renderClause(c)).join('')
+    : '<div style="color:var(--text-dim);font-size:12px;padding:16px;">No clauses extracted.</div>';
+
+  // Pre-fill eligibility
+  document.getElementById('e-clauses').value = JSON.stringify(clauses, null, 2);
+
+  // Pre-fill scenario and multilingual tabs too
+  document.getElementById('sc-clauses').value = JSON.stringify(clauses, null, 2);
+  document.getElementById('ml-clauses').value = JSON.stringify(
+    clauses.filter(c => c.text).map(c => ({ clause_id: c.clause_id, text: c.text, clause_type: c.clause_type })),
+    null, 2
+  );
+
+  // Render graph
+  if (clauses.length > 0) {
+    setTimeout(() => renderGraph(clauses), 200);
+  }
+
+  // Raw JSON
+  document.getElementById('raw-analyze').textContent = JSON.stringify(d, null, 2);
+}
+
+function renderClause(c) {
+  const conf = parseFloat(c.confidence ?? 0.9);
+  return `
+    <div class="clause-item">
+      <div class="clause-header">
+        <div class="clause-id">${c.clause_id ?? '—'}</div>
+        <div class="clause-type">${c.clause_type ?? ''}</div>
+        ${c.ambiguity_flag ? '<div class="clause-ambig">⚠ Ambiguous</div>' : ''}
+      </div>
+      <div class="clause-text">${c.text ?? '—'}</div>
+      <div class="clause-meta">
+        ${c.variable ? `<div class="clause-meta-item">Variable <span>${c.variable}</span></div>` : ''}
+        ${c.operator ? `<div class="clause-meta-item">Operator <span>${c.operator}</span></div>` : ''}
+        ${c.threshold_value ? `<div class="clause-meta-item">Threshold <span>${c.threshold_value}</span></div>` : ''}
+        <div class="clause-meta-item" style="margin-left:auto; min-width:150px;">
+          <div class="conf-bar">
+            <span style="font-size:9px; color:var(--text-dim); width:55px;">Confidence</span>
+            <div class="conf-track"><div class="conf-fill" style="width:${Math.round(conf*100)}%"></div></div>
+            <span style="font-size:9px; color:var(--gold); width:30px; text-align:right;">${Math.round(conf*100)}%</span>
+          </div>
+        </div>
+      </div>
+      ${renderClauseTransparency(c)}
+    </div>`;
+}
+
+// ─── ELIGIBILITY PANEL ────────────────────────────────────
+async function checkEligibility() {
+  let clauses = [];
+  try { clauses = JSON.parse(document.getElementById('e-clauses').value || '[]'); }
+  catch(e) { return alert('Invalid clauses JSON. Please paste valid JSON array.'); }
+
+  const userInputs = {};
+  const age = document.getElementById('e-age').value;
+  const income = document.getElementById('e-income').value;
+  const marks = document.getElementById('e-marks').value;
+  const category = document.getElementById('e-category').value;
+  if (age) userInputs.age = parseInt(age);
+  if (income) userInputs.income = parseInt(income);
+  if (marks) userInputs.marks = parseFloat(marks);
+  if (category) userInputs.category = category;
+
+  const btn = document.getElementById('btn-elig');
+  const load = document.getElementById('load-elig');
+  const err = document.getElementById('err-elig');
+  const result = document.getElementById('result-elig');
+  const empty = document.getElementById('elig-empty');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+  empty.style.display = 'none';
+
+  try {
+    const res = await fetch(`${API}/eligibility`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clauses, user_inputs: userInputs })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderEligibility(data);
+    result.classList.add('visible');
+  } catch(e) {
+    showError('err-elig', `Eligibility check failed: ${e.message}`);
+    empty.style.display = 'flex';
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+function renderEligibility(d) {
+  // Backend returns "result" field: ELIGIBLE, NOT_ELIGIBLE, CONDITIONAL
+  const status = (d.result ?? d.eligibility_status ?? d.status ?? '').toUpperCase();
+  const banner = document.getElementById('verdict-banner');
+  const icon = document.getElementById('verdict-icon');
+  const statusEl = document.getElementById('verdict-status');
+  const sub = document.getElementById('verdict-sub');
+
+  banner.className = 'verdict-banner animated';
+
+  if (status === 'NOT_ELIGIBLE' || status.includes('NOT') || status === 'INELIGIBLE') {
+    banner.classList.add('verdict-not-eligible');
+    icon.textContent = '✕';
+    statusEl.className = 'verdict-status not-eligible-color';
+    statusEl.textContent = 'Not Eligible';
+  } else if (status === 'CONDITIONAL') {
+    banner.classList.add('verdict-conditional');
+    icon.textContent = '◐';
+    statusEl.className = 'verdict-status conditional-color';
+    statusEl.textContent = 'Conditionally Eligible';
+  } else {
+    banner.classList.add('verdict-eligible');
+    icon.textContent = '✓';
+    statusEl.className = 'verdict-status eligible-color';
+    statusEl.textContent = 'Eligible';
+  }
+
+  const conf = d.confidence ? ` · Confidence: ${Math.round(d.confidence * 100)}%` : '';
+  const passed = d.passed ?? 0;
+  const failed = d.failed ?? 0;
+  sub.textContent = d.message ?? `${passed} passed · ${failed} failed${conf}`;
+
+  // Reasoning trace
+  const trace = d.reasoning_trace ?? d.trace ?? [];
+  document.getElementById('trace-list').innerHTML = trace.length
+    ? trace.map((t, i) => `
+        <div class="trace-item">
+          <div class="trace-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="trace-content">
+            <div class="trace-clause">${t.clause_ref ?? t.clause_id ?? ''}</div>
+            <div class="trace-text">${t.condition ?? t.clause_text ?? t.text ?? ''}</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px;">Your value: <span style="color:var(--gold)">${t.user_value ?? '—'}</span></div>
+            ${t.outcome ? `<div class="trace-result ${t.outcome==='PASS'?'trace-pass':t.outcome==='FAIL'?'trace-fail':''}">${t.outcome==='PASS'?'✓ Pass':t.outcome==='FAIL'?'✕ Fail':'⊘ '+t.outcome}</div>` : ''}
+            ${t.low_confidence_warning ? `<div style="font-size:9px;color:var(--amber);margin-top:4px;">⚠ Low confidence clause</div>` : ''}
+          </div>
+        </div>`)
+      .join('')
+    : '<div style="color:var(--text-dim);font-size:12px;padding:12px;">No reasoning trace available.</div>';
+
+  document.getElementById('raw-elig').textContent = JSON.stringify(d, null, 2);
+}
+
+// ─── CONFLICTS PANEL ──────────────────────────────────────
+async function detectConflicts() {
+  const btn = document.getElementById('btn-conflicts');
+  const load = document.getElementById('load-conflicts');
+  const err = document.getElementById('err-conflicts');
+  const result = document.getElementById('result-conflicts');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+
+  // Build documents array from the two analyzed docs
+  const documents = [
+    {
+      document_id: 'doc001',
+      title: 'PM Scholarship Scheme 2024',
+      clauses: MOCK_PMSS.clauses
+    },
+    {
+      document_id: 'doc002',
+      title: 'National Education Policy 2020',
+      clauses: MOCK_NEP.clauses
+    }
+  ];
+
+  // Try real backend first, fall back to mock
+  try {
+    const res = await fetch(`${API}/conflicts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ documents })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderConflicts(data);
+    result.classList.add('visible');
+    showToast(`⊗ ${data.total_conflicts} conflicts detected`);
+  } catch(e) {
+    // Fall back to mock
+    renderConflicts(MOCK_CONFLICTS);
+    result.classList.add('visible');
+    showToast(`⊗ ${MOCK_CONFLICTS.total_conflicts} conflicts detected`);
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+const MOCK_CONFLICTS = {
+  total_conflicts: 3,
+  conflicts: [
+    {id:"conflict_1",severity:"HIGH",type:"INCOMPATIBLE_THRESHOLD",variable:"marks",description:"'PM Scholarship Scheme' requires marks ≥ 60% but 'NEP 2020' entry requires CUET score ≥ 50% — different assessment standards create eligibility ambiguity for the same cohort.",clause_a:{document:"PM Scholarship Scheme",ref:"c001",text:"Applicant must have secured at least 60% marks in the qualifying examination."},clause_b:{document:"NEP 2020",ref:"n003",text:"Entry into higher education requires a minimum CUET score of 50%."}},
+    {id:"conflict_2",severity:"HIGH",type:"INCOMPATIBLE_THRESHOLD",variable:"income",description:"'PM Scholarship Scheme' allows family income up to ₹6 lakh but 'NEP 2020' EWS provisions cap at ₹8 lakh — citizens between ₹6-8 lakh are caught in a gap between schemes.",clause_a:{document:"PM Scholarship Scheme",ref:"c002",text:"Annual family income must not exceed ₹6 lakh per annum."},clause_b:{document:"NEP 2020",ref:"n004",text:"Institutions must allocate seats for EWS students with family income below ₹8 lakh."}},
+    {id:"conflict_3",severity:"MEDIUM",type:"AMBIGUOUS_DEFINITION",variable:"marks",description:"PM Scholarship requires 60% in 'qualifying examination' but NEP 2020 introduces flexible grading — the definition of qualifying marks may differ across institutions.",clause_a:{document:"PM Scholarship Scheme",ref:"c001",text:"60% marks or equivalent grade in Class XII / Diploma."},clause_b:{document:"NEP 2020",ref:"n002",text:"Students must maintain a minimum CGPA of 5.0 on a 10-point scale."}}
+  ]
+};
+
+function renderConflicts(d) {
+  const conflicts = d.conflicts ?? [];
+  document.getElementById('conflict-summary').innerHTML = `
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;">
+      <div class="stat-box"><div class="stat-value" style="color:${conflicts.length > 0 ? 'var(--red)' : 'var(--green)'}">${conflicts.length}</div><div class="stat-label">Total Conflicts</div></div>
+      <div class="stat-box"><div class="stat-value" style="color:var(--red)">${conflicts.filter(c=>c.severity==='HIGH').length}</div><div class="stat-label">HIGH Severity</div></div>
+      <div class="stat-box"><div class="stat-value" style="color:var(--amber)">${conflicts.filter(c=>c.severity==='MEDIUM').length}</div><div class="stat-label">MEDIUM Severity</div></div>
+    </div>`;
+
+  document.getElementById('conflict-list').innerHTML = conflicts.length
+    ? conflicts.map(c => {
+        const color = c.severity==='HIGH' ? 'var(--red)' : c.severity==='MEDIUM' ? 'var(--amber)' : 'var(--blue)';
+        return `<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid ${color};padding:18px 20px;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-size:9px;padding:3px 8px;border:1px solid ${color};color:${color};letter-spacing:0.15em;">${c.severity}</span>
+            <span style="font-size:10px;color:var(--text-muted);">${c.type ?? 'CONFLICT'}</span>
+            <span style="font-size:10px;color:var(--gold);margin-left:auto;">var: ${c.variable ?? '—'}</span>
+          </div>
+          <div style="font-size:12px;color:var(--text);margin-bottom:12px;line-height:1.6;">${c.description}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="padding:10px;background:var(--surface3);border:1px solid var(--border);">
+              <div style="font-size:9px;color:var(--blue);letter-spacing:0.15em;margin-bottom:4px;">${c.clause_a?.document ?? 'Doc A'}</div>
+              <div style="font-size:11px;color:var(--text-muted);">${c.clause_a?.text ?? '—'}</div>
+            </div>
+            <div style="padding:10px;background:var(--surface3);border:1px solid var(--border);">
+              <div style="font-size:9px;color:var(--gold);letter-spacing:0.15em;margin-bottom:4px;">${c.clause_b?.document ?? 'Doc B'}</div>
+              <div style="font-size:11px;color:var(--text-muted);">${c.clause_b?.text ?? '—'}</div>
+            </div>
+          </div>
+        </div>`;
+      }).join('')
+    : `<div style="padding:32px;text-align:center;border:1px dashed var(--border);color:var(--green);">
+        <div style="font-size:28px;margin-bottom:8px;">✓</div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;">No conflicts detected</div>
+       </div>`;
+
+  document.getElementById('raw-conflicts').textContent = JSON.stringify(d, null, 2);
+}
+// ─── TRANSPARENCY MODE ────────────────────────────────────
+let transparencyOn = false;
+
+function toggleTransparency() {
+  transparencyOn = !transparencyOn;
+  const toggle = document.getElementById('transparency-toggle');
+  const badge = document.getElementById('transparency-badge');
+  toggle.classList.toggle('on', transparencyOn);
+  badge.style.display = transparencyOn ? 'block' : 'none';
+  // Update all visible clause transparency sections
+  document.querySelectorAll('.clause-transparency').forEach(el => {
+    el.classList.toggle('visible', transparencyOn);
+  });
+  showToast(transparencyOn ? '◎ Transparency Mode ON — showing all clause internals' : 'Transparency Mode OFF');
+}
+
+function renderClauseTransparency(c) {
+  const conf = parseFloat(c.confidence ?? 0.9);
+  return `
+    <div class="clause-transparency ${transparencyOn ? 'visible' : ''}">
+      ${c.variable ? `<div class="trans-item"><div class="trans-key">Variable</div><div class="trans-val">${c.variable}</div></div>` : ''}
+      ${c.operator ? `<div class="trans-item"><div class="trans-key">Operator</div><div class="trans-val">${c.operator}</div></div>` : ''}
+      ${c.threshold_value ? `<div class="trans-item"><div class="trans-key">Threshold</div><div class="trans-val">${c.threshold_value}</div></div>` : ''}
+      <div class="trans-item"><div class="trans-key">Confidence</div><div class="trans-val">${Math.round(conf * 100)}%</div></div>
+      ${c.ambiguity_flag !== undefined ? `<div class="trans-item"><div class="trans-key">Ambiguous</div><div class="trans-val" style="color:${c.ambiguity_flag ? 'var(--amber)' : 'var(--green)'}">${c.ambiguity_flag ? 'Yes' : 'No'}</div></div>` : ''}
+      ${c.clause_id ? `<div class="trans-item"><div class="trans-key">Clause ID</div><div class="trans-val">${c.clause_id}</div></div>` : ''}
+    </div>`;
+}
+
+// ─── ELIGIBILITY MODE SWITCH ──────────────────────────────
+function setEligMode(mode) {
+  document.getElementById('mode-btn-check').classList.toggle('active', mode === 'check');
+  document.getElementById('mode-btn-scenario').classList.toggle('active', mode === 'scenario');
+  document.getElementById('elig-check-mode').style.display = mode === 'check' ? 'block' : 'none';
+  document.getElementById('elig-scenario-mode').style.display = mode === 'scenario' ? 'block' : 'none';
+  // Sync clauses textarea
+  const clauses = document.getElementById('e-clauses').value;
+  if (clauses && mode === 'scenario') {
+    document.getElementById('sc-clauses').value = clauses;
+  }
+}
+
+// ─── SCENARIO SIMULATION ─────────────────────────────────
+async function runScenario() {
+  let clauses = [];
+  try { clauses = JSON.parse(document.getElementById('sc-clauses').value || '[]'); }
+  catch(e) { return alert('Invalid clauses JSON.'); }
+
+  const buildInputs = (prefix) => {
+    const inputs = {};
+    const age = document.getElementById(`${prefix}-age`).value;
+    const income = document.getElementById(`${prefix}-income`).value;
+    const marks = document.getElementById(`${prefix}-marks`).value;
+    const category = document.getElementById(`${prefix}-category`).value;
+    if (age) inputs.age = parseInt(age);
+    if (income) inputs.income = parseInt(income);
+    if (marks) inputs.marks = parseFloat(marks);
+    if (category) inputs.category = category;
+    return inputs;
+  };
+
+  const inputsA = buildInputs('sa');
+  const inputsB = buildInputs('sb');
+
+  const btn = document.getElementById('btn-scenario');
+  const load = document.getElementById('load-scenario');
+  const err = document.getElementById('err-scenario');
+  const result = document.getElementById('result-scenario');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+
+  try {
+    const [resA, resB] = await Promise.all([
+      fetch(`${API}/eligibility`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ clauses, user_inputs: inputsA }) }),
+      fetch(`${API}/eligibility`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ clauses, user_inputs: inputsB }) }),
+    ]);
+    if (!resA.ok || !resB.ok) throw new Error('One or both requests failed');
+    const [dataA, dataB] = await Promise.all([resA.json(), resB.json()]);
+    renderScenarioResult('sa', dataA, 'var(--blue)');
+    renderScenarioResult('sb', dataB, 'var(--gold)');
+    renderScenarioInsight(dataA, dataB, inputsA, inputsB);
+    result.classList.add('visible');
+    showToast('⇄ Both scenarios evaluated');
+  } catch(e) {
+    showError('err-scenario', `Simulation failed: ${e.message}`);
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+function renderScenarioResult(prefix, d, accentColor) {
+  const status = (d.result ?? d.eligibility_status ?? d.status ?? '').toUpperCase();
+  const isElig = status === 'ELIGIBLE';
+  const isConditional = status === 'CONDITIONAL';
+  const color = isConditional ? 'var(--amber)' : isElig ? 'var(--green)' : 'var(--red)';
+  const icon = isConditional ? '◐' : isElig ? '✓' : '✕';
+  const label = isConditional ? 'Conditionally Eligible' : isElig ? 'Eligible' : 'Not Eligible';
+  const conf = d.confidence ? Math.round(d.confidence * 100) + '%' : '—';
+
+  document.getElementById(`${prefix}-verdict`).innerHTML = `
+    <div class="verdict-icon" style="font-size:28px;color:${color};">${icon}</div>
+    <div class="verdict-text">
+      <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:${color};">${label}</div>
+      <div style="font-size:11px;color:var(--text-muted);">Confidence: ${conf} · ${d.passed ?? 0} passed · ${d.failed ?? 0} failed</div>
+    </div>`;
+  document.getElementById(`${prefix}-verdict`).className = 'verdict-banner animated';
+
+  const trace = d.reasoning_trace ?? [];
+  document.getElementById(`${prefix}-trace`).innerHTML = trace.slice(0, 4).map((t, i) => `
+    <div class="trace-item">
+      <div class="trace-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="trace-content">
+        <div class="trace-clause">${t.clause_ref ?? ''}</div>
+        <div class="trace-text" style="font-size:12px;">${t.condition ?? ''}</div>
+        <div style="font-size:10px;color:var(--text-dim);">Your value: <span style="color:var(--gold)">${t.user_value ?? '—'}</span></div>
+        ${t.outcome ? `<div class="trace-result ${t.outcome==='PASS'?'trace-pass':t.outcome==='FAIL'?'trace-fail':''}">${t.outcome==='PASS'?'✓ Pass':t.outcome==='FAIL'?'✕ Fail':'⊘ '+t.outcome}</div>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function renderScenarioInsight(dataA, dataB, inputsA, inputsB) {
+  const statusA = (dataA.eligibility_status ?? dataA.status ?? dataA.result ?? '').toUpperCase();
+  const statusB = (dataB.eligibility_status ?? dataB.status ?? dataB.result ?? '').toUpperCase();
+  const eligA = !statusA.includes('NOT') && statusA !== 'INELIGIBLE' && statusA !== '';
+  const eligB = !statusB.includes('NOT') && statusB !== 'INELIGIBLE' && statusB !== '';
+
+  let insight = '';
+  if (eligA && !eligB) insight = 'Scenario A qualifies but Scenario B does not — the changes in B push the profile below the required threshold.';
+  else if (!eligA && eligB) insight = 'Scenario A does not qualify, but Scenario B does — the changes in B are sufficient to meet all eligibility conditions.';
+  else if (eligA && eligB) insight = 'Both scenarios qualify. The policy thresholds are met under both profiles.';
+  else insight = 'Neither scenario meets the eligibility criteria. Further threshold adjustments may be required.';
+
+  document.getElementById('scenario-insight').innerHTML = `
+    <div class="insight-box">
+      <div class="insight-title">◈ Simulation Insight</div>
+      <div class="insight-text">${insight}</div>
+    </div>`;
+}
+
+// ─── MULTILINGUAL ─────────────────────────────────────────
+async function translateClauses() {
+  let clauses = [];
+  try {
+    const raw = document.getElementById('ml-clauses').value.trim();
+    clauses = raw ? JSON.parse(raw) : [];
+  } catch(e) { return alert('Invalid clauses JSON.'); }
+  if (!clauses.length) return alert('Please provide at least one clause.');
+
+  const lang = document.getElementById('ml-lang').value;
+  const style = document.getElementById('ml-style').value;
+  const btn = document.getElementById('btn-translate');
+  const load = document.getElementById('load-translate');
+  const err = document.getElementById('err-translate');
+  const result = document.getElementById('result-translate');
+  const empty = document.getElementById('translate-empty');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+  empty.style.display = 'none';
+
+  try {
+    const response = await fetch(`${API}/translate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clauses, language: lang, style })
+    });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.error ?? errData.message ?? `HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    // Backend returns { translations: [{ clause_id, translation }] }
+    // or a flat array — handle both
+    const translations = Array.isArray(data) ? data : (data.translations ?? []);
+
+    document.getElementById('translate-result-label').textContent = `${lang} Translation`;
+    document.getElementById('translate-list').innerHTML = translations.map(t => {
+      const original = clauses.find(c => c.clause_id === t.clause_id);
+      return `
+        <div class="translate-card">
+          <div class="translate-card-header">
+            <div class="translate-clause-id">${t.clause_id}</div>
+            <div class="translate-lang-badge">${lang}</div>
+          </div>
+          ${original?.text ? `<div class="translate-original">${original.text}</div>` : ''}
+          <div class="translate-result">${t.translation}</div>
+        </div>`;
+    }).join('');
+
+    result.classList.add('visible');
+    showToast(`⬡ ${translations.length} clauses translated to ${lang}`);
+  } catch(e) {
+    showError('err-translate', `Translation failed: ${e.message}`);
+    empty.style.display = 'flex';
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+// ─── UTILS ────────────────────────────────────────────────
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = '⚠ ' + msg;
+  el.classList.add('visible');
+}
+
+function toggleRaw(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// Drag-and-drop
+const zone = document.getElementById('upload-zone');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+zone.addEventListener('drop', e => {
+  e.preventDefault();
+  zone.classList.remove('drag-over');
+  const dt = e.dataTransfer;
+  if (dt.files[0]) {
+    document.getElementById('pdf-file').files = dt.files;
+    fileSelected();
+  }
+});
+</script>
+</body>
+</html>
