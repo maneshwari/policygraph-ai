@@ -1,0 +1,25 @@
+# Python dependencies
+**/site-packages/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Specific vendored libs committed by mistake
+backend/functions/upload_url/urllib3/
+backend/functions/upload_url/botocore/
+backend/functions/upload_url/boto3/
+backend/functions/upload_url/certifi/
+backend/functions/upload_url/charset_normalizer/
+backend/functions/upload_url/idna/
+backend/functions/upload_url/requests/
+backend/functions/upload_url/s3transfer/
+backend/functions/upload_url/dateutil/
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Env
+.env
+.env.local
+*.env
