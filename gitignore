@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+
+# AWS SAM
+.aws-sam/
+samconfig.toml
+
+# Node
+node_modules/
+build/
+.env.local
+
+# Mac
+.DS_Store
+
+# AWS credentials - NEVER commit these
+.aws/
+credentials
+
+# Deps installed into Lambda folders (deploy.sh handles this)
+backend/functions/analyze/boto3*
+backend/functions/analyze/botocore*
+backend/functions/analyze/networkx*
+backend/functions/analyze/bin/
+backend/functions/analyze/dateutil/
+backend/functions/analyze/jmespath/
+backend/functions/analyze/s3transfer*
+backend/functions/analyze/six*
+backend/functions/analyze/urllib3*
+backend/functions/eligibility/boto3*
+backend/functions/eligibility/botocore*
+backend/functions/eligibility/bin/
+backend/functions/eligibility/dateutil/
+backend/functions/eligibility/jmespath/
+backend/functions/eligibility/s3transfer*
+backend/functions/eligibility/six*
+backend/functions/eligibility/urllib3*
+backend/functions/conflicts/boto3*
+backend/functions/conflicts/botocore*
+backend/functions/conflicts/bin/
+backend/functions/conflicts/dateutil/
+backend/functions/conflicts/jmespath/
+backend/functions/conflicts/s3transfer*
+backend/functions/conflicts/six*
+backend/functions/conflicts/urllib3*
+backend/functions/upload_url/boto3*
+backend/functions/upload_url/botocore*
+backend/functions/upload_url/bin/
+backend/functions/upload_url/dateutil/
+backend/functions/upload_url/jmespath/
+backend/functions/upload_url/s3transfer*
+backend/functions/upload_url/six*
+backend/functions/upload_url/urllib3*
