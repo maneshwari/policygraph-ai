@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PolicyGraph AI 2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #111115;
+    --surface2: #18181e;
+    --surface3: #1f1f28;
+    --border: #2a2a35;
+    --border-bright: #3d3d50;
+    --gold: #c9a84c;
+    --gold-dim: #8a6d2a;
+    --gold-glow: rgba(201,168,76,0.12);
+    --text: #e8e6e0;
+    --text-muted: #7a7870;
+    --text-dim: #4a4840;
+    --green: #3dba7e;
+    --red: #e05555;
+    --amber: #e0955a;
+    --blue: #5a8ee0;
+    --radius: 2px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* GRID LINES */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HEADER */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 48px 64px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo-block {}
+
+  .logo-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .logo-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .logo-title span {
+    color: var(--gold);
+  }
+
+  .logo-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .api-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .api-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* NAV */
+  nav {
+    position: relative;
+    z-index: 10;
+    padding: 0 64px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0;
+  }
+
+  .nav-tab {
+    padding: 18px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    border: none;
+    background: none;
+    position: relative;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+
+  .nav-tab::before {
+    content: attr(data-num);
+    font-size: 9px;
+    color: var(--text-dim);
+    margin-right: 10px;
+  }
+
+  .nav-tab:hover { color: var(--text); }
+
+  .nav-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* MAIN */
+  main {
+    position: relative;
+    z-index: 10;
+    padding: 48px 64px;
+    max-width: 1200px;
+  }
+
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* GRID */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  /* UPLOAD ZONE */
+  .upload-zone {
+    border: 1px dashed var(--border-bright);
+    padding: 56px 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    background: var(--surface);
+  }
+
+  .upload-zone:hover, .upload-zone.drag-over {
+    border-color: var(--gold);
+    background: var(--gold-glow);
+  }
+
+  .upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .upload-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  .upload-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .upload-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .file-selected {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--gold);
+  }
+
+  /* INPUTS */
+  .field {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+    appearance: none;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--gold);
+    background: var(--surface3);
+  }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  /* FIELDS GRID */
+  .fields-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.05);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover::after { opacity: 1; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #0a0a0c;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover { background: #d4b560; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover { border-color: var(--border-bright); color: var(--text); }
+
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .btn-icon { font-size: 14px; }
+
+  /* LOADING */
+  .loading-bar {
+    height: 2px;
+    background: var(--border);
+    margin: 24px 0;
+    overflow: hidden;
+    display: none;
+  }
+
+  .loading-bar.active { display: block; }
+
+  .loading-bar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: loading 1.5s infinite;
+    width: 40%;
+  }
+
+  @keyframes loading {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(350%); }
+  }
+
+  /* RESULTS */
+  .result-block {
+    margin-top: 32px;
+    display: none;
+  }
+
+  .result-block.visible { display: block; animation: fadeIn 0.4s ease; }
+
+  .result-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .result-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .result-divider-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .stat-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* COMPLEXITY BAR */
+  .complexity-bar-wrap {
+    margin-bottom: 24px;
+  }
+
+  .complexity-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .complexity-bar-bg {
+    height: 6px;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .complexity-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+    transition: width 1s ease;
+  }
+
+  /* CLAUSES */
+  .clause-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .clause-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    padding: 16px 20px;
+    transition: border-left-color 0.2s;
+  }
+
+  .clause-item:hover { border-left-color: var(--gold); }
+
+  .clause-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .clause-id {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    background: var(--gold-glow);
+    padding: 3px 8px;
+    border: 1px solid var(--gold-dim);
+  }
+
+  .clause-type {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .clause-ambig {
+    margin-left: auto;
+    font-size: 9px;
+    padding: 3px 8px;
+    background: rgba(224,149,90,0.1);
+    border: 1px solid var(--amber);
+    color: var(--amber);
+  }
+
+  .clause-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .clause-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .clause-meta-item {
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .clause-meta-item span {
+    color: var(--text);
+  }
+
+  /* CONFIDENCE BAR */
+  .conf-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .conf-track {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    overflow: hidden;
+  }
+
+  .conf-fill {
+    height: 100%;
+    background: var(--gold);
+  }
+
+  /* ELIGIBILITY */
+  .verdict-banner {
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+  }
+
+  .verdict-eligible { background: rgba(61,186,126,0.06); }
+  .verdict-eligible::before { background: var(--green); }
+
+  .verdict-not-eligible { background: rgba(224,85,85,0.06); }
+  .verdict-not-eligible::before { background: var(--red); }
+
+  .verdict-conditional { background: rgba(224,149,90,0.06); }
+  .verdict-conditional::before { background: var(--amber); }
+
+  .verdict-icon { font-size: 36px; }
+
+  .verdict-text {}
+
+  .verdict-status {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .eligible-color { color: var(--green); }
+  .not-eligible-color { color: var(--red); }
+  .conditional-color { color: var(--amber); }
+
+  .verdict-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* REASONING TRACE */
+  .trace-list { display: flex; flex-direction: column; gap: 0; }
+
+  .trace-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trace-item:last-child { border-bottom: none; }
+
+  .trace-num {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .trace-content { flex: 1; }
+
+  .trace-clause {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .trace-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .trace-result {
+    font-size: 10px;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .trace-pass { color: var(--green); }
+  .trace-fail { color: var(--red); }
+
+  /* CONFLICTS */
+  .conflict-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+
+  .conflict-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .conflict-badge {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(224,85,85,0.1);
+    border: 1px solid var(--red);
+    color: var(--red);
+  }
+
+  .conflict-schemes {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .conflict-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .conflict-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .conflict-side {
+    background: var(--surface3);
+    padding: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .conflict-side-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .conflict-side-value {
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  /* RAW JSON */
+  .raw-toggle {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border: none;
+    background: none;
+    margin-top: 16px;
+  }
+
+  .raw-toggle:hover { color: var(--text-muted); }
+
+  .raw-json {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px;
+    font-size: 11px;
+    color: #7ab8a0;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    margin-top: 8px;
+    line-height: 1.8;
+  }
+
+  .raw-json.open { display: block; animation: fadeIn 0.2s ease; }
+
+  /* INFO PANEL */
+  .info-strip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ERROR */
+  .error-strip {
+    background: rgba(224,85,85,0.06);
+    border: 1px solid var(--red);
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--red);
+    margin-top: 16px;
+    display: none;
+  }
+
+  .error-strip.visible { display: block; }
+
+  /* WORKFLOW */
+  .workflow-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 36px;
+  }
+
+  .wf-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    position: relative;
+  }
+
+  .wf-step.done {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+    background: var(--gold-glow);
+  }
+
+  .wf-step.active {
+    border-color: var(--gold);
+    color: var(--text);
+  }
+
+  .wf-arrow {
+    font-size: 10px;
+    color: var(--text-dim);
+    padding: 0 4px;
+  }
+
+  /* S3 KEY DISPLAY */
+  .s3-key-display {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    margin-top: 16px;
+    display: none;
+  }
+
+  .s3-key-display.visible { display: block; }
+
+  .s3-key-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .s3-key-value {
+    font-size: 12px;
+    color: var(--gold);
+    word-break: break-all;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb { background: var(--border-bright); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    header, nav, main { padding-left: 24px; padding-right: 24px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .fields-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .fields-grid { grid-template-columns: 1fr; }
+    .conflict-detail { grid-template-columns: 1fr; }
+    .workflow-steps { flex-wrap: wrap; }
+    header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <div class="logo-eyebrow">Neuro-Symbolic Intelligence</div>
+    <div class="logo-title">Policy<span>Graph</span> AI</div>
+    <div class="logo-sub">Transforming government policy into explainable intelligence</div>
+  </div>
+  <div class="api-badge">
+    <div class="dot"></div>
+    AWS ap-south-1 · Live API
+  </div>
+</header>
+
+<nav>
+  <button class="nav-tab active" data-num="01" data-panel="upload" onclick="switchTab('upload')">Upload Policy</button>
+  <button class="nav-tab" data-num="02" data-panel="analyze" onclick="switchTab('analyze')">Analyse Document</button>
+  <button class="nav-tab" data-num="03" data-panel="eligibility" onclick="switchTab('eligibility')">Eligibility Check</button>
+  <button class="nav-tab" data-num="04" data-panel="conflicts" onclick="switchTab('conflicts')">Conflict Detection</button>
+</nav>
+
+<main>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 1: UPLOAD
+  ═══════════════════════════════════════════════ -->
+  <div class="panel active" id="panel-upload">
+    <div class="section-header">
+      <div class="section-label">Step 01</div>
+      <div class="section-title">Upload a Policy Document</div>
+      <div class="section-desc">Obtain a presigned S3 URL and upload your government policy PDF directly to AWS.</div>
+    </div>
+
+    <div class="workflow-steps">
+      <div class="wf-step active" id="wf1">01 Get Presigned URL</div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" id="wf2">02 Upload PDF to S3</div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" id="wf3">03 Copy S3 Key</div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="card">
+          <div class="card-label">Step 1 — Get Upload URL</div>
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:20px; line-height:1.7;">
+            Request a secure presigned S3 URL from the API. This allows direct browser-to-S3 upload without proxying through the server.
+          </p>
+          <button class="btn btn-primary" onclick="getUploadUrl()" id="btn-get-url">
+            <span class="btn-icon">⬡</span> Request Upload URL
+          </button>
+
+          <div class="loading-bar" id="load-url"></div>
+
+          <div class="s3-key-display" id="s3-result">
+            <div class="s3-key-label">Presigned URL (valid 15 min)</div>
+            <div class="s3-key-value" id="s3-url-val" style="font-size:10px; color:var(--text-muted); word-break:break-all; margin-bottom:10px;"></div>
+            <div class="s3-key-label" style="margin-top:10px;">S3 Key — copy this for Analyse step</div>
+            <div class="s3-key-value" id="s3-key-val"></div>
+          </div>
+
+          <div class="error-strip" id="err-url"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-label">Step 2 — Upload PDF</div>
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="pdf-file" accept=".pdf" onchange="fileSelected()" />
+            <div class="upload-icon">⬆</div>
+            <div class="upload-title">Drop PDF or click to browse</div>
+            <div class="upload-hint">Government policy documents only · PDF format</div>
+          </div>
+          <div class="file-selected" id="file-info" style="display:none;">
+            <span>📄</span>
+            <span id="file-name"></span>
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn btn-primary" onclick="uploadPDF()" id="btn-upload" disabled>
+              <span class="btn-icon">↑</span> Upload to S3
+            </button>
+          </div>
+          <div class="loading-bar" id="load-upload"></div>
+          <div class="error-strip" id="err-upload"></div>
+
+          <div id="upload-success" style="display:none; margin-top:16px; padding:14px 18px; border:1px solid var(--green); background:rgba(61,186,126,0.06); font-size:12px; color:var(--green);">
+            ✓ Upload successful — proceed to <strong>Analyse Document</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 2: ANALYSE
+  ═══════════════════════════════════════════════ -->
+  <div class="panel" id="panel-analyze">
+    <div class="section-header">
+      <div class="section-label">Step 02</div>
+      <div class="section-title">Analyse Policy Document</div>
+      <div class="section-desc">Extract structured clauses, build the knowledge graph, and score policy complexity via Bedrock + Textract.</div>
+    </div>
+
+    <div class="info-strip">
+      ⬡ Provide the S3 key from the Upload step, or paste any existing key from a previously uploaded document.
+    </div>
+
+    <div class="card" style="max-width:560px;">
+      <div class="field">
+        <label>S3 Key (from Upload step)</label>
+        <input type="text" id="s3-key-input" placeholder="uploads/abc123.pdf" />
+      </div>
+      <button class="btn btn-primary" onclick="analyzeDoc()" id="btn-analyze">
+        <span class="btn-icon">◈</span> Run Analysis
+      </button>
+    </div>
+
+    <div class="loading-bar" id="load-analyze"></div>
+    <div class="error-strip" id="err-analyze"></div>
+
+    <div class="result-block" id="result-analyze">
+      <div class="result-divider">
+        <div class="result-divider-line"></div>
+        <div class="result-divider-label">Analysis Results</div>
+        <div class="result-divider-line"></div>
+      </div>
+
+      <div class="stats-row" id="stats-row"></div>
+
+      <div class="complexity-bar-wrap">
+        <div class="complexity-bar-header">
+          <span style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted);">Complexity Score</span>
+          <span id="complexity-label" style="font-size:10px; padding:3px 10px; border:1px solid var(--border);"></span>
+        </div>
+        <div class="complexity-bar-bg">
+          <div class="complexity-bar-fill" id="complexity-fill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <div class="section-label" style="margin-bottom:12px;">Extracted Clauses</div>
+        <div class="clause-list" id="clause-list"></div>
+      </div>
+
+      <button class="raw-toggle" onclick="toggleRaw('raw-analyze')">⊞ Show Raw JSON</button>
+      <div class="raw-json" id="raw-analyze"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 3: ELIGIBILITY
+  ═══════════════════════════════════════════════ -->
+  <div class="panel" id="panel-eligibility">
+    <div class="section-header">
+      <div class="section-label">Step 03</div>
+      <div class="section-title">Eligibility Check</div>
+      <div class="section-desc">Run backward chaining symbolic evaluation — deterministic, auditable, cites exact source clauses.</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">Citizen Profile</div>
+        <div class="fields-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="field">
+            <label>Age</label>
+            <input type="number" id="e-age" placeholder="21" />
+          </div>
+          <div class="field">
+            <label>Annual Income (₹)</label>
+            <input type="number" id="e-income" placeholder="450000" />
+          </div>
+          <div class="field">
+            <label>Academic Marks (%)</label>
+            <input type="number" id="e-marks" placeholder="85" />
+          </div>
+          <div class="field">
+            <label>Category</label>
+            <select id="e-category">
+              <option value="">General</option>
+              <option value="sc">SC</option>
+              <option value="st">ST</option>
+              <option value="obc">OBC</option>
+              <option value="ews">EWS</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Clauses JSON (paste from Analysis result)</label>
+          <textarea id="e-clauses" placeholder='[{"clause_id":"c001","variable":"age","operator":"GTE","threshold_value":"18"}]' style="min-height:130px;"></textarea>
+        </div>
+
+        <button class="btn btn-primary" onclick="checkEligibility()" id="btn-elig">
+          <span class="btn-icon">◎</span> Evaluate Eligibility
+        </button>
+      </div>
+
+      <div>
+        <div class="loading-bar" id="load-elig"></div>
+        <div class="error-strip" id="err-elig"></div>
+
+        <div class="result-block" id="result-elig">
+          <div class="verdict-banner" id="verdict-banner">
+            <div class="verdict-icon" id="verdict-icon"></div>
+            <div class="verdict-text">
+              <div class="verdict-status" id="verdict-status"></div>
+              <div class="verdict-sub" id="verdict-sub"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:8px;" class="section-label">Reasoning Trace</div>
+          <div class="trace-list" id="trace-list"></div>
+
+          <button class="raw-toggle" onclick="toggleRaw('raw-elig')">⊞ Show Raw JSON</button>
+          <div class="raw-json" id="raw-elig"></div>
+        </div>
+
+        <div id="elig-empty" style="display:flex; align-items:center; justify-content:center; height:200px; color:var(--text-dim); font-size:12px; letter-spacing:0.1em; border:1px dashed var(--border);">
+          Awaiting evaluation →
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PANEL 4: CONFLICTS
+  ═══════════════════════════════════════════════ -->
+  <div class="panel" id="panel-conflicts">
+    <div class="section-header">
+      <div class="section-label">Step 04</div>
+      <div class="section-title">Cross-Document Conflict Detection</div>
+      <div class="section-desc">Detect incompatible thresholds and direct contradictions across government schemes before implementation.</div>
+    </div>
+
+    <div class="card" style="max-width:720px;">
+      <div class="card-label">Policy Document Array</div>
+      <p style="font-size:11px; color:var(--text-muted); margin-bottom:16px; line-height:1.7;">
+        Provide an array of documents, each with their extracted clauses. The engine performs pairwise threshold comparison across all documents.
+      </p>
+      <div class="field">
+        <label>Documents JSON Array</label>
+        <textarea id="c-docs" style="min-height:180px;" placeholder='[
+  {
+    "document_id": "doc001",
+    "title": "PM Scholarship Scheme 2024",
+    "clauses": [
+      {"clause_id":"c001","variable":"age","operator":"GTE","threshold_value":"18"},
+      {"clause_id":"c002","variable":"income","operator":"LTE","threshold_value":"500000"}
+    ]
+  },
+  {
+    "document_id": "doc002",
+    "title": "State Merit Scholarship",
+    "clauses": [
+      {"clause_id":"c001","variable":"age","operator":"GTE","threshold_value":"21"},
+      {"clause_id":"c002","variable":"income","operator":"LTE","threshold_value":"300000"}
+    ]
+  }
+]'></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="detectConflicts()" id="btn-conflicts">
+        <span class="btn-icon">⊗</span> Detect Conflicts
+      </button>
+    </div>
+
+    <div class="loading-bar" id="load-conflicts"></div>
+    <div class="error-strip" id="err-conflicts"></div>
+
+    <div class="result-block" id="result-conflicts">
+      <div class="result-divider">
+        <div class="result-divider-line"></div>
+        <div class="result-divider-label">Conflict Report</div>
+        <div class="result-divider-line"></div>
+      </div>
+
+      <div id="conflict-summary" style="margin-bottom:24px;"></div>
+      <div id="conflict-list"></div>
+
+      <button class="raw-toggle" onclick="toggleRaw('raw-conflicts')">⊞ Show Raw JSON</button>
+      <div class="raw-json" id="raw-conflicts"></div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const API = 'https://m8dbfucuzj.execute-api.ap-south-1.amazonaws.com/prod';
+
+let presignedUrl = '';
+let s3Key = '';
+
+// ─── TAB NAVIGATION ───────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`[data-panel="${name}"]`).classList.add('active');
+  document.getElementById(`panel-${name}`).classList.add('active');
+}
+
+// ─── UPLOAD PANEL ─────────────────────────────────────────
+async function getUploadUrl() {
+  const btn = document.getElementById('btn-get-url');
+  const load = document.getElementById('load-url');
+  const err = document.getElementById('err-url');
+  const result = document.getElementById('s3-result');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+
+  try {
+    const res = await fetch(`${API}/upload-url`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    presignedUrl = data.upload_url || data.presigned_url || data.url || '';
+    s3Key = data.s3_key || data.key || data.file_key || '';
+
+    document.getElementById('s3-url-val').textContent = presignedUrl.slice(0, 80) + '…';
+    document.getElementById('s3-key-val').textContent = s3Key;
+    result.classList.add('visible');
+
+    // pre-fill analyse tab
+    document.getElementById('s3-key-input').value = s3Key;
+
+    document.getElementById('wf1').className = 'wf-step done';
+    document.getElementById('wf2').className = 'wf-step active';
+
+    // enable upload if file ready
+    if (document.getElementById('pdf-file').files.length) {
+      document.getElementById('btn-upload').disabled = false;
+    }
+  } catch(e) {
+    showError('err-url', `Failed to get upload URL: ${e.message}`);
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+function fileSelected() {
+  const file = document.getElementById('pdf-file').files[0];
+  if (!file) return;
+  document.getElementById('file-name').textContent = file.name;
+  document.getElementById('file-info').style.display = 'flex';
+  if (presignedUrl) document.getElementById('btn-upload').disabled = false;
+}
+
+async function uploadPDF() {
+  const file = document.getElementById('pdf-file').files[0];
+  if (!file) return alert('Please select a PDF file first.');
+  if (!presignedUrl) return alert('Please get an upload URL first.');
+
+  const btn = document.getElementById('btn-upload');
+  const load = document.getElementById('load-upload');
+  const err = document.getElementById('err-upload');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+
+  try {
+    const res = await fetch(presignedUrl, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/pdf' },
+      body: file
+    });
+    if (!res.ok) throw new Error(`Upload failed: HTTP ${res.status}`);
+    document.getElementById('upload-success').style.display = 'block';
+    document.getElementById('wf2').className = 'wf-step done';
+    document.getElementById('wf3').className = 'wf-step done';
+  } catch(e) {
+    showError('err-upload', e.message);
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+// ─── ANALYSE PANEL ────────────────────────────────────────
+async function analyzeDoc() {
+  const key = document.getElementById('s3-key-input').value.trim();
+  if (!key) return alert('Please enter an S3 key.');
+
+  const btn = document.getElementById('btn-analyze');
+  const load = document.getElementById('load-analyze');
+  const err = document.getElementById('err-analyze');
+  const result = document.getElementById('result-analyze');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+
+  try {
+    const res = await fetch(`${API}/analyze`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ s3_key: key })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderAnalysis(data);
+    result.classList.add('visible');
+  } catch(e) {
+    showError('err-analyze', `Analysis failed: ${e.message}`);
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+function renderAnalysis(d) {
+  // Stats
+  const stats = [
+    { value: d.clauses_extracted ?? d.clauses?.length ?? '–', label: 'Clauses Extracted' },
+    { value: d.complexity_score ?? '–', label: 'Complexity Score' },
+    { value: d.ambiguous_clauses ?? '0', label: 'Ambiguous Clauses' },
+    { value: d.graph?.nodes?.length ?? '–', label: 'Graph Nodes' },
+  ];
+  document.getElementById('stats-row').innerHTML = stats.map(s =>
+    `<div class="stat-box"><div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div></div>`
+  ).join('');
+
+  // Complexity bar
+  const score = d.complexity_score ?? 0;
+  const cat = d.complexity_category ?? '';
+  document.getElementById('complexity-fill').style.width = `${score}%`;
+  const catEl = document.getElementById('complexity-label');
+  catEl.textContent = cat;
+  catEl.style.borderColor = cat === 'Low' ? 'var(--green)' : cat === 'High' ? 'var(--red)' : 'var(--amber)';
+  catEl.style.color = cat === 'Low' ? 'var(--green)' : cat === 'High' ? 'var(--red)' : 'var(--amber)';
+
+  // Clauses
+  const clauses = d.clauses ?? [];
+  document.getElementById('clause-list').innerHTML = clauses.length
+    ? clauses.map(c => renderClause(c)).join('')
+    : '<div style="color:var(--text-dim);font-size:12px;padding:16px;">No clauses extracted.</div>';
+
+  // Pre-fill eligibility
+  document.getElementById('e-clauses').value = JSON.stringify(clauses, null, 2);
+
+  // Raw JSON
+  document.getElementById('raw-analyze').textContent = JSON.stringify(d, null, 2);
+}
+
+function renderClause(c) {
+  const conf = parseFloat(c.confidence ?? 0.9);
+  return `
+    <div class="clause-item">
+      <div class="clause-header">
+        <div class="clause-id">${c.clause_id ?? '—'}</div>
+        <div class="clause-type">${c.clause_type ?? ''}</div>
+        ${c.ambiguity_flag ? '<div class="clause-ambig">⚠ Ambiguous</div>' : ''}
+      </div>
+      <div class="clause-text">${c.text ?? '—'}</div>
+      <div class="clause-meta">
+        ${c.variable ? `<div class="clause-meta-item">Variable <span>${c.variable}</span></div>` : ''}
+        ${c.operator ? `<div class="clause-meta-item">Operator <span>${c.operator}</span></div>` : ''}
+        ${c.threshold_value ? `<div class="clause-meta-item">Threshold <span>${c.threshold_value}</span></div>` : ''}
+        <div class="clause-meta-item" style="margin-left:auto; min-width:150px;">
+          <div class="conf-bar">
+            <span style="font-size:9px; color:var(--text-dim); width:55px;">Confidence</span>
+            <div class="conf-track"><div class="conf-fill" style="width:${Math.round(conf*100)}%"></div></div>
+            <span style="font-size:9px; color:var(--gold); width:30px; text-align:right;">${Math.round(conf*100)}%</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ─── ELIGIBILITY PANEL ────────────────────────────────────
+async function checkEligibility() {
+  let clauses = [];
+  try { clauses = JSON.parse(document.getElementById('e-clauses').value || '[]'); }
+  catch(e) { return alert('Invalid clauses JSON. Please paste valid JSON array.'); }
+
+  const userInputs = {};
+  const age = document.getElementById('e-age').value;
+  const income = document.getElementById('e-income').value;
+  const marks = document.getElementById('e-marks').value;
+  const category = document.getElementById('e-category').value;
+  if (age) userInputs.age = parseInt(age);
+  if (income) userInputs.income = parseInt(income);
+  if (marks) userInputs.marks = parseFloat(marks);
+  if (category) userInputs.category = category;
+
+  const btn = document.getElementById('btn-elig');
+  const load = document.getElementById('load-elig');
+  const err = document.getElementById('err-elig');
+  const result = document.getElementById('result-elig');
+  const empty = document.getElementById('elig-empty');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+  empty.style.display = 'none';
+
+  try {
+    const res = await fetch(`${API}/eligibility`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clauses, user_inputs: userInputs })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderEligibility(data);
+    result.classList.add('visible');
+  } catch(e) {
+    showError('err-elig', `Eligibility check failed: ${e.message}`);
+    empty.style.display = 'flex';
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+function renderEligibility(d) {
+  const status = (d.eligibility_status ?? d.status ?? '').toUpperCase();
+  const banner = document.getElementById('verdict-banner');
+  const icon = document.getElementById('verdict-icon');
+  const statusEl = document.getElementById('verdict-status');
+  const sub = document.getElementById('verdict-sub');
+
+  banner.className = 'verdict-banner';
+
+  if (status.includes('NOT') || status === 'INELIGIBLE') {
+    banner.classList.add('verdict-not-eligible');
+    icon.textContent = '✕';
+    statusEl.className = 'verdict-status not-eligible-color';
+    statusEl.textContent = 'Not Eligible';
+  } else if (status === 'CONDITIONAL') {
+    banner.classList.add('verdict-conditional');
+    icon.textContent = '◐';
+    statusEl.className = 'verdict-status conditional-color';
+    statusEl.textContent = 'Conditionally Eligible';
+  } else {
+    banner.classList.add('verdict-eligible');
+    icon.textContent = '✓';
+    statusEl.className = 'verdict-status eligible-color';
+    statusEl.textContent = 'Eligible';
+  }
+
+  sub.textContent = d.message ?? d.summary ?? `${(d.reasoning_trace ?? []).length} criteria evaluated`;
+
+  // Reasoning trace
+  const trace = d.reasoning_trace ?? d.trace ?? [];
+  document.getElementById('trace-list').innerHTML = trace.length
+    ? trace.map((t, i) => `
+        <div class="trace-item">
+          <div class="trace-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="trace-content">
+            <div class="trace-clause">${t.clause_id ?? ''}</div>
+            <div class="trace-text">${t.condition ?? t.text ?? t.description ?? JSON.stringify(t)}</div>
+            ${t.result !== undefined ? `<div class="trace-result ${t.result ? 'trace-pass' : 'trace-fail'}">${t.result ? '✓ Passed' : '✕ Failed'}</div>` : ''}
+          </div>
+        </div>`)
+      .join('')
+    : '<div style="color:var(--text-dim);font-size:12px;padding:12px;">No reasoning trace available.</div>';
+
+  document.getElementById('raw-elig').textContent = JSON.stringify(d, null, 2);
+}
+
+// ─── CONFLICTS PANEL ──────────────────────────────────────
+async function detectConflicts() {
+  let documents = [];
+  try { documents = JSON.parse(document.getElementById('c-docs').value || '[]'); }
+  catch(e) { return alert('Invalid JSON. Please check your documents array.'); }
+
+  const btn = document.getElementById('btn-conflicts');
+  const load = document.getElementById('load-conflicts');
+  const err = document.getElementById('err-conflicts');
+  const result = document.getElementById('result-conflicts');
+
+  btn.disabled = true;
+  load.classList.add('active');
+  err.classList.remove('visible');
+  result.classList.remove('visible');
+
+  try {
+    const res = await fetch(`${API}/conflicts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ documents })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderConflicts(data);
+    result.classList.add('visible');
+  } catch(e) {
+    showError('err-conflicts', `Conflict detection failed: ${e.message}`);
+  } finally {
+    btn.disabled = false;
+    load.classList.remove('active');
+  }
+}
+
+function renderConflicts(d) {
+  const conflicts = d.conflicts ?? d.conflict_pairs ?? [];
+  const total = conflicts.length;
+
+  document.getElementById('conflict-summary').innerHTML = `
+    <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
+      <div class="stat-box">
+        <div class="stat-value" style="color:${total > 0 ? 'var(--red)' : 'var(--green)'}">${total}</div>
+        <div class="stat-label">Conflicts Found</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">${d.documents_compared ?? (d.documents?.length ?? '–')}</div>
+        <div class="stat-label">Documents Compared</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">${d.total_clauses_compared ?? '–'}</div>
+        <div class="stat-label">Clauses Compared</div>
+      </div>
+    </div>`;
+
+  document.getElementById('conflict-list').innerHTML = conflicts.length
+    ? conflicts.map(c => `
+        <div class="conflict-item">
+          <div class="conflict-header">
+            <div class="conflict-badge">${c.conflict_type ?? 'Conflict'}</div>
+            <div class="conflict-schemes">${c.document1_title ?? c.scheme1 ?? 'Doc A'} ↔ ${c.document2_title ?? c.scheme2 ?? 'Doc B'}</div>
+          </div>
+          <div class="conflict-desc">${c.description ?? c.conflict_description ?? c.message ?? JSON.stringify(c)}</div>
+          ${c.variable ? `
+          <div class="conflict-detail">
+            <div class="conflict-side">
+              <div class="conflict-side-label">${c.document1_title ?? 'Document 1'}</div>
+              <div class="conflict-side-value">${c.variable} ${c.operator1 ?? ''} ${c.threshold1 ?? ''}</div>
+            </div>
+            <div class="conflict-side">
+              <div class="conflict-side-label">${c.document2_title ?? 'Document 2'}</div>
+              <div class="conflict-side-value">${c.variable} ${c.operator2 ?? ''} ${c.threshold2 ?? ''}</div>
+            </div>
+          </div>` : ''}
+        </div>`).join('')
+    : `<div style="padding:32px; text-align:center; border:1px dashed var(--border); color:var(--green);">
+         <div style="font-size:28px; margin-bottom:8px;">✓</div>
+         <div style="font-family:'Syne',sans-serif; font-size:16px; font-weight:700;">No conflicts detected</div>
+         <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">All policy clauses are consistent across documents.</div>
+       </div>`;
+
+  document.getElementById('raw-conflicts').textContent = JSON.stringify(d, null, 2);
+}
+
+// ─── UTILS ────────────────────────────────────────────────
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = '⚠ ' + msg;
+  el.classList.add('visible');
+}
+
+function toggleRaw(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// Drag-and-drop
+const zone = document.getElementById('upload-zone');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+zone.addEventListener('drop', e => {
+  e.preventDefault();
+  zone.classList.remove('drag-over');
+  const dt = e.dataTransfer;
+  if (dt.files[0]) {
+    document.getElementById('pdf-file').files = dt.files;
+    fileSelected();
+  }
+});
+</script>
+</body>
+</html>
