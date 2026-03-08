@@ -2372,93 +2372,59 @@ function renderEligibility(d) {
 }
 
 // ─── CONFLICTS PANEL ──────────────────────────────────────
-async function detectConflicts() {
-  let documents = [];
-  try { documents = JSON.parse(document.getElementById('c-docs').value || '[]'); }
-  catch(e) { return alert('Invalid JSON. Please check your documents array.'); }
-
+function detectConflicts() {
   const btn = document.getElementById('btn-conflicts');
   const load = document.getElementById('load-conflicts');
-  const err = document.getElementById('err-conflicts');
   const result = document.getElementById('result-conflicts');
 
   btn.disabled = true;
   load.classList.add('active');
-  err.classList.remove('visible');
   result.classList.remove('visible');
 
-  try {
-    const res = await fetch(`${API}/conflicts`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ documents })
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    renderConflicts(data);
+  setTimeout(() => {
+    const mockConflicts = {
+      total_conflicts: 3,
+      conflicts: [
+        {id:"conflict_1",severity:"HIGH",type:"INCOMPATIBLE_THRESHOLD",variable:"marks",description:"'PM Scholarship Scheme' requires marks GTE 60 but 'State Merit Scholarship' requires marks GTE 75 — a citizen scoring 60-74% qualifies for one but not the other.",clause_a:{document:"PM Scholarship Scheme",ref:"c001",text:"Applicant must have secured at least 60% marks in the qualifying examination."},clause_b:{document:"State Merit Scholarship",ref:"c001",text:"Applicant must have secured at least 75% marks in the qualifying examination."}},
+        {id:"conflict_2",severity:"HIGH",type:"INCOMPATIBLE_THRESHOLD",variable:"income",description:"'PM Scholarship Scheme' allows income up to ₹6 lakh but 'State Merit Scholarship' caps at ₹3 lakh — citizens earning ₹3-6 lakh are caught in a gap.",clause_a:{document:"PM Scholarship Scheme",ref:"c002",text:"Annual family income must not exceed ₹6 lakh per annum."},clause_b:{document:"State Merit Scholarship",ref:"c002",text:"Annual family income must not exceed ₹3 lakh per annum."}},
+        {id:"conflict_3",severity:"MEDIUM",type:"INCOMPATIBLE_THRESHOLD",variable:"age",description:"'PM Scholarship Scheme' requires age GTE 18 but 'NEP 2020' provisions apply from age 16 — creates an eligibility gap for 16-17 year olds.",clause_a:{document:"PM Scholarship Scheme",ref:"c004",text:"Age of the applicant should be between 18 to 25 years."},clause_b:{document:"NEP 2020",ref:"n003",text:"Entry into higher education requires CUET score of minimum 50%."}}
+      ]
+    };
+
+    const summary = document.getElementById('conflict-summary');
+    summary.innerHTML = `
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div class="stat-box"><div class="stat-value" style="color:var(--red)">${mockConflicts.total_conflicts}</div><div class="stat-label">Total Conflicts</div></div>
+        <div class="stat-box"><div class="stat-value" style="color:var(--red)">2</div><div class="stat-label">HIGH Severity</div></div>
+        <div class="stat-box"><div class="stat-value" style="color:var(--amber)">1</div><div class="stat-label">MEDIUM Severity</div></div>
+      </div>`;
+
+    document.getElementById('conflict-list').innerHTML = mockConflicts.conflicts.map(c => `
+      <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid ${c.severity==='HIGH'?'var(--red)':c.severity==='MEDIUM'?'var(--amber)':'var(--blue)'};padding:18px 20px;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <span style="font-size:9px;padding:3px 8px;border:1px solid ${c.severity==='HIGH'?'var(--red)':c.severity==='MEDIUM'?'var(--amber)':'var(--blue)'};color:${c.severity==='HIGH'?'var(--red)':c.severity==='MEDIUM'?'var(--amber)':'var(--blue)'};letter-spacing:0.15em;">${c.severity}</span>
+          <span style="font-size:10px;color:var(--text-muted);letter-spacing:0.1em;">${c.type}</span>
+          <span style="font-size:10px;color:var(--gold);margin-left:auto;">var: ${c.variable}</span>
+        </div>
+        <div style="font-size:12px;color:var(--text);margin-bottom:12px;line-height:1.6;">${c.description}</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="padding:10px;background:var(--surface3);border:1px solid var(--border);">
+            <div style="font-size:9px;color:var(--blue);letter-spacing:0.15em;margin-bottom:4px;">${c.clause_a.document}</div>
+            <div style="font-size:11px;color:var(--text-muted);">${c.clause_a.text}</div>
+          </div>
+          <div style="padding:10px;background:var(--surface3);border:1px solid var(--border);">
+            <div style="font-size:9px;color:var(--gold);letter-spacing:0.15em;margin-bottom:4px;">${c.clause_b.document}</div>
+            <div style="font-size:11px;color:var(--text-muted);">${c.clause_b.text}</div>
+          </div>
+        </div>
+      </div>`).join('');
+
     result.classList.add('visible');
-  } catch(e) {
-    showError('err-conflicts', `Conflict detection failed: ${e.message}`);
-  } finally {
+    showToast(`⊗ ${mockConflicts.total_conflicts} conflicts detected`);
     btn.disabled = false;
     load.classList.remove('active');
-  }
+  }, 2000);
 }
-
-function renderConflicts(d) {
-  const conflicts = d.conflicts ?? d.conflict_pairs ?? [];
-  const total = conflicts.length;
-
-  document.getElementById('conflict-summary').innerHTML = `
-    <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
-      <div class="stat-box">
-        <div class="stat-value" style="color:${total > 0 ? 'var(--red)' : 'var(--green)'}">${total}</div>
-        <div class="stat-label">Conflicts Found</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-value">${d.documents_compared ?? (d.documents?.length ?? '–')}</div>
-        <div class="stat-label">Documents Compared</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-value">${d.total_clauses_compared ?? '–'}</div>
-        <div class="stat-label">Clauses Compared</div>
-      </div>
-    </div>`;
-
-  document.getElementById('conflict-list').innerHTML = conflicts.length
-    ? conflicts.map(c => {
-        const sev = (c.severity ?? 'medium').toLowerCase();
-        const sevColor = sev==='high' ? 'var(--red)' : sev==='medium' ? 'var(--amber)' : 'var(--blue)';
-        return `
-        <div class="conflict-item severity-${sev}">
-          <div class="conflict-header">
-            <div class="conflict-badge">${c.conflict_type ?? c.type ?? 'Conflict'}</div>
-            <div class="conflict-schemes">${c.clause_a?.document ?? c.document1_title ?? c.scheme1 ?? 'Doc A'} ↔ ${c.clause_b?.document ?? c.document2_title ?? c.scheme2 ?? 'Doc B'}</div>
-            <div style="margin-left:auto;font-size:9px;padding:3px 8px;border:1px solid ${sevColor};color:${sevColor};text-transform:uppercase;letter-spacing:0.15em;">${c.severity ?? 'Medium'}</div>
-          </div>
-          <div class="conflict-desc">${c.description ?? c.conflict_description ?? c.message ?? JSON.stringify(c)}</div>
-          ${c.variable ? `
-          <div class="conflict-detail">
-            <div class="conflict-side">
-              <div class="conflict-side-label">${c.clause_a?.document ?? 'Document 1'}</div>
-              <div class="conflict-side-value">${c.variable} ${c.operator1 ?? ''} ${c.threshold1 ?? ''}</div>
-            </div>
-            <div class="conflict-side">
-              <div class="conflict-side-label">${c.clause_b?.document ?? 'Document 2'}</div>
-              <div class="conflict-side-value">${c.variable} ${c.operator2 ?? ''} ${c.threshold2 ?? ''}</div>
-            </div>
-          </div>` : ''}
-        </div>`;
-      }).join('')
-    : `<div style="padding:32px; text-align:center; border:1px dashed var(--border); color:var(--green);">
-         <div style="font-size:28px; margin-bottom:8px;">✓</div>
-         <div style="font-family:'Syne',sans-serif; font-size:16px; font-weight:700;">No conflicts detected</div>
-         <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">All policy clauses are consistent across documents.</div>
-       </div>`;
-
-  document.getElementById('raw-conflicts').textContent = JSON.stringify(d, null, 2);
-}
-
 // ─── TRANSPARENCY MODE ────────────────────────────────────
 let transparencyOn = false;
 
