@@ -1,0 +1,2244 @@
+{
+  "policies": [
+    {
+      "policy_id": "POL001",
+      "policy_name": "Health Advancement Policy 1",
+      "domain": "health",
+      "country": "India",
+      "year": 2013,
+      "objectives": [
+        "boost innovation",
+        "reduce costs"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Ministry of Health",
+        "Citizens"
+      ],
+      "actions": [
+        "collect national data",
+        "provide subsidies"
+      ],
+      "target_groups": [
+        "students",
+        "public institutions"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL002",
+      "policy_name": "Education Advancement Policy 2",
+      "domain": "education",
+      "country": "Australia",
+      "year": 2011,
+      "objectives": [
+        "increase workforce skills",
+        "reduce costs"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Local Governments",
+        "Ministry of Education"
+      ],
+      "actions": [
+        "build infrastructure",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "small businesses",
+        "rural population"
+      ],
+      "outcomes": [
+        "economic growth",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL003",
+      "policy_name": "Technology Advancement Policy 3",
+      "domain": "technology",
+      "country": "UK",
+      "year": 2008,
+      "objectives": [
+        "reduce costs",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Ministry of Health",
+        "Universities",
+        "Citizens"
+      ],
+      "actions": [
+        "launch training programs",
+        "collect national data"
+      ],
+      "target_groups": [
+        "students",
+        "farmers"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL004",
+      "policy_name": "Health Advancement Policy 4",
+      "domain": "health",
+      "country": "Canada",
+      "year": 2007,
+      "objectives": [
+        "reduce emissions",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "NGOs",
+        "Universities",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "increase funding",
+        "provide subsidies"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "small businesses"
+      ],
+      "outcomes": [
+        "economic growth",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL005",
+      "policy_name": "Technology Advancement Policy 5",
+      "domain": "technology",
+      "country": "India",
+      "year": 2017,
+      "objectives": [
+        "reduce emissions",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Environmental Agency",
+        "NGOs"
+      ],
+      "actions": [
+        "deploy digital platforms",
+        "increase funding"
+      ],
+      "target_groups": [
+        "startups",
+        "farmers"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL006",
+      "policy_name": "Health Advancement Policy 6",
+      "domain": "health",
+      "country": "Australia",
+      "year": 2010,
+      "objectives": [
+        "boost innovation",
+        "reduce costs"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Hospitals",
+        "Local Governments"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "farmers",
+        "small businesses"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL007",
+      "policy_name": "Technology Advancement Policy 7",
+      "domain": "technology",
+      "country": "India",
+      "year": 2015,
+      "objectives": [
+        "increase workforce skills",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Ministry of Health",
+        "Technology Ministry",
+        "Universities"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "public institutions",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "lower pollution"
+      ]
+    },
+    {
+      "policy_id": "POL008",
+      "policy_name": "Environment Advancement Policy 8",
+      "domain": "environment",
+      "country": "UK",
+      "year": 2009,
+      "objectives": [
+        "boost innovation",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "NGOs",
+        "Local Governments"
+      ],
+      "actions": [
+        "collect national data",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "small businesses",
+        "rural population"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL009",
+      "policy_name": "Agriculture Advancement Policy 9",
+      "domain": "agriculture",
+      "country": "India",
+      "year": 2006,
+      "objectives": [
+        "reduce costs",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Hospitals",
+        "Ministry of Health"
+      ],
+      "actions": [
+        "collect national data",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "public institutions",
+        "startups"
+      ],
+      "outcomes": [
+        "economic growth",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL010",
+      "policy_name": "Education Advancement Policy 10",
+      "domain": "education",
+      "country": "Germany",
+      "year": 2008,
+      "objectives": [
+        "reduce emissions",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Ministry of Health",
+        "Local Governments"
+      ],
+      "actions": [
+        "collect national data",
+        "increase funding"
+      ],
+      "target_groups": [
+        "public institutions",
+        "students"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL011",
+      "policy_name": "Economy Advancement Policy 11",
+      "domain": "economy",
+      "country": "Australia",
+      "year": 2010,
+      "objectives": [
+        "reduce costs",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Local Governments",
+        "Citizens",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "build infrastructure",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "rural population",
+        "startups"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL012",
+      "policy_name": "Education Advancement Policy 12",
+      "domain": "education",
+      "country": "Australia",
+      "year": 2015,
+      "objectives": [
+        "improve public safety",
+        "increase access"
+      ],
+      "stakeholders": [
+        "Ministry of Health",
+        "Universities",
+        "Local Governments"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "provide subsidies"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "startups"
+      ],
+      "outcomes": [
+        "higher adoption",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL013",
+      "policy_name": "Agriculture Advancement Policy 13",
+      "domain": "agriculture",
+      "country": "India",
+      "year": 2022,
+      "objectives": [
+        "improve quality",
+        "reduce costs"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Citizens",
+        "Environmental Agency"
+      ],
+      "actions": [
+        "launch training programs",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "small businesses",
+        "low-income families"
+      ],
+      "outcomes": [
+        "better service access",
+        "improved productivity"
+      ]
+    },
+    {
+      "policy_id": "POL014",
+      "policy_name": "Technology Advancement Policy 14",
+      "domain": "technology",
+      "country": "Germany",
+      "year": 2014,
+      "objectives": [
+        "increase workforce skills",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Private Sector",
+        "Citizens"
+      ],
+      "actions": [
+        "increase funding",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "students"
+      ],
+      "outcomes": [
+        "economic growth",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL015",
+      "policy_name": "Technology Advancement Policy 15",
+      "domain": "technology",
+      "country": "Australia",
+      "year": 2012,
+      "objectives": [
+        "increase access",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "Ministry of Education",
+        "Technology Ministry",
+        "Ministry of Health"
+      ],
+      "actions": [
+        "provide subsidies",
+        "collect national data"
+      ],
+      "target_groups": [
+        "farmers",
+        "students"
+      ],
+      "outcomes": [
+        "better service access",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL016",
+      "policy_name": "Economy Advancement Policy 16",
+      "domain": "economy",
+      "country": "Germany",
+      "year": 2020,
+      "objectives": [
+        "boost innovation",
+        "reduce emissions"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Private Sector",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "enforce standards",
+        "collect national data"
+      ],
+      "target_groups": [
+        "small businesses",
+        "low-income families"
+      ],
+      "outcomes": [
+        "higher adoption",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL017",
+      "policy_name": "Energy Advancement Policy 17",
+      "domain": "energy",
+      "country": "UK",
+      "year": 2018,
+      "objectives": [
+        "increase workforce skills",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Ministry of Education",
+        "Ministry of Health",
+        "NGOs"
+      ],
+      "actions": [
+        "collect national data",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "farmers",
+        "small businesses"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL018",
+      "policy_name": "Technology Advancement Policy 18",
+      "domain": "technology",
+      "country": "USA",
+      "year": 2011,
+      "objectives": [
+        "improve public safety",
+        "reduce costs"
+      ],
+      "stakeholders": [
+        "Hospitals",
+        "Environmental Agency",
+        "Local Governments"
+      ],
+      "actions": [
+        "enforce standards",
+        "increase funding"
+      ],
+      "target_groups": [
+        "low-income families",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL019",
+      "policy_name": "Health Advancement Policy 19",
+      "domain": "health",
+      "country": "India",
+      "year": 2022,
+      "objectives": [
+        "increase access",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "Technology Ministry",
+        "Environmental Agency",
+        "Hospitals"
+      ],
+      "actions": [
+        "enforce standards",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "small businesses"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL020",
+      "policy_name": "Environment Advancement Policy 20",
+      "domain": "environment",
+      "country": "Canada",
+      "year": 2005,
+      "objectives": [
+        "increase workforce skills",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Local Governments",
+        "Hospitals"
+      ],
+      "actions": [
+        "enforce standards",
+        "increase funding"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "rural population"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL021",
+      "policy_name": "Education Advancement Policy 21",
+      "domain": "education",
+      "country": "Germany",
+      "year": 2015,
+      "objectives": [
+        "increase access",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "NGOs",
+        "Private Sector",
+        "Environmental Agency"
+      ],
+      "actions": [
+        "provide subsidies",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "low-income families",
+        "small businesses"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL022",
+      "policy_name": "Health Advancement Policy 22",
+      "domain": "health",
+      "country": "Germany",
+      "year": 2012,
+      "objectives": [
+        "increase workforce skills",
+        "increase access"
+      ],
+      "stakeholders": [
+        "NGOs",
+        "Technology Ministry",
+        "Ministry of Education"
+      ],
+      "actions": [
+        "increase funding",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "farmers",
+        "rural population"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "improved productivity"
+      ]
+    },
+    {
+      "policy_id": "POL023",
+      "policy_name": "Transport Advancement Policy 23",
+      "domain": "transport",
+      "country": "USA",
+      "year": 2013,
+      "objectives": [
+        "increase workforce skills",
+        "reduce costs"
+      ],
+      "stakeholders": [
+        "Local Governments",
+        "Private Sector",
+        "Universities"
+      ],
+      "actions": [
+        "increase funding",
+        "provide subsidies"
+      ],
+      "target_groups": [
+        "public institutions",
+        "startups"
+      ],
+      "outcomes": [
+        "better service access",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL024",
+      "policy_name": "Health Advancement Policy 24",
+      "domain": "health",
+      "country": "Australia",
+      "year": 2011,
+      "objectives": [
+        "reduce emissions",
+        "reduce costs"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Ministry of Health",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "deploy digital platforms",
+        "build infrastructure"
+      ],
+      "target_groups": [
+        "rural population",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL025",
+      "policy_name": "Economy Advancement Policy 25",
+      "domain": "economy",
+      "country": "Australia",
+      "year": 2021,
+      "objectives": [
+        "increase access",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "Local Governments",
+        "Ministry of Health"
+      ],
+      "actions": [
+        "build infrastructure",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "low-income families",
+        "students"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL026",
+      "policy_name": "Environment Advancement Policy 26",
+      "domain": "environment",
+      "country": "UK",
+      "year": 2014,
+      "objectives": [
+        "boost innovation",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Technology Ministry",
+        "Local Governments"
+      ],
+      "actions": [
+        "enforce standards",
+        "build infrastructure"
+      ],
+      "target_groups": [
+        "students",
+        "public institutions"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "lower pollution"
+      ]
+    },
+    {
+      "policy_id": "POL027",
+      "policy_name": "Economy Advancement Policy 27",
+      "domain": "economy",
+      "country": "India",
+      "year": 2005,
+      "objectives": [
+        "expand infrastructure",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Local Governments",
+        "NGOs"
+      ],
+      "actions": [
+        "enforce standards",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "small businesses",
+        "startups"
+      ],
+      "outcomes": [
+        "higher adoption",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL028",
+      "policy_name": "Health Advancement Policy 28",
+      "domain": "health",
+      "country": "Germany",
+      "year": 2009,
+      "objectives": [
+        "increase access",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Citizens",
+        "Environmental Agency"
+      ],
+      "actions": [
+        "collect national data",
+        "increase funding"
+      ],
+      "target_groups": [
+        "students",
+        "rural population"
+      ],
+      "outcomes": [
+        "economic growth",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL029",
+      "policy_name": "Transport Advancement Policy 29",
+      "domain": "transport",
+      "country": "USA",
+      "year": 2012,
+      "objectives": [
+        "reduce costs",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "Hospitals",
+        "Environmental Agency"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "collect national data"
+      ],
+      "target_groups": [
+        "rural population",
+        "small businesses"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL030",
+      "policy_name": "Energy Advancement Policy 30",
+      "domain": "energy",
+      "country": "India",
+      "year": 2010,
+      "objectives": [
+        "expand infrastructure",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Hospitals",
+        "Technology Ministry",
+        "Local Governments"
+      ],
+      "actions": [
+        "build infrastructure",
+        "collect national data"
+      ],
+      "target_groups": [
+        "low-income families",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL031",
+      "policy_name": "Agriculture Advancement Policy 31",
+      "domain": "agriculture",
+      "country": "USA",
+      "year": 2011,
+      "objectives": [
+        "improve public safety",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Local Governments",
+        "Technology Ministry",
+        "Citizens"
+      ],
+      "actions": [
+        "provide subsidies",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "public institutions"
+      ],
+      "outcomes": [
+        "economic growth",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL032",
+      "policy_name": "Health Advancement Policy 32",
+      "domain": "health",
+      "country": "UK",
+      "year": 2016,
+      "objectives": [
+        "increase workforce skills",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "Universities",
+        "Ministry of Education"
+      ],
+      "actions": [
+        "increase funding",
+        "build infrastructure"
+      ],
+      "target_groups": [
+        "rural population",
+        "startups"
+      ],
+      "outcomes": [
+        "economic growth",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL033",
+      "policy_name": "Health Advancement Policy 33",
+      "domain": "health",
+      "country": "Australia",
+      "year": 2018,
+      "objectives": [
+        "expand infrastructure",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Hospitals",
+        "Ministry of Health"
+      ],
+      "actions": [
+        "collect national data",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "rural population"
+      ],
+      "outcomes": [
+        "higher adoption",
+        "improved productivity"
+      ]
+    },
+    {
+      "policy_id": "POL034",
+      "policy_name": "Energy Advancement Policy 34",
+      "domain": "energy",
+      "country": "India",
+      "year": 2021,
+      "objectives": [
+        "boost innovation",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Hospitals",
+        "Ministry of Health",
+        "Universities"
+      ],
+      "actions": [
+        "deploy digital platforms",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "low-income families",
+        "farmers"
+      ],
+      "outcomes": [
+        "economic growth",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL035",
+      "policy_name": "Economy Advancement Policy 35",
+      "domain": "economy",
+      "country": "Germany",
+      "year": 2018,
+      "objectives": [
+        "expand infrastructure",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Local Governments",
+        "Citizens",
+        "Environmental Agency"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "small businesses",
+        "farmers"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL036",
+      "policy_name": "Economy Advancement Policy 36",
+      "domain": "economy",
+      "country": "Canada",
+      "year": 2022,
+      "objectives": [
+        "increase access",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Local Governments",
+        "Technology Ministry",
+        "Hospitals"
+      ],
+      "actions": [
+        "deploy digital platforms",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "public institutions",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL037",
+      "policy_name": "Agriculture Advancement Policy 37",
+      "domain": "agriculture",
+      "country": "Germany",
+      "year": 2010,
+      "objectives": [
+        "reduce costs",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "Universities",
+        "Ministry of Health"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "startups",
+        "low-income families"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL038",
+      "policy_name": "Environment Advancement Policy 38",
+      "domain": "environment",
+      "country": "India",
+      "year": 2006,
+      "objectives": [
+        "boost innovation",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "NGOs",
+        "Ministry of Health",
+        "Private Sector"
+      ],
+      "actions": [
+        "collect national data",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "farmers"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "lower pollution"
+      ]
+    },
+    {
+      "policy_id": "POL039",
+      "policy_name": "Agriculture Advancement Policy 39",
+      "domain": "agriculture",
+      "country": "Canada",
+      "year": 2012,
+      "objectives": [
+        "improve quality",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Ministry of Education",
+        "Ministry of Health",
+        "Hospitals"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "increase funding"
+      ],
+      "target_groups": [
+        "public institutions",
+        "students"
+      ],
+      "outcomes": [
+        "better service access",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL040",
+      "policy_name": "Health Advancement Policy 40",
+      "domain": "health",
+      "country": "Canada",
+      "year": 2009,
+      "objectives": [
+        "improve public safety",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "NGOs",
+        "Universities"
+      ],
+      "actions": [
+        "enforce standards",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "small businesses",
+        "public institutions"
+      ],
+      "outcomes": [
+        "better service access",
+        "lower pollution"
+      ]
+    },
+    {
+      "policy_id": "POL041",
+      "policy_name": "Environment Advancement Policy 41",
+      "domain": "environment",
+      "country": "Germany",
+      "year": 2020,
+      "objectives": [
+        "improve public safety",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Technology Ministry",
+        "Local Governments",
+        "Private Sector"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "build infrastructure"
+      ],
+      "target_groups": [
+        "public institutions",
+        "students"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL042",
+      "policy_name": "Technology Advancement Policy 42",
+      "domain": "technology",
+      "country": "UK",
+      "year": 2015,
+      "objectives": [
+        "expand infrastructure",
+        "reduce emissions"
+      ],
+      "stakeholders": [
+        "Ministry of Health",
+        "Environmental Agency",
+        "Citizens"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "rural population",
+        "farmers"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL043",
+      "policy_name": "Energy Advancement Policy 43",
+      "domain": "energy",
+      "country": "Canada",
+      "year": 2015,
+      "objectives": [
+        "improve public safety",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Ministry of Education",
+        "Technology Ministry",
+        "Hospitals"
+      ],
+      "actions": [
+        "collect national data",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "students",
+        "small businesses"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL044",
+      "policy_name": "Energy Advancement Policy 44",
+      "domain": "energy",
+      "country": "Canada",
+      "year": 2005,
+      "objectives": [
+        "expand infrastructure",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Hospitals",
+        "NGOs",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "enforce standards",
+        "increase funding"
+      ],
+      "target_groups": [
+        "startups",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL045",
+      "policy_name": "Energy Advancement Policy 45",
+      "domain": "energy",
+      "country": "UK",
+      "year": 2017,
+      "objectives": [
+        "improve quality",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Environmental Agency",
+        "Ministry of Education"
+      ],
+      "actions": [
+        "collect national data",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "students",
+        "public institutions"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "lower pollution"
+      ]
+    },
+    {
+      "policy_id": "POL046",
+      "policy_name": "Environment Advancement Policy 46",
+      "domain": "environment",
+      "country": "Canada",
+      "year": 2010,
+      "objectives": [
+        "increase access",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Hospitals",
+        "Universities",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "enforce standards",
+        "build infrastructure"
+      ],
+      "target_groups": [
+        "farmers",
+        "small businesses"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL047",
+      "policy_name": "Energy Advancement Policy 47",
+      "domain": "energy",
+      "country": "UK",
+      "year": 2007,
+      "objectives": [
+        "improve public safety",
+        "increase access"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "Ministry of Education",
+        "Universities"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "low-income families",
+        "small businesses"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL048",
+      "policy_name": "Education Advancement Policy 48",
+      "domain": "education",
+      "country": "USA",
+      "year": 2011,
+      "objectives": [
+        "increase access",
+        "reduce emissions"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Technology Ministry",
+        "NGOs"
+      ],
+      "actions": [
+        "enforce standards",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "low-income families",
+        "startups"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "lower pollution"
+      ]
+    },
+    {
+      "policy_id": "POL049",
+      "policy_name": "Economy Advancement Policy 49",
+      "domain": "economy",
+      "country": "UK",
+      "year": 2010,
+      "objectives": [
+        "reduce costs",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Local Governments",
+        "Ministry of Health"
+      ],
+      "actions": [
+        "provide subsidies",
+        "build infrastructure"
+      ],
+      "target_groups": [
+        "small businesses",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL050",
+      "policy_name": "Health Advancement Policy 50",
+      "domain": "health",
+      "country": "Australia",
+      "year": 2012,
+      "objectives": [
+        "reduce costs",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Local Governments",
+        "Ministry of Health",
+        "Ministry of Education"
+      ],
+      "actions": [
+        "deploy digital platforms",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "small businesses",
+        "farmers"
+      ],
+      "outcomes": [
+        "economic growth",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL051",
+      "policy_name": "Transport Advancement Policy 51",
+      "domain": "transport",
+      "country": "India",
+      "year": 2018,
+      "objectives": [
+        "improve public safety",
+        "increase access"
+      ],
+      "stakeholders": [
+        "Hospitals",
+        "Universities",
+        "Private Sector"
+      ],
+      "actions": [
+        "build infrastructure",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "rural population",
+        "farmers"
+      ],
+      "outcomes": [
+        "better service access",
+        "improved productivity"
+      ]
+    },
+    {
+      "policy_id": "POL052",
+      "policy_name": "Economy Advancement Policy 52",
+      "domain": "economy",
+      "country": "Australia",
+      "year": 2022,
+      "objectives": [
+        "improve public safety",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Hospitals",
+        "Local Governments",
+        "Universities"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "collect national data"
+      ],
+      "target_groups": [
+        "low-income families",
+        "rural population"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL053",
+      "policy_name": "Agriculture Advancement Policy 53",
+      "domain": "agriculture",
+      "country": "Australia",
+      "year": 2024,
+      "objectives": [
+        "increase workforce skills",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Ministry of Education",
+        "Private Sector",
+        "Universities"
+      ],
+      "actions": [
+        "build infrastructure",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "rural population"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL054",
+      "policy_name": "Transport Advancement Policy 54",
+      "domain": "transport",
+      "country": "UK",
+      "year": 2024,
+      "objectives": [
+        "reduce emissions",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "Ministry of Education",
+        "Citizens",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "increase funding",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "small businesses",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "better service access",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL055",
+      "policy_name": "Agriculture Advancement Policy 55",
+      "domain": "agriculture",
+      "country": "Germany",
+      "year": 2020,
+      "objectives": [
+        "improve public safety",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Ministry of Education",
+        "Ministry of Health",
+        "Local Governments"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "rural population"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL056",
+      "policy_name": "Transport Advancement Policy 56",
+      "domain": "transport",
+      "country": "Canada",
+      "year": 2022,
+      "objectives": [
+        "expand infrastructure",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "Universities",
+        "NGOs"
+      ],
+      "actions": [
+        "enforce standards",
+        "build infrastructure"
+      ],
+      "target_groups": [
+        "startups",
+        "rural population"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL057",
+      "policy_name": "Technology Advancement Policy 57",
+      "domain": "technology",
+      "country": "UK",
+      "year": 2008,
+      "objectives": [
+        "improve quality",
+        "reduce costs"
+      ],
+      "stakeholders": [
+        "Technology Ministry",
+        "Private Sector",
+        "Local Governments"
+      ],
+      "actions": [
+        "launch training programs",
+        "provide subsidies"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "rural population"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL058",
+      "policy_name": "Environment Advancement Policy 58",
+      "domain": "environment",
+      "country": "UK",
+      "year": 2005,
+      "objectives": [
+        "improve quality",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "Ministry of Education",
+        "NGOs",
+        "Local Governments"
+      ],
+      "actions": [
+        "build infrastructure",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "public institutions",
+        "students"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL059",
+      "policy_name": "Economy Advancement Policy 59",
+      "domain": "economy",
+      "country": "Canada",
+      "year": 2020,
+      "objectives": [
+        "improve public safety",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Ministry of Education",
+        "Local Governments"
+      ],
+      "actions": [
+        "enforce standards",
+        "provide subsidies"
+      ],
+      "target_groups": [
+        "low-income families",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL060",
+      "policy_name": "Education Advancement Policy 60",
+      "domain": "education",
+      "country": "USA",
+      "year": 2009,
+      "objectives": [
+        "reduce emissions",
+        "increase access"
+      ],
+      "stakeholders": [
+        "Technology Ministry",
+        "Ministry of Health",
+        "Hospitals"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "collect national data"
+      ],
+      "target_groups": [
+        "small businesses",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL061",
+      "policy_name": "Energy Advancement Policy 61",
+      "domain": "energy",
+      "country": "UK",
+      "year": 2023,
+      "objectives": [
+        "increase access",
+        "reduce emissions"
+      ],
+      "stakeholders": [
+        "Ministry of Health",
+        "Technology Ministry",
+        "Citizens"
+      ],
+      "actions": [
+        "launch training programs",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "low-income families",
+        "public institutions"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL062",
+      "policy_name": "Health Advancement Policy 62",
+      "domain": "health",
+      "country": "USA",
+      "year": 2005,
+      "objectives": [
+        "increase workforce skills",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "NGOs",
+        "Private Sector",
+        "Local Governments"
+      ],
+      "actions": [
+        "provide subsidies",
+        "increase funding"
+      ],
+      "target_groups": [
+        "startups",
+        "farmers"
+      ],
+      "outcomes": [
+        "economic growth",
+        "improved productivity"
+      ]
+    },
+    {
+      "policy_id": "POL063",
+      "policy_name": "Agriculture Advancement Policy 63",
+      "domain": "agriculture",
+      "country": "India",
+      "year": 2012,
+      "objectives": [
+        "reduce emissions",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "NGOs",
+        "Technology Ministry",
+        "Hospitals"
+      ],
+      "actions": [
+        "increase funding",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "farmers"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL064",
+      "policy_name": "Environment Advancement Policy 64",
+      "domain": "environment",
+      "country": "India",
+      "year": 2006,
+      "objectives": [
+        "improve quality",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Local Governments",
+        "NGOs",
+        "Private Sector"
+      ],
+      "actions": [
+        "increase funding",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "startups",
+        "farmers"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL065",
+      "policy_name": "Agriculture Advancement Policy 65",
+      "domain": "agriculture",
+      "country": "Canada",
+      "year": 2007,
+      "objectives": [
+        "increase access",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Local Governments",
+        "Ministry of Education"
+      ],
+      "actions": [
+        "increase funding",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "students",
+        "small businesses"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL066",
+      "policy_name": "Education Advancement Policy 66",
+      "domain": "education",
+      "country": "USA",
+      "year": 2020,
+      "objectives": [
+        "improve public safety",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Hospitals",
+        "Private Sector"
+      ],
+      "actions": [
+        "increase funding",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "farmers",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "economic growth",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL067",
+      "policy_name": "Health Advancement Policy 67",
+      "domain": "health",
+      "country": "USA",
+      "year": 2015,
+      "objectives": [
+        "increase workforce skills",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Local Governments",
+        "Hospitals"
+      ],
+      "actions": [
+        "provide subsidies",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "low-income families",
+        "rural population"
+      ],
+      "outcomes": [
+        "economic growth",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL068",
+      "policy_name": "Health Advancement Policy 68",
+      "domain": "health",
+      "country": "Canada",
+      "year": 2021,
+      "objectives": [
+        "increase access",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "Private Sector",
+        "Hospitals"
+      ],
+      "actions": [
+        "provide subsidies",
+        "increase funding"
+      ],
+      "target_groups": [
+        "farmers",
+        "startups"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "lower pollution"
+      ]
+    },
+    {
+      "policy_id": "POL069",
+      "policy_name": "Agriculture Advancement Policy 69",
+      "domain": "agriculture",
+      "country": "India",
+      "year": 2011,
+      "objectives": [
+        "reduce emissions",
+        "improve public safety"
+      ],
+      "stakeholders": [
+        "Environmental Agency",
+        "Local Governments",
+        "Private Sector"
+      ],
+      "actions": [
+        "enforce standards",
+        "provide subsidies"
+      ],
+      "target_groups": [
+        "students",
+        "farmers"
+      ],
+      "outcomes": [
+        "better service access",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL070",
+      "policy_name": "Environment Advancement Policy 70",
+      "domain": "environment",
+      "country": "UK",
+      "year": 2022,
+      "objectives": [
+        "increase access",
+        "reduce emissions"
+      ],
+      "stakeholders": [
+        "Hospitals",
+        "Ministry of Health",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "increase funding",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "low-income families",
+        "farmers"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL071",
+      "policy_name": "Agriculture Advancement Policy 71",
+      "domain": "agriculture",
+      "country": "Germany",
+      "year": 2014,
+      "objectives": [
+        "reduce emissions",
+        "boost innovation"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "NGOs",
+        "Technology Ministry"
+      ],
+      "actions": [
+        "enforce standards",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "rural population",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL072",
+      "policy_name": "Environment Advancement Policy 72",
+      "domain": "environment",
+      "country": "India",
+      "year": 2013,
+      "objectives": [
+        "increase workforce skills",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Citizens",
+        "Local Governments",
+        "Ministry of Education"
+      ],
+      "actions": [
+        "launch training programs",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "startups",
+        "small businesses"
+      ],
+      "outcomes": [
+        "better service access",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL073",
+      "policy_name": "Agriculture Advancement Policy 73",
+      "domain": "agriculture",
+      "country": "USA",
+      "year": 2019,
+      "objectives": [
+        "improve public safety",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Citizens",
+        "Hospitals"
+      ],
+      "actions": [
+        "enforce standards",
+        "build infrastructure"
+      ],
+      "target_groups": [
+        "urban commuters",
+        "farmers"
+      ],
+      "outcomes": [
+        "reduced inequality",
+        "better service access"
+      ]
+    },
+    {
+      "policy_id": "POL074",
+      "policy_name": "Energy Advancement Policy 74",
+      "domain": "energy",
+      "country": "USA",
+      "year": 2018,
+      "objectives": [
+        "increase access",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Hospitals",
+        "Citizens"
+      ],
+      "actions": [
+        "build infrastructure",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "students",
+        "low-income families"
+      ],
+      "outcomes": [
+        "better service access",
+        "stronger digital ecosystem"
+      ]
+    },
+    {
+      "policy_id": "POL075",
+      "policy_name": "Transport Advancement Policy 75",
+      "domain": "transport",
+      "country": "India",
+      "year": 2019,
+      "objectives": [
+        "reduce costs",
+        "reduce emissions"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Ministry of Education",
+        "Environmental Agency"
+      ],
+      "actions": [
+        "collect national data",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "rural population",
+        "students"
+      ],
+      "outcomes": [
+        "lower pollution",
+        "economic growth"
+      ]
+    },
+    {
+      "policy_id": "POL076",
+      "policy_name": "Transport Advancement Policy 76",
+      "domain": "transport",
+      "country": "Australia",
+      "year": 2017,
+      "objectives": [
+        "reduce costs",
+        "increase workforce skills"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Citizens",
+        "Hospitals"
+      ],
+      "actions": [
+        "deploy digital platforms",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "public institutions",
+        "small businesses"
+      ],
+      "outcomes": [
+        "better service access",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL077",
+      "policy_name": "Health Advancement Policy 77",
+      "domain": "health",
+      "country": "USA",
+      "year": 2014,
+      "objectives": [
+        "boost innovation",
+        "expand infrastructure"
+      ],
+      "stakeholders": [
+        "Ministry of Health",
+        "Hospitals",
+        "NGOs"
+      ],
+      "actions": [
+        "increase funding",
+        "create regulatory framework"
+      ],
+      "target_groups": [
+        "rural population",
+        "farmers"
+      ],
+      "outcomes": [
+        "economic growth",
+        "higher adoption"
+      ]
+    },
+    {
+      "policy_id": "POL078",
+      "policy_name": "Education Advancement Policy 78",
+      "domain": "education",
+      "country": "UK",
+      "year": 2006,
+      "objectives": [
+        "reduce emissions",
+        "improve quality"
+      ],
+      "stakeholders": [
+        "Universities",
+        "Hospitals",
+        "Environmental Agency"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "launch training programs"
+      ],
+      "target_groups": [
+        "small businesses",
+        "startups"
+      ],
+      "outcomes": [
+        "improved productivity",
+        "reduced inequality"
+      ]
+    },
+    {
+      "policy_id": "POL079",
+      "policy_name": "Environment Advancement Policy 79",
+      "domain": "environment",
+      "country": "USA",
+      "year": 2007,
+      "objectives": [
+        "increase workforce skills",
+        "reduce emissions"
+      ],
+      "stakeholders": [
+        "Technology Ministry",
+        "Private Sector",
+        "Environmental Agency"
+      ],
+      "actions": [
+        "create regulatory framework",
+        "enforce standards"
+      ],
+      "target_groups": [
+        "startups",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "economic growth",
+        "improved productivity"
+      ]
+    },
+    {
+      "policy_id": "POL080",
+      "policy_name": "Education Advancement Policy 80",
+      "domain": "education",
+      "country": "Canada",
+      "year": 2014,
+      "objectives": [
+        "improve quality",
+        "increase access"
+      ],
+      "stakeholders": [
+        "Private Sector",
+        "Universities",
+        "Local Governments"
+      ],
+      "actions": [
+        "collect national data",
+        "deploy digital platforms"
+      ],
+      "target_groups": [
+        "startups",
+        "urban commuters"
+      ],
+      "outcomes": [
+        "stronger digital ecosystem",
+        "economic growth"
+      ]
+    }
+  ]
+}

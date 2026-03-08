@@ -1,0 +1,7606 @@
+{
+  "nodes": [
+    {
+      "id": "POL001",
+      "type": "policy",
+      "label": "Health Advancement Policy 1"
+    },
+    {
+      "id": "OBJ-f08f31e3",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "OBJ-40c34e30",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "STK-131e7e43",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-e2b5e6a9",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-d0238f81",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "ACT-77b2d5c8",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-4ddb0afc",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "OUT-a502c66a",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-8fc8469c",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL002",
+      "type": "policy",
+      "label": "Education Advancement Policy 2"
+    },
+    {
+      "id": "OBJ-62b1ebed",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-0e7f6b2f",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "STK-97728733",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-79703f3f",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-f84d7375",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "ACT-4d90ae60",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "ACT-78b9f727",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-6adb8022",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-7b2f3a3b",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL003",
+      "type": "policy",
+      "label": "Technology Advancement Policy 3"
+    },
+    {
+      "id": "OBJ-7f701451",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-a0b9c3e9",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-d10836e3",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-03ee2752",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-01eec290",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "ACT-1c079072",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "ACT-ff1f1267",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "OUT-c78eede0",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-9331f504",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL004",
+      "type": "policy",
+      "label": "Health Advancement Policy 4"
+    },
+    {
+      "id": "OBJ-de613e4a",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-e82e5e3d",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-148b4c6d",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-ddb1a207",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-abc8d3f4",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-8eccd420",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-37efdb74",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "OUT-c19431d5",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-033dce37",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL005",
+      "type": "policy",
+      "label": "Technology Advancement Policy 5"
+    },
+    {
+      "id": "OBJ-301095c1",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-5e001476",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-c363b228",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-fcc5c85e",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-03494c89",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "ACT-9ce77d37",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "ACT-a6e42896",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-5a738535",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-4610c702",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL006",
+      "type": "policy",
+      "label": "Health Advancement Policy 6"
+    },
+    {
+      "id": "OBJ-86f9ba1a",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "OBJ-464501d7",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "STK-49525a1f",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-395ad6e6",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-f24964c9",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-20b685c5",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-029330ae",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-d12ead0b",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-3ebabafa",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL007",
+      "type": "policy",
+      "label": "Technology Advancement Policy 7"
+    },
+    {
+      "id": "OBJ-76a46ac3",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-b067e984",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-59ca5b42",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-edb0057d",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-8ae9d804",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "ACT-01a801b7",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-5adf17ae",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-dd12453f",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-9031efc0",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "POL008",
+      "type": "policy",
+      "label": "Environment Advancement Policy 8"
+    },
+    {
+      "id": "OBJ-d777d41d",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "OBJ-e808627f",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-87cdfc94",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-372e362e",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-a1802bf3",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-fd59d0fb",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-dbbfb198",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-a33e8761",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-9bc73fa8",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL009",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 9"
+    },
+    {
+      "id": "OBJ-78646835",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-7a66f31b",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-6caf549c",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-f95097b1",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-9cfd1149",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "ACT-a2d8e0a9",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-7b874c46",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-a9c932a6",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-7dd12a1e",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL010",
+      "type": "policy",
+      "label": "Education Advancement Policy 10"
+    },
+    {
+      "id": "OBJ-26bb5ac5",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-e96d6060",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-9b9e8611",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-fce87e0e",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-4d20a6e4",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-d30a1153",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-ea5df98b",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-ace518e5",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-0f99efd3",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL011",
+      "type": "policy",
+      "label": "Economy Advancement Policy 11"
+    },
+    {
+      "id": "OBJ-3e11fb41",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-f20000b6",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-cb324a0d",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-21785b01",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-ca808e2d",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-cbfbc2bd",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "ACT-e2aad009",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-ac9c4656",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-d7939c49",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL012",
+      "type": "policy",
+      "label": "Education Advancement Policy 12"
+    },
+    {
+      "id": "OBJ-81238e4f",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-d47f5b84",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "STK-8c3f6f9e",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-35f8d7ab",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-ee94d89b",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-bbb35252",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-4412a67f",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "OUT-9203f3b7",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "OUT-b79c179e",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL013",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 13"
+    },
+    {
+      "id": "OBJ-d36077c9",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "OBJ-187b1287",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "STK-be137964",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-540a42b0",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-3cda8ccb",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "ACT-01f1e4f5",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "ACT-6cf05e6d",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-34ad0be3",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-8f66bc53",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "POL014",
+      "type": "policy",
+      "label": "Technology Advancement Policy 14"
+    },
+    {
+      "id": "OBJ-c1796e0f",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-cd2a1dfa",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-0e9d71cd",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-11a81ef4",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-4a085925",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "ACT-656646d8",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-8509b5f4",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-5f79faa9",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-35c0a96f",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL015",
+      "type": "policy",
+      "label": "Technology Advancement Policy 15"
+    },
+    {
+      "id": "OBJ-83779973",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-89523251",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-d1c32fa4",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-1b2c7050",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-c3df22a0",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "ACT-e172867f",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "ACT-56ca4c3d",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "OUT-2bbd2b61",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-85d3ff0d",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL016",
+      "type": "policy",
+      "label": "Economy Advancement Policy 16"
+    },
+    {
+      "id": "OBJ-9c593f01",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "OBJ-94560dbd",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "STK-f3cdd25c",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-46019b5a",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-26bf90f7",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-d6baf4c5",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-e9063e61",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "OUT-8ed4a665",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "OUT-7204a0cc",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL017",
+      "type": "policy",
+      "label": "Energy Advancement Policy 17"
+    },
+    {
+      "id": "OBJ-13089938",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-bdd3230e",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-877e4237",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-a398f709",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-b55b73cc",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "ACT-22ee5c8e",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-9ca78640",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-c1fe2c50",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-8be6886b",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL018",
+      "type": "policy",
+      "label": "Technology Advancement Policy 18"
+    },
+    {
+      "id": "OBJ-3aca7eb2",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-f6e8edc0",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "STK-239209ef",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-5407fefb",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-cccd03ad",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-046f00e2",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-ac47cd0f",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-14b14c86",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-2689b8bb",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL019",
+      "type": "policy",
+      "label": "Health Advancement Policy 19"
+    },
+    {
+      "id": "OBJ-45717fa6",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-c359d680",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-5a27313f",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-bdba8ead",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-f86a4af7",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-4692fe73",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-b144f88a",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-1023bcbf",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-a93055ea",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL020",
+      "type": "policy",
+      "label": "Environment Advancement Policy 20"
+    },
+    {
+      "id": "OBJ-a434651f",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-07631e02",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-40497838",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-e156fcd6",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-b86d640a",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-8e6519fa",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-e19f7af3",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-61c78e70",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-5750232e",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL021",
+      "type": "policy",
+      "label": "Education Advancement Policy 21"
+    },
+    {
+      "id": "OBJ-8b6b6566",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-d219aecb",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-061a96a8",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-0d92f6c5",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-3536e8bc",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "ACT-4a064116",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "ACT-191b649b",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-88db995d",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-7b9d5e99",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL022",
+      "type": "policy",
+      "label": "Health Advancement Policy 22"
+    },
+    {
+      "id": "OBJ-4bcfbc1b",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-826533b7",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "STK-b5b8f08e",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-3852fcc9",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-5aa9fe30",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "ACT-486f95ab",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-53917687",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-8d173dfa",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-353ecd91",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "POL023",
+      "type": "policy",
+      "label": "Transport Advancement Policy 23"
+    },
+    {
+      "id": "OBJ-efb9e191",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-b63809b8",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "STK-cc483182",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-ab801044",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-67f6182e",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "ACT-03fbfdbd",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-ea43069b",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "OUT-f9d53720",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-9b206aa4",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL024",
+      "type": "policy",
+      "label": "Health Advancement Policy 24"
+    },
+    {
+      "id": "OBJ-8aad0fd9",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-6e9fa0df",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "STK-75a24470",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-785f37af",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-9c3ed4f3",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-9a818c6c",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "ACT-61bef33c",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "OUT-ce8c7f21",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-4f584352",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL025",
+      "type": "policy",
+      "label": "Economy Advancement Policy 25"
+    },
+    {
+      "id": "OBJ-f01a6f21",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-ede175d2",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-cd6ec1f8",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-42f486e6",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-c8dd8ee3",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "ACT-f44269a3",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "ACT-128d8c3f",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-599a41ca",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-dbc9224a",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL026",
+      "type": "policy",
+      "label": "Environment Advancement Policy 26"
+    },
+    {
+      "id": "OBJ-5c2ff418",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "OBJ-ca9980e2",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-b66d6531",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-771f7d27",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-fe8fc55d",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-d7bcb525",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-df22472d",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "OUT-c53ed245",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-adfc0b45",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "POL027",
+      "type": "policy",
+      "label": "Economy Advancement Policy 27"
+    },
+    {
+      "id": "OBJ-743b1955",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "OBJ-2c1009c0",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-74cc878c",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-299f12d0",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-cee6ade8",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "ACT-1c56265c",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-a3afdcaf",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-407f9eea",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "OUT-5751bb83",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL028",
+      "type": "policy",
+      "label": "Health Advancement Policy 28"
+    },
+    {
+      "id": "OBJ-423809e9",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-cfb5a27a",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-6d80241a",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-cf62c19e",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-899927ef",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "ACT-55eb9a92",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-55e1cd71",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-26b3ff64",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-baa3e101",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL029",
+      "type": "policy",
+      "label": "Transport Advancement Policy 29"
+    },
+    {
+      "id": "OBJ-f67017d2",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-d81bf73e",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-eeda9096",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-4ed8f088",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-e4e873b9",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "ACT-0f6cb02c",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-10beb6d2",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "OUT-a7d0b1aa",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-ec79411c",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL030",
+      "type": "policy",
+      "label": "Energy Advancement Policy 30"
+    },
+    {
+      "id": "OBJ-6210296b",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "OBJ-7bb478bd",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-d003f166",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-93ed17d8",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-27f174b3",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-b8596b9c",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "ACT-1b8b4e70",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "OUT-3fdb68b5",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-d3110194",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL031",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 31"
+    },
+    {
+      "id": "OBJ-00e16903",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-a8983885",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-b95dcbd5",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-aaef1f2b",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-b57aba4b",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "ACT-bd2d6733",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "ACT-c0c801e6",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-63e78fa2",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-ccda9904",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL032",
+      "type": "policy",
+      "label": "Health Advancement Policy 32"
+    },
+    {
+      "id": "OBJ-a0974514",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-b1166408",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-022987c3",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-2e6f4c71",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-3ae4f732",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "ACT-ce5dac22",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-2eeef42e",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "OUT-c8e8a327",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-2effd8f5",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL033",
+      "type": "policy",
+      "label": "Health Advancement Policy 33"
+    },
+    {
+      "id": "OBJ-eedfcdf0",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "OBJ-cffa10fb",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-cb3247dd",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-9ec32939",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-da606896",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "ACT-3aa2985d",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-71c002e9",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-50af370a",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "OUT-b38527f9",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "POL034",
+      "type": "policy",
+      "label": "Energy Advancement Policy 34"
+    },
+    {
+      "id": "OBJ-8e7cbf6a",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "OBJ-3024e6e2",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-95ada08d",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-a2495e8b",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-a711498d",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "ACT-74503115",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "ACT-85b1f57c",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-b23ea320",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-f6171df9",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL035",
+      "type": "policy",
+      "label": "Economy Advancement Policy 35"
+    },
+    {
+      "id": "OBJ-c030206c",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "OBJ-76e3a346",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-b4cc7b40",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-b9166cc3",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-dde11a87",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "ACT-55570c66",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-9d30809e",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-3190d625",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-3949ee34",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL036",
+      "type": "policy",
+      "label": "Economy Advancement Policy 36"
+    },
+    {
+      "id": "OBJ-6c361575",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-d4c3b848",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-a2874098",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-ac5af526",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-11d88edc",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-2fe0b94e",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "ACT-505b0a53",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-1e25dc57",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-820d7684",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL037",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 37"
+    },
+    {
+      "id": "OBJ-31ee1de0",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-6d58835b",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-585d1901",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-f3285655",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-04a58f3c",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "ACT-0aa71d90",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-50286fe0",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-3bded338",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-18930304",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL038",
+      "type": "policy",
+      "label": "Environment Advancement Policy 38"
+    },
+    {
+      "id": "OBJ-93fa8703",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "OBJ-38080f43",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-25f07560",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-f7bb9531",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-4d3cfb0f",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "ACT-ff088d86",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-743c27a6",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-cba036fe",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-f32c044b",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "POL039",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 39"
+    },
+    {
+      "id": "OBJ-623b4fb7",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "OBJ-144d3984",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-5e4eca4d",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-4dbaacac",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-5480dbe9",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-4bcbd1c3",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-ce974bf9",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-3624fab6",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-d13d72a6",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL040",
+      "type": "policy",
+      "label": "Health Advancement Policy 40"
+    },
+    {
+      "id": "OBJ-f0d72e7d",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-5a5b5603",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-9b3d62a2",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-58ad75d2",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-7011e47c",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "ACT-a14366b7",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-9a21231c",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-4705a150",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-509301ee",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "POL041",
+      "type": "policy",
+      "label": "Environment Advancement Policy 41"
+    },
+    {
+      "id": "OBJ-22dd74a4",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-afdcdea5",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-807b0218",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-029c2988",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-53360b9c",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "ACT-e430c668",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-d08cddf0",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "OUT-295f5629",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-b43d7c46",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL042",
+      "type": "policy",
+      "label": "Technology Advancement Policy 42"
+    },
+    {
+      "id": "OBJ-2cadf157",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "OBJ-34cc5ee9",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "STK-bc24510d",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-552baaec",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-bf09a2d6",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "ACT-948d5f53",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-ada9e2da",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-84b4150e",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-d1e17255",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL043",
+      "type": "policy",
+      "label": "Energy Advancement Policy 43"
+    },
+    {
+      "id": "OBJ-43dea60f",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-0b10f7d4",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-21fe8a52",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-c481419c",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-6cbcb392",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-29aa72fd",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-56ccd67e",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-8ee88dd1",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-b42ed02c",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL044",
+      "type": "policy",
+      "label": "Energy Advancement Policy 44"
+    },
+    {
+      "id": "OBJ-16a842bc",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "OBJ-b0a4bdfa",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-3521c780",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-8e5dad3f",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-a9bb813f",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-46c5c2f3",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-1ccc53ee",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-77d2d8ed",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-9c18e6ac",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL045",
+      "type": "policy",
+      "label": "Energy Advancement Policy 45"
+    },
+    {
+      "id": "OBJ-c4b2c2f0",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "OBJ-0e3a9242",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-4eeb8635",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-502d5f5c",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-4df9401d",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "ACT-0768336d",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-2e828d32",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-59f8f741",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-c509ced5",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "POL046",
+      "type": "policy",
+      "label": "Environment Advancement Policy 46"
+    },
+    {
+      "id": "OBJ-b4ecfd80",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-5f83ab4f",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-b47c4154",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-9625df35",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-2f340302",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-a2ec7dc2",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-80a7e46d",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "OUT-5c25a037",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-5c91b024",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL047",
+      "type": "policy",
+      "label": "Energy Advancement Policy 47"
+    },
+    {
+      "id": "OBJ-1d441012",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-68a7de48",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "STK-79e67522",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-9bac0bd2",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-6aa8e108",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "ACT-d138b2d5",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-10823614",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-2ff70fa8",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-9f7db2a0",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL048",
+      "type": "policy",
+      "label": "Education Advancement Policy 48"
+    },
+    {
+      "id": "OBJ-cf21632d",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-8a3c5121",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "STK-80d71622",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-943821f0",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-4b42c1e1",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "ACT-c9fa4ef0",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-28abc50c",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-79d7f0f4",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-113a6057",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "POL049",
+      "type": "policy",
+      "label": "Economy Advancement Policy 49"
+    },
+    {
+      "id": "OBJ-f3443b77",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-b3f90013",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-b7880c8d",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-616c65b9",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-8f1d80d2",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "ACT-e4dc167a",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "ACT-2eda902b",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "OUT-cc562a02",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-fdd834fc",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL050",
+      "type": "policy",
+      "label": "Health Advancement Policy 50"
+    },
+    {
+      "id": "OBJ-5ee1d6fc",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-c68fdffd",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-9fb68e4c",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-9485254d",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-2233d294",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "ACT-e58ce1e7",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "ACT-af248ab9",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-6bb2369c",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-1aec9cbc",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL051",
+      "type": "policy",
+      "label": "Transport Advancement Policy 51"
+    },
+    {
+      "id": "OBJ-f8361f43",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-84b00ffd",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "STK-aecd54d8",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-d19a73d8",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-0aa0f34c",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "ACT-4ff09d0d",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "ACT-d3603a4f",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-1aacc5ee",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-d8794047",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "POL052",
+      "type": "policy",
+      "label": "Economy Advancement Policy 52"
+    },
+    {
+      "id": "OBJ-70fef0a2",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-6cabcbb7",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-de9aa2ae",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-ef389ecf",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-d4026a78",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "ACT-a3705009",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-87769b13",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "OUT-dc2cee5d",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-71c1b41a",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL053",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 53"
+    },
+    {
+      "id": "OBJ-725a638d",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-e024b6e3",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-dc9ab957",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-e538032b",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-aedd6e08",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "ACT-0de3446a",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "ACT-d913e4db",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-a8e8b63a",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-da3c3c66",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL054",
+      "type": "policy",
+      "label": "Transport Advancement Policy 54"
+    },
+    {
+      "id": "OBJ-01846fc3",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-f647870b",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-021aeab7",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-e0eca4fc",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-4134d503",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-20b058b6",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-b2bacc08",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-d1ded369",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-fbfeefc6",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL055",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 55"
+    },
+    {
+      "id": "OBJ-edd30cf1",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-d0020f82",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-b9d0e7e8",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-f6302fea",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-2e74ffc7",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-844cb917",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-e33f67cf",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-dde506f5",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-44c8f962",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL056",
+      "type": "policy",
+      "label": "Transport Advancement Policy 56"
+    },
+    {
+      "id": "OBJ-6f787736",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "OBJ-89bc29f3",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-082edd54",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-de753787",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-0cd8d8b0",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "ACT-048083e1",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-c441a13a",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "OUT-3f13c889",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-59105fa8",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL057",
+      "type": "policy",
+      "label": "Technology Advancement Policy 57"
+    },
+    {
+      "id": "OBJ-70d051ee",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "OBJ-4c20e0cc",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "STK-73ca7ae5",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-2dfb3687",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-57bdb946",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-52e0ccca",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "ACT-9e5fd194",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "OUT-09317d3d",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-e6b10dc9",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL058",
+      "type": "policy",
+      "label": "Environment Advancement Policy 58"
+    },
+    {
+      "id": "OBJ-dff8deb2",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "OBJ-25134618",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-db12433a",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-c47910e0",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-0e9fa0ae",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-69f1a046",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "ACT-241cd52c",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-193b8a39",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-b5ff3f9d",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL059",
+      "type": "policy",
+      "label": "Economy Advancement Policy 59"
+    },
+    {
+      "id": "OBJ-92beb8f0",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-1774895b",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-d30084d8",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-5fb1a67a",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-036704fe",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-5bcb6164",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-7a2be69e",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "OUT-668bd010",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-f30a0873",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL060",
+      "type": "policy",
+      "label": "Education Advancement Policy 60"
+    },
+    {
+      "id": "OBJ-6bd7f4b8",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-13806410",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "STK-3e3b57d7",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-9fc2c04a",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-8c453f42",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-77cc96bc",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-159c7d59",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "OUT-ce9f71c0",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-b185b410",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL061",
+      "type": "policy",
+      "label": "Energy Advancement Policy 61"
+    },
+    {
+      "id": "OBJ-0ffcd112",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-506f625f",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "STK-2ee2d5ca",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-2390113e",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-e60d270b",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "ACT-fba17830",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "ACT-af630fec",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-03afc366",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-ef338aec",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL062",
+      "type": "policy",
+      "label": "Health Advancement Policy 62"
+    },
+    {
+      "id": "OBJ-c16d4916",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-5d8bf70f",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-329faf35",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-a24e03c8",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-e9e42094",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-3c0f2c0c",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "ACT-3a546ee2",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-7c8b5824",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-a3a5f32a",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "POL063",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 63"
+    },
+    {
+      "id": "OBJ-238da276",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-a3ae5a90",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-cec4c547",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-c72b9e3f",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-96dab40e",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-3ba322eb",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-c3fffa6e",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-656bf5fe",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-c81f937a",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL064",
+      "type": "policy",
+      "label": "Environment Advancement Policy 64"
+    },
+    {
+      "id": "OBJ-2e181487",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "OBJ-a317c3af",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-6b1a9d43",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-afbca1f7",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-4e1f5a41",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "ACT-46331d53",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-290a2520",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-3f6536a0",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-7d68c258",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL065",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 65"
+    },
+    {
+      "id": "OBJ-64fa9efa",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-442e0830",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-d8e6f38d",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-f5722ca4",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-bd15f82f",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "ACT-e672c6c9",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-bf3b0559",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-14f27654",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-40e08b12",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL066",
+      "type": "policy",
+      "label": "Education Advancement Policy 66"
+    },
+    {
+      "id": "OBJ-5e900875",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-82db71ab",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-d54034c4",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-59772f17",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-56a24649",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "ACT-35b3d413",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-73bdab99",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-dc08281a",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-74f027a5",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL067",
+      "type": "policy",
+      "label": "Health Advancement Policy 67"
+    },
+    {
+      "id": "OBJ-b450f88a",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-1842503f",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-2056ca0b",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-76c65cf9",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-68f56795",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-7de1b994",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "ACT-63605553",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-500f315b",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-16e3ac68",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL068",
+      "type": "policy",
+      "label": "Health Advancement Policy 68"
+    },
+    {
+      "id": "OBJ-be02f572",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-902cb6a8",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-b432700f",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-bd9f511c",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-6e5f18b8",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-f7e2d2fe",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "ACT-6809f4a5",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "OUT-5825821f",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-ca34413e",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "POL069",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 69"
+    },
+    {
+      "id": "OBJ-36380d9d",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-51b8fa4d",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "STK-39d83f2e",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "STK-8b90700b",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-36f99acf",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "ACT-6c9ef51e",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-67676898",
+      "type": "action",
+      "label": "provide subsidies"
+    },
+    {
+      "id": "OUT-7939938a",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-5a227576",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL070",
+      "type": "policy",
+      "label": "Environment Advancement Policy 70"
+    },
+    {
+      "id": "OBJ-81492d00",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-c3cfb9df",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "STK-5c43e252",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-adc980c4",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-abf52fb4",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-a7275857",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-e1e9e05d",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-9ff1ec0c",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-4799048d",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL071",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 71"
+    },
+    {
+      "id": "OBJ-fec7fd54",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-0a129110",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "STK-0ea9df8e",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-b9d0d892",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "STK-e3d0ea78",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "ACT-ff6b69cb",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-edeaddbb",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-69458363",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-8c9f921e",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL072",
+      "type": "policy",
+      "label": "Environment Advancement Policy 72"
+    },
+    {
+      "id": "OBJ-b62d4930",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-c0d40c17",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-9caa23c2",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-fb03eb48",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "STK-b3ab4abc",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "ACT-30cfe5fb",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "ACT-c9d2f4e6",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-aa28ebbc",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-a6527f58",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL073",
+      "type": "policy",
+      "label": "Agriculture Advancement Policy 73"
+    },
+    {
+      "id": "OBJ-006d79c2",
+      "type": "objective",
+      "label": "improve public safety"
+    },
+    {
+      "id": "OBJ-c52caeea",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-2e04752f",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-f8f49027",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-1aa1d413",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-a6f9e16b",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "ACT-c863b2c9",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "OUT-8f898319",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "OUT-662c4362",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "POL074",
+      "type": "policy",
+      "label": "Energy Advancement Policy 74"
+    },
+    {
+      "id": "OBJ-ad514e13",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "OBJ-572e4f58",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-1f2f4800",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-935ece8f",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-82eab42a",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "ACT-ca6b8e38",
+      "type": "action",
+      "label": "build infrastructure"
+    },
+    {
+      "id": "ACT-053b15d8",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-ef1c2017",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-3e38e4af",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "POL075",
+      "type": "policy",
+      "label": "Transport Advancement Policy 75"
+    },
+    {
+      "id": "OBJ-88f6f38b",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-d8d5a059",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "STK-4e8cbeb6",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-2cd1943a",
+      "type": "stakeholder",
+      "label": "Ministry of Education"
+    },
+    {
+      "id": "STK-4d3a7f98",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "ACT-8d15b21a",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-9a6f29d1",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-097eb605",
+      "type": "outcome",
+      "label": "lower pollution"
+    },
+    {
+      "id": "OUT-156a10e4",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "POL076",
+      "type": "policy",
+      "label": "Transport Advancement Policy 76"
+    },
+    {
+      "id": "OBJ-f57517ff",
+      "type": "objective",
+      "label": "reduce costs"
+    },
+    {
+      "id": "OBJ-6a05aa63",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "STK-318c4908",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-99a522ee",
+      "type": "stakeholder",
+      "label": "Citizens"
+    },
+    {
+      "id": "STK-f1216536",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "ACT-527af834",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "ACT-cba83641",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-09d2152a",
+      "type": "outcome",
+      "label": "better service access"
+    },
+    {
+      "id": "OUT-18ad2917",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL077",
+      "type": "policy",
+      "label": "Health Advancement Policy 77"
+    },
+    {
+      "id": "OBJ-b74e8931",
+      "type": "objective",
+      "label": "boost innovation"
+    },
+    {
+      "id": "OBJ-4e7798bc",
+      "type": "objective",
+      "label": "expand infrastructure"
+    },
+    {
+      "id": "STK-157fdab0",
+      "type": "stakeholder",
+      "label": "Ministry of Health"
+    },
+    {
+      "id": "STK-b711581a",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-b7995d26",
+      "type": "stakeholder",
+      "label": "NGOs"
+    },
+    {
+      "id": "ACT-9fd3bb6a",
+      "type": "action",
+      "label": "increase funding"
+    },
+    {
+      "id": "ACT-b4920e69",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "OUT-32e1dea3",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-193ec3fb",
+      "type": "outcome",
+      "label": "higher adoption"
+    },
+    {
+      "id": "POL078",
+      "type": "policy",
+      "label": "Education Advancement Policy 78"
+    },
+    {
+      "id": "OBJ-81afd795",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "OBJ-320cf623",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "STK-5dfc0013",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-4890081e",
+      "type": "stakeholder",
+      "label": "Hospitals"
+    },
+    {
+      "id": "STK-75480f57",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "ACT-94d1fd87",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-00ee1567",
+      "type": "action",
+      "label": "launch training programs"
+    },
+    {
+      "id": "OUT-ad67304a",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "OUT-ea2d86da",
+      "type": "outcome",
+      "label": "reduced inequality"
+    },
+    {
+      "id": "POL079",
+      "type": "policy",
+      "label": "Environment Advancement Policy 79"
+    },
+    {
+      "id": "OBJ-eec52264",
+      "type": "objective",
+      "label": "increase workforce skills"
+    },
+    {
+      "id": "OBJ-c8e5c1c0",
+      "type": "objective",
+      "label": "reduce emissions"
+    },
+    {
+      "id": "STK-23748717",
+      "type": "stakeholder",
+      "label": "Technology Ministry"
+    },
+    {
+      "id": "STK-3d55f133",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-6cbcb8fe",
+      "type": "stakeholder",
+      "label": "Environmental Agency"
+    },
+    {
+      "id": "ACT-7f04f103",
+      "type": "action",
+      "label": "create regulatory framework"
+    },
+    {
+      "id": "ACT-165953c1",
+      "type": "action",
+      "label": "enforce standards"
+    },
+    {
+      "id": "OUT-fbc664db",
+      "type": "outcome",
+      "label": "economic growth"
+    },
+    {
+      "id": "OUT-2748596a",
+      "type": "outcome",
+      "label": "improved productivity"
+    },
+    {
+      "id": "POL080",
+      "type": "policy",
+      "label": "Education Advancement Policy 80"
+    },
+    {
+      "id": "OBJ-29db7c9b",
+      "type": "objective",
+      "label": "improve quality"
+    },
+    {
+      "id": "OBJ-fd0e169d",
+      "type": "objective",
+      "label": "increase access"
+    },
+    {
+      "id": "STK-35212aed",
+      "type": "stakeholder",
+      "label": "Private Sector"
+    },
+    {
+      "id": "STK-68690506",
+      "type": "stakeholder",
+      "label": "Universities"
+    },
+    {
+      "id": "STK-365aa54c",
+      "type": "stakeholder",
+      "label": "Local Governments"
+    },
+    {
+      "id": "ACT-fb515a7d",
+      "type": "action",
+      "label": "collect national data"
+    },
+    {
+      "id": "ACT-af17e534",
+      "type": "action",
+      "label": "deploy digital platforms"
+    },
+    {
+      "id": "OUT-cc87c8ef",
+      "type": "outcome",
+      "label": "stronger digital ecosystem"
+    },
+    {
+      "id": "OUT-dac5c683",
+      "type": "outcome",
+      "label": "economic growth"
+    }
+  ],
+  "edges": [
+    {
+      "source": "POL001",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f08f31e3"
+    },
+    {
+      "source": "POL001",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-40c34e30"
+    },
+    {
+      "source": "POL001",
+      "relation": "INVOLVES",
+      "target": "STK-131e7e43"
+    },
+    {
+      "source": "POL001",
+      "relation": "INVOLVES",
+      "target": "STK-e2b5e6a9"
+    },
+    {
+      "source": "POL001",
+      "relation": "INVOLVES",
+      "target": "STK-d0238f81"
+    },
+    {
+      "source": "POL001",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-77b2d5c8"
+    },
+    {
+      "source": "POL001",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-4ddb0afc"
+    },
+    {
+      "source": "POL001",
+      "relation": "RESULTS_IN",
+      "target": "OUT-a502c66a"
+    },
+    {
+      "source": "POL001",
+      "relation": "RESULTS_IN",
+      "target": "OUT-8fc8469c"
+    },
+    {
+      "source": "POL002",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-62b1ebed"
+    },
+    {
+      "source": "POL002",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-0e7f6b2f"
+    },
+    {
+      "source": "POL002",
+      "relation": "INVOLVES",
+      "target": "STK-97728733"
+    },
+    {
+      "source": "POL002",
+      "relation": "INVOLVES",
+      "target": "STK-79703f3f"
+    },
+    {
+      "source": "POL002",
+      "relation": "INVOLVES",
+      "target": "STK-f84d7375"
+    },
+    {
+      "source": "POL002",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-4d90ae60"
+    },
+    {
+      "source": "POL002",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-78b9f727"
+    },
+    {
+      "source": "POL002",
+      "relation": "RESULTS_IN",
+      "target": "OUT-6adb8022"
+    },
+    {
+      "source": "POL002",
+      "relation": "RESULTS_IN",
+      "target": "OUT-7b2f3a3b"
+    },
+    {
+      "source": "POL003",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-7f701451"
+    },
+    {
+      "source": "POL003",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-a0b9c3e9"
+    },
+    {
+      "source": "POL003",
+      "relation": "INVOLVES",
+      "target": "STK-d10836e3"
+    },
+    {
+      "source": "POL003",
+      "relation": "INVOLVES",
+      "target": "STK-03ee2752"
+    },
+    {
+      "source": "POL003",
+      "relation": "INVOLVES",
+      "target": "STK-01eec290"
+    },
+    {
+      "source": "POL003",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-1c079072"
+    },
+    {
+      "source": "POL003",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ff1f1267"
+    },
+    {
+      "source": "POL003",
+      "relation": "RESULTS_IN",
+      "target": "OUT-c78eede0"
+    },
+    {
+      "source": "POL003",
+      "relation": "RESULTS_IN",
+      "target": "OUT-9331f504"
+    },
+    {
+      "source": "POL004",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-de613e4a"
+    },
+    {
+      "source": "POL004",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-e82e5e3d"
+    },
+    {
+      "source": "POL004",
+      "relation": "INVOLVES",
+      "target": "STK-148b4c6d"
+    },
+    {
+      "source": "POL004",
+      "relation": "INVOLVES",
+      "target": "STK-ddb1a207"
+    },
+    {
+      "source": "POL004",
+      "relation": "INVOLVES",
+      "target": "STK-abc8d3f4"
+    },
+    {
+      "source": "POL004",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-8eccd420"
+    },
+    {
+      "source": "POL004",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-37efdb74"
+    },
+    {
+      "source": "POL004",
+      "relation": "RESULTS_IN",
+      "target": "OUT-c19431d5"
+    },
+    {
+      "source": "POL004",
+      "relation": "RESULTS_IN",
+      "target": "OUT-033dce37"
+    },
+    {
+      "source": "POL005",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-301095c1"
+    },
+    {
+      "source": "POL005",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-5e001476"
+    },
+    {
+      "source": "POL005",
+      "relation": "INVOLVES",
+      "target": "STK-c363b228"
+    },
+    {
+      "source": "POL005",
+      "relation": "INVOLVES",
+      "target": "STK-fcc5c85e"
+    },
+    {
+      "source": "POL005",
+      "relation": "INVOLVES",
+      "target": "STK-03494c89"
+    },
+    {
+      "source": "POL005",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-9ce77d37"
+    },
+    {
+      "source": "POL005",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-a6e42896"
+    },
+    {
+      "source": "POL005",
+      "relation": "RESULTS_IN",
+      "target": "OUT-5a738535"
+    },
+    {
+      "source": "POL005",
+      "relation": "RESULTS_IN",
+      "target": "OUT-4610c702"
+    },
+    {
+      "source": "POL006",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-86f9ba1a"
+    },
+    {
+      "source": "POL006",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-464501d7"
+    },
+    {
+      "source": "POL006",
+      "relation": "INVOLVES",
+      "target": "STK-49525a1f"
+    },
+    {
+      "source": "POL006",
+      "relation": "INVOLVES",
+      "target": "STK-395ad6e6"
+    },
+    {
+      "source": "POL006",
+      "relation": "INVOLVES",
+      "target": "STK-f24964c9"
+    },
+    {
+      "source": "POL006",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-20b685c5"
+    },
+    {
+      "source": "POL006",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-029330ae"
+    },
+    {
+      "source": "POL006",
+      "relation": "RESULTS_IN",
+      "target": "OUT-d12ead0b"
+    },
+    {
+      "source": "POL006",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3ebabafa"
+    },
+    {
+      "source": "POL007",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-76a46ac3"
+    },
+    {
+      "source": "POL007",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b067e984"
+    },
+    {
+      "source": "POL007",
+      "relation": "INVOLVES",
+      "target": "STK-59ca5b42"
+    },
+    {
+      "source": "POL007",
+      "relation": "INVOLVES",
+      "target": "STK-edb0057d"
+    },
+    {
+      "source": "POL007",
+      "relation": "INVOLVES",
+      "target": "STK-8ae9d804"
+    },
+    {
+      "source": "POL007",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-01a801b7"
+    },
+    {
+      "source": "POL007",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-5adf17ae"
+    },
+    {
+      "source": "POL007",
+      "relation": "RESULTS_IN",
+      "target": "OUT-dd12453f"
+    },
+    {
+      "source": "POL007",
+      "relation": "RESULTS_IN",
+      "target": "OUT-9031efc0"
+    },
+    {
+      "source": "POL008",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-d777d41d"
+    },
+    {
+      "source": "POL008",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-e808627f"
+    },
+    {
+      "source": "POL008",
+      "relation": "INVOLVES",
+      "target": "STK-87cdfc94"
+    },
+    {
+      "source": "POL008",
+      "relation": "INVOLVES",
+      "target": "STK-372e362e"
+    },
+    {
+      "source": "POL008",
+      "relation": "INVOLVES",
+      "target": "STK-a1802bf3"
+    },
+    {
+      "source": "POL008",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-fd59d0fb"
+    },
+    {
+      "source": "POL008",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-dbbfb198"
+    },
+    {
+      "source": "POL008",
+      "relation": "RESULTS_IN",
+      "target": "OUT-a33e8761"
+    },
+    {
+      "source": "POL008",
+      "relation": "RESULTS_IN",
+      "target": "OUT-9bc73fa8"
+    },
+    {
+      "source": "POL009",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-78646835"
+    },
+    {
+      "source": "POL009",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-7a66f31b"
+    },
+    {
+      "source": "POL009",
+      "relation": "INVOLVES",
+      "target": "STK-6caf549c"
+    },
+    {
+      "source": "POL009",
+      "relation": "INVOLVES",
+      "target": "STK-f95097b1"
+    },
+    {
+      "source": "POL009",
+      "relation": "INVOLVES",
+      "target": "STK-9cfd1149"
+    },
+    {
+      "source": "POL009",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-a2d8e0a9"
+    },
+    {
+      "source": "POL009",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-7b874c46"
+    },
+    {
+      "source": "POL009",
+      "relation": "RESULTS_IN",
+      "target": "OUT-a9c932a6"
+    },
+    {
+      "source": "POL009",
+      "relation": "RESULTS_IN",
+      "target": "OUT-7dd12a1e"
+    },
+    {
+      "source": "POL010",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-26bb5ac5"
+    },
+    {
+      "source": "POL010",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-e96d6060"
+    },
+    {
+      "source": "POL010",
+      "relation": "INVOLVES",
+      "target": "STK-9b9e8611"
+    },
+    {
+      "source": "POL010",
+      "relation": "INVOLVES",
+      "target": "STK-fce87e0e"
+    },
+    {
+      "source": "POL010",
+      "relation": "INVOLVES",
+      "target": "STK-4d20a6e4"
+    },
+    {
+      "source": "POL010",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-d30a1153"
+    },
+    {
+      "source": "POL010",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ea5df98b"
+    },
+    {
+      "source": "POL010",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ace518e5"
+    },
+    {
+      "source": "POL010",
+      "relation": "RESULTS_IN",
+      "target": "OUT-0f99efd3"
+    },
+    {
+      "source": "POL011",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-3e11fb41"
+    },
+    {
+      "source": "POL011",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f20000b6"
+    },
+    {
+      "source": "POL011",
+      "relation": "INVOLVES",
+      "target": "STK-cb324a0d"
+    },
+    {
+      "source": "POL011",
+      "relation": "INVOLVES",
+      "target": "STK-21785b01"
+    },
+    {
+      "source": "POL011",
+      "relation": "INVOLVES",
+      "target": "STK-ca808e2d"
+    },
+    {
+      "source": "POL011",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-cbfbc2bd"
+    },
+    {
+      "source": "POL011",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e2aad009"
+    },
+    {
+      "source": "POL011",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ac9c4656"
+    },
+    {
+      "source": "POL011",
+      "relation": "RESULTS_IN",
+      "target": "OUT-d7939c49"
+    },
+    {
+      "source": "POL012",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-81238e4f"
+    },
+    {
+      "source": "POL012",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-d47f5b84"
+    },
+    {
+      "source": "POL012",
+      "relation": "INVOLVES",
+      "target": "STK-8c3f6f9e"
+    },
+    {
+      "source": "POL012",
+      "relation": "INVOLVES",
+      "target": "STK-35f8d7ab"
+    },
+    {
+      "source": "POL012",
+      "relation": "INVOLVES",
+      "target": "STK-ee94d89b"
+    },
+    {
+      "source": "POL012",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-bbb35252"
+    },
+    {
+      "source": "POL012",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-4412a67f"
+    },
+    {
+      "source": "POL012",
+      "relation": "RESULTS_IN",
+      "target": "OUT-9203f3b7"
+    },
+    {
+      "source": "POL012",
+      "relation": "RESULTS_IN",
+      "target": "OUT-b79c179e"
+    },
+    {
+      "source": "POL013",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-d36077c9"
+    },
+    {
+      "source": "POL013",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-187b1287"
+    },
+    {
+      "source": "POL013",
+      "relation": "INVOLVES",
+      "target": "STK-be137964"
+    },
+    {
+      "source": "POL013",
+      "relation": "INVOLVES",
+      "target": "STK-540a42b0"
+    },
+    {
+      "source": "POL013",
+      "relation": "INVOLVES",
+      "target": "STK-3cda8ccb"
+    },
+    {
+      "source": "POL013",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-01f1e4f5"
+    },
+    {
+      "source": "POL013",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-6cf05e6d"
+    },
+    {
+      "source": "POL013",
+      "relation": "RESULTS_IN",
+      "target": "OUT-34ad0be3"
+    },
+    {
+      "source": "POL013",
+      "relation": "RESULTS_IN",
+      "target": "OUT-8f66bc53"
+    },
+    {
+      "source": "POL014",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c1796e0f"
+    },
+    {
+      "source": "POL014",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-cd2a1dfa"
+    },
+    {
+      "source": "POL014",
+      "relation": "INVOLVES",
+      "target": "STK-0e9d71cd"
+    },
+    {
+      "source": "POL014",
+      "relation": "INVOLVES",
+      "target": "STK-11a81ef4"
+    },
+    {
+      "source": "POL014",
+      "relation": "INVOLVES",
+      "target": "STK-4a085925"
+    },
+    {
+      "source": "POL014",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-656646d8"
+    },
+    {
+      "source": "POL014",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-8509b5f4"
+    },
+    {
+      "source": "POL014",
+      "relation": "RESULTS_IN",
+      "target": "OUT-5f79faa9"
+    },
+    {
+      "source": "POL014",
+      "relation": "RESULTS_IN",
+      "target": "OUT-35c0a96f"
+    },
+    {
+      "source": "POL015",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-83779973"
+    },
+    {
+      "source": "POL015",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-89523251"
+    },
+    {
+      "source": "POL015",
+      "relation": "INVOLVES",
+      "target": "STK-d1c32fa4"
+    },
+    {
+      "source": "POL015",
+      "relation": "INVOLVES",
+      "target": "STK-1b2c7050"
+    },
+    {
+      "source": "POL015",
+      "relation": "INVOLVES",
+      "target": "STK-c3df22a0"
+    },
+    {
+      "source": "POL015",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e172867f"
+    },
+    {
+      "source": "POL015",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-56ca4c3d"
+    },
+    {
+      "source": "POL015",
+      "relation": "RESULTS_IN",
+      "target": "OUT-2bbd2b61"
+    },
+    {
+      "source": "POL015",
+      "relation": "RESULTS_IN",
+      "target": "OUT-85d3ff0d"
+    },
+    {
+      "source": "POL016",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-9c593f01"
+    },
+    {
+      "source": "POL016",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-94560dbd"
+    },
+    {
+      "source": "POL016",
+      "relation": "INVOLVES",
+      "target": "STK-f3cdd25c"
+    },
+    {
+      "source": "POL016",
+      "relation": "INVOLVES",
+      "target": "STK-46019b5a"
+    },
+    {
+      "source": "POL016",
+      "relation": "INVOLVES",
+      "target": "STK-26bf90f7"
+    },
+    {
+      "source": "POL016",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-d6baf4c5"
+    },
+    {
+      "source": "POL016",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e9063e61"
+    },
+    {
+      "source": "POL016",
+      "relation": "RESULTS_IN",
+      "target": "OUT-8ed4a665"
+    },
+    {
+      "source": "POL016",
+      "relation": "RESULTS_IN",
+      "target": "OUT-7204a0cc"
+    },
+    {
+      "source": "POL017",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-13089938"
+    },
+    {
+      "source": "POL017",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-bdd3230e"
+    },
+    {
+      "source": "POL017",
+      "relation": "INVOLVES",
+      "target": "STK-877e4237"
+    },
+    {
+      "source": "POL017",
+      "relation": "INVOLVES",
+      "target": "STK-a398f709"
+    },
+    {
+      "source": "POL017",
+      "relation": "INVOLVES",
+      "target": "STK-b55b73cc"
+    },
+    {
+      "source": "POL017",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-22ee5c8e"
+    },
+    {
+      "source": "POL017",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-9ca78640"
+    },
+    {
+      "source": "POL017",
+      "relation": "RESULTS_IN",
+      "target": "OUT-c1fe2c50"
+    },
+    {
+      "source": "POL017",
+      "relation": "RESULTS_IN",
+      "target": "OUT-8be6886b"
+    },
+    {
+      "source": "POL018",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-3aca7eb2"
+    },
+    {
+      "source": "POL018",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f6e8edc0"
+    },
+    {
+      "source": "POL018",
+      "relation": "INVOLVES",
+      "target": "STK-239209ef"
+    },
+    {
+      "source": "POL018",
+      "relation": "INVOLVES",
+      "target": "STK-5407fefb"
+    },
+    {
+      "source": "POL018",
+      "relation": "INVOLVES",
+      "target": "STK-cccd03ad"
+    },
+    {
+      "source": "POL018",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-046f00e2"
+    },
+    {
+      "source": "POL018",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ac47cd0f"
+    },
+    {
+      "source": "POL018",
+      "relation": "RESULTS_IN",
+      "target": "OUT-14b14c86"
+    },
+    {
+      "source": "POL018",
+      "relation": "RESULTS_IN",
+      "target": "OUT-2689b8bb"
+    },
+    {
+      "source": "POL019",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-45717fa6"
+    },
+    {
+      "source": "POL019",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c359d680"
+    },
+    {
+      "source": "POL019",
+      "relation": "INVOLVES",
+      "target": "STK-5a27313f"
+    },
+    {
+      "source": "POL019",
+      "relation": "INVOLVES",
+      "target": "STK-bdba8ead"
+    },
+    {
+      "source": "POL019",
+      "relation": "INVOLVES",
+      "target": "STK-f86a4af7"
+    },
+    {
+      "source": "POL019",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-4692fe73"
+    },
+    {
+      "source": "POL019",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-b144f88a"
+    },
+    {
+      "source": "POL019",
+      "relation": "RESULTS_IN",
+      "target": "OUT-1023bcbf"
+    },
+    {
+      "source": "POL019",
+      "relation": "RESULTS_IN",
+      "target": "OUT-a93055ea"
+    },
+    {
+      "source": "POL020",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-a434651f"
+    },
+    {
+      "source": "POL020",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-07631e02"
+    },
+    {
+      "source": "POL020",
+      "relation": "INVOLVES",
+      "target": "STK-40497838"
+    },
+    {
+      "source": "POL020",
+      "relation": "INVOLVES",
+      "target": "STK-e156fcd6"
+    },
+    {
+      "source": "POL020",
+      "relation": "INVOLVES",
+      "target": "STK-b86d640a"
+    },
+    {
+      "source": "POL020",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-8e6519fa"
+    },
+    {
+      "source": "POL020",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e19f7af3"
+    },
+    {
+      "source": "POL020",
+      "relation": "RESULTS_IN",
+      "target": "OUT-61c78e70"
+    },
+    {
+      "source": "POL020",
+      "relation": "RESULTS_IN",
+      "target": "OUT-5750232e"
+    },
+    {
+      "source": "POL021",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-8b6b6566"
+    },
+    {
+      "source": "POL021",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-d219aecb"
+    },
+    {
+      "source": "POL021",
+      "relation": "INVOLVES",
+      "target": "STK-061a96a8"
+    },
+    {
+      "source": "POL021",
+      "relation": "INVOLVES",
+      "target": "STK-0d92f6c5"
+    },
+    {
+      "source": "POL021",
+      "relation": "INVOLVES",
+      "target": "STK-3536e8bc"
+    },
+    {
+      "source": "POL021",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-4a064116"
+    },
+    {
+      "source": "POL021",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-191b649b"
+    },
+    {
+      "source": "POL021",
+      "relation": "RESULTS_IN",
+      "target": "OUT-88db995d"
+    },
+    {
+      "source": "POL021",
+      "relation": "RESULTS_IN",
+      "target": "OUT-7b9d5e99"
+    },
+    {
+      "source": "POL022",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-4bcfbc1b"
+    },
+    {
+      "source": "POL022",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-826533b7"
+    },
+    {
+      "source": "POL022",
+      "relation": "INVOLVES",
+      "target": "STK-b5b8f08e"
+    },
+    {
+      "source": "POL022",
+      "relation": "INVOLVES",
+      "target": "STK-3852fcc9"
+    },
+    {
+      "source": "POL022",
+      "relation": "INVOLVES",
+      "target": "STK-5aa9fe30"
+    },
+    {
+      "source": "POL022",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-486f95ab"
+    },
+    {
+      "source": "POL022",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-53917687"
+    },
+    {
+      "source": "POL022",
+      "relation": "RESULTS_IN",
+      "target": "OUT-8d173dfa"
+    },
+    {
+      "source": "POL022",
+      "relation": "RESULTS_IN",
+      "target": "OUT-353ecd91"
+    },
+    {
+      "source": "POL023",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-efb9e191"
+    },
+    {
+      "source": "POL023",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b63809b8"
+    },
+    {
+      "source": "POL023",
+      "relation": "INVOLVES",
+      "target": "STK-cc483182"
+    },
+    {
+      "source": "POL023",
+      "relation": "INVOLVES",
+      "target": "STK-ab801044"
+    },
+    {
+      "source": "POL023",
+      "relation": "INVOLVES",
+      "target": "STK-67f6182e"
+    },
+    {
+      "source": "POL023",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-03fbfdbd"
+    },
+    {
+      "source": "POL023",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ea43069b"
+    },
+    {
+      "source": "POL023",
+      "relation": "RESULTS_IN",
+      "target": "OUT-f9d53720"
+    },
+    {
+      "source": "POL023",
+      "relation": "RESULTS_IN",
+      "target": "OUT-9b206aa4"
+    },
+    {
+      "source": "POL024",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-8aad0fd9"
+    },
+    {
+      "source": "POL024",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-6e9fa0df"
+    },
+    {
+      "source": "POL024",
+      "relation": "INVOLVES",
+      "target": "STK-75a24470"
+    },
+    {
+      "source": "POL024",
+      "relation": "INVOLVES",
+      "target": "STK-785f37af"
+    },
+    {
+      "source": "POL024",
+      "relation": "INVOLVES",
+      "target": "STK-9c3ed4f3"
+    },
+    {
+      "source": "POL024",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-9a818c6c"
+    },
+    {
+      "source": "POL024",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-61bef33c"
+    },
+    {
+      "source": "POL024",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ce8c7f21"
+    },
+    {
+      "source": "POL024",
+      "relation": "RESULTS_IN",
+      "target": "OUT-4f584352"
+    },
+    {
+      "source": "POL025",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f01a6f21"
+    },
+    {
+      "source": "POL025",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-ede175d2"
+    },
+    {
+      "source": "POL025",
+      "relation": "INVOLVES",
+      "target": "STK-cd6ec1f8"
+    },
+    {
+      "source": "POL025",
+      "relation": "INVOLVES",
+      "target": "STK-42f486e6"
+    },
+    {
+      "source": "POL025",
+      "relation": "INVOLVES",
+      "target": "STK-c8dd8ee3"
+    },
+    {
+      "source": "POL025",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-f44269a3"
+    },
+    {
+      "source": "POL025",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-128d8c3f"
+    },
+    {
+      "source": "POL025",
+      "relation": "RESULTS_IN",
+      "target": "OUT-599a41ca"
+    },
+    {
+      "source": "POL025",
+      "relation": "RESULTS_IN",
+      "target": "OUT-dbc9224a"
+    },
+    {
+      "source": "POL026",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-5c2ff418"
+    },
+    {
+      "source": "POL026",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-ca9980e2"
+    },
+    {
+      "source": "POL026",
+      "relation": "INVOLVES",
+      "target": "STK-b66d6531"
+    },
+    {
+      "source": "POL026",
+      "relation": "INVOLVES",
+      "target": "STK-771f7d27"
+    },
+    {
+      "source": "POL026",
+      "relation": "INVOLVES",
+      "target": "STK-fe8fc55d"
+    },
+    {
+      "source": "POL026",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-d7bcb525"
+    },
+    {
+      "source": "POL026",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-df22472d"
+    },
+    {
+      "source": "POL026",
+      "relation": "RESULTS_IN",
+      "target": "OUT-c53ed245"
+    },
+    {
+      "source": "POL026",
+      "relation": "RESULTS_IN",
+      "target": "OUT-adfc0b45"
+    },
+    {
+      "source": "POL027",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-743b1955"
+    },
+    {
+      "source": "POL027",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-2c1009c0"
+    },
+    {
+      "source": "POL027",
+      "relation": "INVOLVES",
+      "target": "STK-74cc878c"
+    },
+    {
+      "source": "POL027",
+      "relation": "INVOLVES",
+      "target": "STK-299f12d0"
+    },
+    {
+      "source": "POL027",
+      "relation": "INVOLVES",
+      "target": "STK-cee6ade8"
+    },
+    {
+      "source": "POL027",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-1c56265c"
+    },
+    {
+      "source": "POL027",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-a3afdcaf"
+    },
+    {
+      "source": "POL027",
+      "relation": "RESULTS_IN",
+      "target": "OUT-407f9eea"
+    },
+    {
+      "source": "POL027",
+      "relation": "RESULTS_IN",
+      "target": "OUT-5751bb83"
+    },
+    {
+      "source": "POL028",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-423809e9"
+    },
+    {
+      "source": "POL028",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-cfb5a27a"
+    },
+    {
+      "source": "POL028",
+      "relation": "INVOLVES",
+      "target": "STK-6d80241a"
+    },
+    {
+      "source": "POL028",
+      "relation": "INVOLVES",
+      "target": "STK-cf62c19e"
+    },
+    {
+      "source": "POL028",
+      "relation": "INVOLVES",
+      "target": "STK-899927ef"
+    },
+    {
+      "source": "POL028",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-55eb9a92"
+    },
+    {
+      "source": "POL028",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-55e1cd71"
+    },
+    {
+      "source": "POL028",
+      "relation": "RESULTS_IN",
+      "target": "OUT-26b3ff64"
+    },
+    {
+      "source": "POL028",
+      "relation": "RESULTS_IN",
+      "target": "OUT-baa3e101"
+    },
+    {
+      "source": "POL029",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f67017d2"
+    },
+    {
+      "source": "POL029",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-d81bf73e"
+    },
+    {
+      "source": "POL029",
+      "relation": "INVOLVES",
+      "target": "STK-eeda9096"
+    },
+    {
+      "source": "POL029",
+      "relation": "INVOLVES",
+      "target": "STK-4ed8f088"
+    },
+    {
+      "source": "POL029",
+      "relation": "INVOLVES",
+      "target": "STK-e4e873b9"
+    },
+    {
+      "source": "POL029",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-0f6cb02c"
+    },
+    {
+      "source": "POL029",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-10beb6d2"
+    },
+    {
+      "source": "POL029",
+      "relation": "RESULTS_IN",
+      "target": "OUT-a7d0b1aa"
+    },
+    {
+      "source": "POL029",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ec79411c"
+    },
+    {
+      "source": "POL030",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-6210296b"
+    },
+    {
+      "source": "POL030",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-7bb478bd"
+    },
+    {
+      "source": "POL030",
+      "relation": "INVOLVES",
+      "target": "STK-d003f166"
+    },
+    {
+      "source": "POL030",
+      "relation": "INVOLVES",
+      "target": "STK-93ed17d8"
+    },
+    {
+      "source": "POL030",
+      "relation": "INVOLVES",
+      "target": "STK-27f174b3"
+    },
+    {
+      "source": "POL030",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-b8596b9c"
+    },
+    {
+      "source": "POL030",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-1b8b4e70"
+    },
+    {
+      "source": "POL030",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3fdb68b5"
+    },
+    {
+      "source": "POL030",
+      "relation": "RESULTS_IN",
+      "target": "OUT-d3110194"
+    },
+    {
+      "source": "POL031",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-00e16903"
+    },
+    {
+      "source": "POL031",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-a8983885"
+    },
+    {
+      "source": "POL031",
+      "relation": "INVOLVES",
+      "target": "STK-b95dcbd5"
+    },
+    {
+      "source": "POL031",
+      "relation": "INVOLVES",
+      "target": "STK-aaef1f2b"
+    },
+    {
+      "source": "POL031",
+      "relation": "INVOLVES",
+      "target": "STK-b57aba4b"
+    },
+    {
+      "source": "POL031",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-bd2d6733"
+    },
+    {
+      "source": "POL031",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-c0c801e6"
+    },
+    {
+      "source": "POL031",
+      "relation": "RESULTS_IN",
+      "target": "OUT-63e78fa2"
+    },
+    {
+      "source": "POL031",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ccda9904"
+    },
+    {
+      "source": "POL032",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-a0974514"
+    },
+    {
+      "source": "POL032",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b1166408"
+    },
+    {
+      "source": "POL032",
+      "relation": "INVOLVES",
+      "target": "STK-022987c3"
+    },
+    {
+      "source": "POL032",
+      "relation": "INVOLVES",
+      "target": "STK-2e6f4c71"
+    },
+    {
+      "source": "POL032",
+      "relation": "INVOLVES",
+      "target": "STK-3ae4f732"
+    },
+    {
+      "source": "POL032",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ce5dac22"
+    },
+    {
+      "source": "POL032",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-2eeef42e"
+    },
+    {
+      "source": "POL032",
+      "relation": "RESULTS_IN",
+      "target": "OUT-c8e8a327"
+    },
+    {
+      "source": "POL032",
+      "relation": "RESULTS_IN",
+      "target": "OUT-2effd8f5"
+    },
+    {
+      "source": "POL033",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-eedfcdf0"
+    },
+    {
+      "source": "POL033",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-cffa10fb"
+    },
+    {
+      "source": "POL033",
+      "relation": "INVOLVES",
+      "target": "STK-cb3247dd"
+    },
+    {
+      "source": "POL033",
+      "relation": "INVOLVES",
+      "target": "STK-9ec32939"
+    },
+    {
+      "source": "POL033",
+      "relation": "INVOLVES",
+      "target": "STK-da606896"
+    },
+    {
+      "source": "POL033",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-3aa2985d"
+    },
+    {
+      "source": "POL033",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-71c002e9"
+    },
+    {
+      "source": "POL033",
+      "relation": "RESULTS_IN",
+      "target": "OUT-50af370a"
+    },
+    {
+      "source": "POL033",
+      "relation": "RESULTS_IN",
+      "target": "OUT-b38527f9"
+    },
+    {
+      "source": "POL034",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-8e7cbf6a"
+    },
+    {
+      "source": "POL034",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-3024e6e2"
+    },
+    {
+      "source": "POL034",
+      "relation": "INVOLVES",
+      "target": "STK-95ada08d"
+    },
+    {
+      "source": "POL034",
+      "relation": "INVOLVES",
+      "target": "STK-a2495e8b"
+    },
+    {
+      "source": "POL034",
+      "relation": "INVOLVES",
+      "target": "STK-a711498d"
+    },
+    {
+      "source": "POL034",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-74503115"
+    },
+    {
+      "source": "POL034",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-85b1f57c"
+    },
+    {
+      "source": "POL034",
+      "relation": "RESULTS_IN",
+      "target": "OUT-b23ea320"
+    },
+    {
+      "source": "POL034",
+      "relation": "RESULTS_IN",
+      "target": "OUT-f6171df9"
+    },
+    {
+      "source": "POL035",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c030206c"
+    },
+    {
+      "source": "POL035",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-76e3a346"
+    },
+    {
+      "source": "POL035",
+      "relation": "INVOLVES",
+      "target": "STK-b4cc7b40"
+    },
+    {
+      "source": "POL035",
+      "relation": "INVOLVES",
+      "target": "STK-b9166cc3"
+    },
+    {
+      "source": "POL035",
+      "relation": "INVOLVES",
+      "target": "STK-dde11a87"
+    },
+    {
+      "source": "POL035",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-55570c66"
+    },
+    {
+      "source": "POL035",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-9d30809e"
+    },
+    {
+      "source": "POL035",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3190d625"
+    },
+    {
+      "source": "POL035",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3949ee34"
+    },
+    {
+      "source": "POL036",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-6c361575"
+    },
+    {
+      "source": "POL036",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-d4c3b848"
+    },
+    {
+      "source": "POL036",
+      "relation": "INVOLVES",
+      "target": "STK-a2874098"
+    },
+    {
+      "source": "POL036",
+      "relation": "INVOLVES",
+      "target": "STK-ac5af526"
+    },
+    {
+      "source": "POL036",
+      "relation": "INVOLVES",
+      "target": "STK-11d88edc"
+    },
+    {
+      "source": "POL036",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-2fe0b94e"
+    },
+    {
+      "source": "POL036",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-505b0a53"
+    },
+    {
+      "source": "POL036",
+      "relation": "RESULTS_IN",
+      "target": "OUT-1e25dc57"
+    },
+    {
+      "source": "POL036",
+      "relation": "RESULTS_IN",
+      "target": "OUT-820d7684"
+    },
+    {
+      "source": "POL037",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-31ee1de0"
+    },
+    {
+      "source": "POL037",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-6d58835b"
+    },
+    {
+      "source": "POL037",
+      "relation": "INVOLVES",
+      "target": "STK-585d1901"
+    },
+    {
+      "source": "POL037",
+      "relation": "INVOLVES",
+      "target": "STK-f3285655"
+    },
+    {
+      "source": "POL037",
+      "relation": "INVOLVES",
+      "target": "STK-04a58f3c"
+    },
+    {
+      "source": "POL037",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-0aa71d90"
+    },
+    {
+      "source": "POL037",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-50286fe0"
+    },
+    {
+      "source": "POL037",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3bded338"
+    },
+    {
+      "source": "POL037",
+      "relation": "RESULTS_IN",
+      "target": "OUT-18930304"
+    },
+    {
+      "source": "POL038",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-93fa8703"
+    },
+    {
+      "source": "POL038",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-38080f43"
+    },
+    {
+      "source": "POL038",
+      "relation": "INVOLVES",
+      "target": "STK-25f07560"
+    },
+    {
+      "source": "POL038",
+      "relation": "INVOLVES",
+      "target": "STK-f7bb9531"
+    },
+    {
+      "source": "POL038",
+      "relation": "INVOLVES",
+      "target": "STK-4d3cfb0f"
+    },
+    {
+      "source": "POL038",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ff088d86"
+    },
+    {
+      "source": "POL038",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-743c27a6"
+    },
+    {
+      "source": "POL038",
+      "relation": "RESULTS_IN",
+      "target": "OUT-cba036fe"
+    },
+    {
+      "source": "POL038",
+      "relation": "RESULTS_IN",
+      "target": "OUT-f32c044b"
+    },
+    {
+      "source": "POL039",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-623b4fb7"
+    },
+    {
+      "source": "POL039",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-144d3984"
+    },
+    {
+      "source": "POL039",
+      "relation": "INVOLVES",
+      "target": "STK-5e4eca4d"
+    },
+    {
+      "source": "POL039",
+      "relation": "INVOLVES",
+      "target": "STK-4dbaacac"
+    },
+    {
+      "source": "POL039",
+      "relation": "INVOLVES",
+      "target": "STK-5480dbe9"
+    },
+    {
+      "source": "POL039",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-4bcbd1c3"
+    },
+    {
+      "source": "POL039",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ce974bf9"
+    },
+    {
+      "source": "POL039",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3624fab6"
+    },
+    {
+      "source": "POL039",
+      "relation": "RESULTS_IN",
+      "target": "OUT-d13d72a6"
+    },
+    {
+      "source": "POL040",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f0d72e7d"
+    },
+    {
+      "source": "POL040",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-5a5b5603"
+    },
+    {
+      "source": "POL040",
+      "relation": "INVOLVES",
+      "target": "STK-9b3d62a2"
+    },
+    {
+      "source": "POL040",
+      "relation": "INVOLVES",
+      "target": "STK-58ad75d2"
+    },
+    {
+      "source": "POL040",
+      "relation": "INVOLVES",
+      "target": "STK-7011e47c"
+    },
+    {
+      "source": "POL040",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-a14366b7"
+    },
+    {
+      "source": "POL040",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-9a21231c"
+    },
+    {
+      "source": "POL040",
+      "relation": "RESULTS_IN",
+      "target": "OUT-4705a150"
+    },
+    {
+      "source": "POL040",
+      "relation": "RESULTS_IN",
+      "target": "OUT-509301ee"
+    },
+    {
+      "source": "POL041",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-22dd74a4"
+    },
+    {
+      "source": "POL041",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-afdcdea5"
+    },
+    {
+      "source": "POL041",
+      "relation": "INVOLVES",
+      "target": "STK-807b0218"
+    },
+    {
+      "source": "POL041",
+      "relation": "INVOLVES",
+      "target": "STK-029c2988"
+    },
+    {
+      "source": "POL041",
+      "relation": "INVOLVES",
+      "target": "STK-53360b9c"
+    },
+    {
+      "source": "POL041",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e430c668"
+    },
+    {
+      "source": "POL041",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-d08cddf0"
+    },
+    {
+      "source": "POL041",
+      "relation": "RESULTS_IN",
+      "target": "OUT-295f5629"
+    },
+    {
+      "source": "POL041",
+      "relation": "RESULTS_IN",
+      "target": "OUT-b43d7c46"
+    },
+    {
+      "source": "POL042",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-2cadf157"
+    },
+    {
+      "source": "POL042",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-34cc5ee9"
+    },
+    {
+      "source": "POL042",
+      "relation": "INVOLVES",
+      "target": "STK-bc24510d"
+    },
+    {
+      "source": "POL042",
+      "relation": "INVOLVES",
+      "target": "STK-552baaec"
+    },
+    {
+      "source": "POL042",
+      "relation": "INVOLVES",
+      "target": "STK-bf09a2d6"
+    },
+    {
+      "source": "POL042",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-948d5f53"
+    },
+    {
+      "source": "POL042",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ada9e2da"
+    },
+    {
+      "source": "POL042",
+      "relation": "RESULTS_IN",
+      "target": "OUT-84b4150e"
+    },
+    {
+      "source": "POL042",
+      "relation": "RESULTS_IN",
+      "target": "OUT-d1e17255"
+    },
+    {
+      "source": "POL043",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-43dea60f"
+    },
+    {
+      "source": "POL043",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-0b10f7d4"
+    },
+    {
+      "source": "POL043",
+      "relation": "INVOLVES",
+      "target": "STK-21fe8a52"
+    },
+    {
+      "source": "POL043",
+      "relation": "INVOLVES",
+      "target": "STK-c481419c"
+    },
+    {
+      "source": "POL043",
+      "relation": "INVOLVES",
+      "target": "STK-6cbcb392"
+    },
+    {
+      "source": "POL043",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-29aa72fd"
+    },
+    {
+      "source": "POL043",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-56ccd67e"
+    },
+    {
+      "source": "POL043",
+      "relation": "RESULTS_IN",
+      "target": "OUT-8ee88dd1"
+    },
+    {
+      "source": "POL043",
+      "relation": "RESULTS_IN",
+      "target": "OUT-b42ed02c"
+    },
+    {
+      "source": "POL044",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-16a842bc"
+    },
+    {
+      "source": "POL044",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b0a4bdfa"
+    },
+    {
+      "source": "POL044",
+      "relation": "INVOLVES",
+      "target": "STK-3521c780"
+    },
+    {
+      "source": "POL044",
+      "relation": "INVOLVES",
+      "target": "STK-8e5dad3f"
+    },
+    {
+      "source": "POL044",
+      "relation": "INVOLVES",
+      "target": "STK-a9bb813f"
+    },
+    {
+      "source": "POL044",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-46c5c2f3"
+    },
+    {
+      "source": "POL044",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-1ccc53ee"
+    },
+    {
+      "source": "POL044",
+      "relation": "RESULTS_IN",
+      "target": "OUT-77d2d8ed"
+    },
+    {
+      "source": "POL044",
+      "relation": "RESULTS_IN",
+      "target": "OUT-9c18e6ac"
+    },
+    {
+      "source": "POL045",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c4b2c2f0"
+    },
+    {
+      "source": "POL045",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-0e3a9242"
+    },
+    {
+      "source": "POL045",
+      "relation": "INVOLVES",
+      "target": "STK-4eeb8635"
+    },
+    {
+      "source": "POL045",
+      "relation": "INVOLVES",
+      "target": "STK-502d5f5c"
+    },
+    {
+      "source": "POL045",
+      "relation": "INVOLVES",
+      "target": "STK-4df9401d"
+    },
+    {
+      "source": "POL045",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-0768336d"
+    },
+    {
+      "source": "POL045",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-2e828d32"
+    },
+    {
+      "source": "POL045",
+      "relation": "RESULTS_IN",
+      "target": "OUT-59f8f741"
+    },
+    {
+      "source": "POL045",
+      "relation": "RESULTS_IN",
+      "target": "OUT-c509ced5"
+    },
+    {
+      "source": "POL046",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b4ecfd80"
+    },
+    {
+      "source": "POL046",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-5f83ab4f"
+    },
+    {
+      "source": "POL046",
+      "relation": "INVOLVES",
+      "target": "STK-b47c4154"
+    },
+    {
+      "source": "POL046",
+      "relation": "INVOLVES",
+      "target": "STK-9625df35"
+    },
+    {
+      "source": "POL046",
+      "relation": "INVOLVES",
+      "target": "STK-2f340302"
+    },
+    {
+      "source": "POL046",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-a2ec7dc2"
+    },
+    {
+      "source": "POL046",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-80a7e46d"
+    },
+    {
+      "source": "POL046",
+      "relation": "RESULTS_IN",
+      "target": "OUT-5c25a037"
+    },
+    {
+      "source": "POL046",
+      "relation": "RESULTS_IN",
+      "target": "OUT-5c91b024"
+    },
+    {
+      "source": "POL047",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-1d441012"
+    },
+    {
+      "source": "POL047",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-68a7de48"
+    },
+    {
+      "source": "POL047",
+      "relation": "INVOLVES",
+      "target": "STK-79e67522"
+    },
+    {
+      "source": "POL047",
+      "relation": "INVOLVES",
+      "target": "STK-9bac0bd2"
+    },
+    {
+      "source": "POL047",
+      "relation": "INVOLVES",
+      "target": "STK-6aa8e108"
+    },
+    {
+      "source": "POL047",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-d138b2d5"
+    },
+    {
+      "source": "POL047",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-10823614"
+    },
+    {
+      "source": "POL047",
+      "relation": "RESULTS_IN",
+      "target": "OUT-2ff70fa8"
+    },
+    {
+      "source": "POL047",
+      "relation": "RESULTS_IN",
+      "target": "OUT-9f7db2a0"
+    },
+    {
+      "source": "POL048",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-cf21632d"
+    },
+    {
+      "source": "POL048",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-8a3c5121"
+    },
+    {
+      "source": "POL048",
+      "relation": "INVOLVES",
+      "target": "STK-80d71622"
+    },
+    {
+      "source": "POL048",
+      "relation": "INVOLVES",
+      "target": "STK-943821f0"
+    },
+    {
+      "source": "POL048",
+      "relation": "INVOLVES",
+      "target": "STK-4b42c1e1"
+    },
+    {
+      "source": "POL048",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-c9fa4ef0"
+    },
+    {
+      "source": "POL048",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-28abc50c"
+    },
+    {
+      "source": "POL048",
+      "relation": "RESULTS_IN",
+      "target": "OUT-79d7f0f4"
+    },
+    {
+      "source": "POL048",
+      "relation": "RESULTS_IN",
+      "target": "OUT-113a6057"
+    },
+    {
+      "source": "POL049",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f3443b77"
+    },
+    {
+      "source": "POL049",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b3f90013"
+    },
+    {
+      "source": "POL049",
+      "relation": "INVOLVES",
+      "target": "STK-b7880c8d"
+    },
+    {
+      "source": "POL049",
+      "relation": "INVOLVES",
+      "target": "STK-616c65b9"
+    },
+    {
+      "source": "POL049",
+      "relation": "INVOLVES",
+      "target": "STK-8f1d80d2"
+    },
+    {
+      "source": "POL049",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e4dc167a"
+    },
+    {
+      "source": "POL049",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-2eda902b"
+    },
+    {
+      "source": "POL049",
+      "relation": "RESULTS_IN",
+      "target": "OUT-cc562a02"
+    },
+    {
+      "source": "POL049",
+      "relation": "RESULTS_IN",
+      "target": "OUT-fdd834fc"
+    },
+    {
+      "source": "POL050",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-5ee1d6fc"
+    },
+    {
+      "source": "POL050",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c68fdffd"
+    },
+    {
+      "source": "POL050",
+      "relation": "INVOLVES",
+      "target": "STK-9fb68e4c"
+    },
+    {
+      "source": "POL050",
+      "relation": "INVOLVES",
+      "target": "STK-9485254d"
+    },
+    {
+      "source": "POL050",
+      "relation": "INVOLVES",
+      "target": "STK-2233d294"
+    },
+    {
+      "source": "POL050",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e58ce1e7"
+    },
+    {
+      "source": "POL050",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-af248ab9"
+    },
+    {
+      "source": "POL050",
+      "relation": "RESULTS_IN",
+      "target": "OUT-6bb2369c"
+    },
+    {
+      "source": "POL050",
+      "relation": "RESULTS_IN",
+      "target": "OUT-1aec9cbc"
+    },
+    {
+      "source": "POL051",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f8361f43"
+    },
+    {
+      "source": "POL051",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-84b00ffd"
+    },
+    {
+      "source": "POL051",
+      "relation": "INVOLVES",
+      "target": "STK-aecd54d8"
+    },
+    {
+      "source": "POL051",
+      "relation": "INVOLVES",
+      "target": "STK-d19a73d8"
+    },
+    {
+      "source": "POL051",
+      "relation": "INVOLVES",
+      "target": "STK-0aa0f34c"
+    },
+    {
+      "source": "POL051",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-4ff09d0d"
+    },
+    {
+      "source": "POL051",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-d3603a4f"
+    },
+    {
+      "source": "POL051",
+      "relation": "RESULTS_IN",
+      "target": "OUT-1aacc5ee"
+    },
+    {
+      "source": "POL051",
+      "relation": "RESULTS_IN",
+      "target": "OUT-d8794047"
+    },
+    {
+      "source": "POL052",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-70fef0a2"
+    },
+    {
+      "source": "POL052",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-6cabcbb7"
+    },
+    {
+      "source": "POL052",
+      "relation": "INVOLVES",
+      "target": "STK-de9aa2ae"
+    },
+    {
+      "source": "POL052",
+      "relation": "INVOLVES",
+      "target": "STK-ef389ecf"
+    },
+    {
+      "source": "POL052",
+      "relation": "INVOLVES",
+      "target": "STK-d4026a78"
+    },
+    {
+      "source": "POL052",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-a3705009"
+    },
+    {
+      "source": "POL052",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-87769b13"
+    },
+    {
+      "source": "POL052",
+      "relation": "RESULTS_IN",
+      "target": "OUT-dc2cee5d"
+    },
+    {
+      "source": "POL052",
+      "relation": "RESULTS_IN",
+      "target": "OUT-71c1b41a"
+    },
+    {
+      "source": "POL053",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-725a638d"
+    },
+    {
+      "source": "POL053",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-e024b6e3"
+    },
+    {
+      "source": "POL053",
+      "relation": "INVOLVES",
+      "target": "STK-dc9ab957"
+    },
+    {
+      "source": "POL053",
+      "relation": "INVOLVES",
+      "target": "STK-e538032b"
+    },
+    {
+      "source": "POL053",
+      "relation": "INVOLVES",
+      "target": "STK-aedd6e08"
+    },
+    {
+      "source": "POL053",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-0de3446a"
+    },
+    {
+      "source": "POL053",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-d913e4db"
+    },
+    {
+      "source": "POL053",
+      "relation": "RESULTS_IN",
+      "target": "OUT-a8e8b63a"
+    },
+    {
+      "source": "POL053",
+      "relation": "RESULTS_IN",
+      "target": "OUT-da3c3c66"
+    },
+    {
+      "source": "POL054",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-01846fc3"
+    },
+    {
+      "source": "POL054",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f647870b"
+    },
+    {
+      "source": "POL054",
+      "relation": "INVOLVES",
+      "target": "STK-021aeab7"
+    },
+    {
+      "source": "POL054",
+      "relation": "INVOLVES",
+      "target": "STK-e0eca4fc"
+    },
+    {
+      "source": "POL054",
+      "relation": "INVOLVES",
+      "target": "STK-4134d503"
+    },
+    {
+      "source": "POL054",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-20b058b6"
+    },
+    {
+      "source": "POL054",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-b2bacc08"
+    },
+    {
+      "source": "POL054",
+      "relation": "RESULTS_IN",
+      "target": "OUT-d1ded369"
+    },
+    {
+      "source": "POL054",
+      "relation": "RESULTS_IN",
+      "target": "OUT-fbfeefc6"
+    },
+    {
+      "source": "POL055",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-edd30cf1"
+    },
+    {
+      "source": "POL055",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-d0020f82"
+    },
+    {
+      "source": "POL055",
+      "relation": "INVOLVES",
+      "target": "STK-b9d0e7e8"
+    },
+    {
+      "source": "POL055",
+      "relation": "INVOLVES",
+      "target": "STK-f6302fea"
+    },
+    {
+      "source": "POL055",
+      "relation": "INVOLVES",
+      "target": "STK-2e74ffc7"
+    },
+    {
+      "source": "POL055",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-844cb917"
+    },
+    {
+      "source": "POL055",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e33f67cf"
+    },
+    {
+      "source": "POL055",
+      "relation": "RESULTS_IN",
+      "target": "OUT-dde506f5"
+    },
+    {
+      "source": "POL055",
+      "relation": "RESULTS_IN",
+      "target": "OUT-44c8f962"
+    },
+    {
+      "source": "POL056",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-6f787736"
+    },
+    {
+      "source": "POL056",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-89bc29f3"
+    },
+    {
+      "source": "POL056",
+      "relation": "INVOLVES",
+      "target": "STK-082edd54"
+    },
+    {
+      "source": "POL056",
+      "relation": "INVOLVES",
+      "target": "STK-de753787"
+    },
+    {
+      "source": "POL056",
+      "relation": "INVOLVES",
+      "target": "STK-0cd8d8b0"
+    },
+    {
+      "source": "POL056",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-048083e1"
+    },
+    {
+      "source": "POL056",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-c441a13a"
+    },
+    {
+      "source": "POL056",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3f13c889"
+    },
+    {
+      "source": "POL056",
+      "relation": "RESULTS_IN",
+      "target": "OUT-59105fa8"
+    },
+    {
+      "source": "POL057",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-70d051ee"
+    },
+    {
+      "source": "POL057",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-4c20e0cc"
+    },
+    {
+      "source": "POL057",
+      "relation": "INVOLVES",
+      "target": "STK-73ca7ae5"
+    },
+    {
+      "source": "POL057",
+      "relation": "INVOLVES",
+      "target": "STK-2dfb3687"
+    },
+    {
+      "source": "POL057",
+      "relation": "INVOLVES",
+      "target": "STK-57bdb946"
+    },
+    {
+      "source": "POL057",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-52e0ccca"
+    },
+    {
+      "source": "POL057",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-9e5fd194"
+    },
+    {
+      "source": "POL057",
+      "relation": "RESULTS_IN",
+      "target": "OUT-09317d3d"
+    },
+    {
+      "source": "POL057",
+      "relation": "RESULTS_IN",
+      "target": "OUT-e6b10dc9"
+    },
+    {
+      "source": "POL058",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-dff8deb2"
+    },
+    {
+      "source": "POL058",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-25134618"
+    },
+    {
+      "source": "POL058",
+      "relation": "INVOLVES",
+      "target": "STK-db12433a"
+    },
+    {
+      "source": "POL058",
+      "relation": "INVOLVES",
+      "target": "STK-c47910e0"
+    },
+    {
+      "source": "POL058",
+      "relation": "INVOLVES",
+      "target": "STK-0e9fa0ae"
+    },
+    {
+      "source": "POL058",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-69f1a046"
+    },
+    {
+      "source": "POL058",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-241cd52c"
+    },
+    {
+      "source": "POL058",
+      "relation": "RESULTS_IN",
+      "target": "OUT-193b8a39"
+    },
+    {
+      "source": "POL058",
+      "relation": "RESULTS_IN",
+      "target": "OUT-b5ff3f9d"
+    },
+    {
+      "source": "POL059",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-92beb8f0"
+    },
+    {
+      "source": "POL059",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-1774895b"
+    },
+    {
+      "source": "POL059",
+      "relation": "INVOLVES",
+      "target": "STK-d30084d8"
+    },
+    {
+      "source": "POL059",
+      "relation": "INVOLVES",
+      "target": "STK-5fb1a67a"
+    },
+    {
+      "source": "POL059",
+      "relation": "INVOLVES",
+      "target": "STK-036704fe"
+    },
+    {
+      "source": "POL059",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-5bcb6164"
+    },
+    {
+      "source": "POL059",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-7a2be69e"
+    },
+    {
+      "source": "POL059",
+      "relation": "RESULTS_IN",
+      "target": "OUT-668bd010"
+    },
+    {
+      "source": "POL059",
+      "relation": "RESULTS_IN",
+      "target": "OUT-f30a0873"
+    },
+    {
+      "source": "POL060",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-6bd7f4b8"
+    },
+    {
+      "source": "POL060",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-13806410"
+    },
+    {
+      "source": "POL060",
+      "relation": "INVOLVES",
+      "target": "STK-3e3b57d7"
+    },
+    {
+      "source": "POL060",
+      "relation": "INVOLVES",
+      "target": "STK-9fc2c04a"
+    },
+    {
+      "source": "POL060",
+      "relation": "INVOLVES",
+      "target": "STK-8c453f42"
+    },
+    {
+      "source": "POL060",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-77cc96bc"
+    },
+    {
+      "source": "POL060",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-159c7d59"
+    },
+    {
+      "source": "POL060",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ce9f71c0"
+    },
+    {
+      "source": "POL060",
+      "relation": "RESULTS_IN",
+      "target": "OUT-b185b410"
+    },
+    {
+      "source": "POL061",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-0ffcd112"
+    },
+    {
+      "source": "POL061",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-506f625f"
+    },
+    {
+      "source": "POL061",
+      "relation": "INVOLVES",
+      "target": "STK-2ee2d5ca"
+    },
+    {
+      "source": "POL061",
+      "relation": "INVOLVES",
+      "target": "STK-2390113e"
+    },
+    {
+      "source": "POL061",
+      "relation": "INVOLVES",
+      "target": "STK-e60d270b"
+    },
+    {
+      "source": "POL061",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-fba17830"
+    },
+    {
+      "source": "POL061",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-af630fec"
+    },
+    {
+      "source": "POL061",
+      "relation": "RESULTS_IN",
+      "target": "OUT-03afc366"
+    },
+    {
+      "source": "POL061",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ef338aec"
+    },
+    {
+      "source": "POL062",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c16d4916"
+    },
+    {
+      "source": "POL062",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-5d8bf70f"
+    },
+    {
+      "source": "POL062",
+      "relation": "INVOLVES",
+      "target": "STK-329faf35"
+    },
+    {
+      "source": "POL062",
+      "relation": "INVOLVES",
+      "target": "STK-a24e03c8"
+    },
+    {
+      "source": "POL062",
+      "relation": "INVOLVES",
+      "target": "STK-e9e42094"
+    },
+    {
+      "source": "POL062",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-3c0f2c0c"
+    },
+    {
+      "source": "POL062",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-3a546ee2"
+    },
+    {
+      "source": "POL062",
+      "relation": "RESULTS_IN",
+      "target": "OUT-7c8b5824"
+    },
+    {
+      "source": "POL062",
+      "relation": "RESULTS_IN",
+      "target": "OUT-a3a5f32a"
+    },
+    {
+      "source": "POL063",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-238da276"
+    },
+    {
+      "source": "POL063",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-a3ae5a90"
+    },
+    {
+      "source": "POL063",
+      "relation": "INVOLVES",
+      "target": "STK-cec4c547"
+    },
+    {
+      "source": "POL063",
+      "relation": "INVOLVES",
+      "target": "STK-c72b9e3f"
+    },
+    {
+      "source": "POL063",
+      "relation": "INVOLVES",
+      "target": "STK-96dab40e"
+    },
+    {
+      "source": "POL063",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-3ba322eb"
+    },
+    {
+      "source": "POL063",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-c3fffa6e"
+    },
+    {
+      "source": "POL063",
+      "relation": "RESULTS_IN",
+      "target": "OUT-656bf5fe"
+    },
+    {
+      "source": "POL063",
+      "relation": "RESULTS_IN",
+      "target": "OUT-c81f937a"
+    },
+    {
+      "source": "POL064",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-2e181487"
+    },
+    {
+      "source": "POL064",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-a317c3af"
+    },
+    {
+      "source": "POL064",
+      "relation": "INVOLVES",
+      "target": "STK-6b1a9d43"
+    },
+    {
+      "source": "POL064",
+      "relation": "INVOLVES",
+      "target": "STK-afbca1f7"
+    },
+    {
+      "source": "POL064",
+      "relation": "INVOLVES",
+      "target": "STK-4e1f5a41"
+    },
+    {
+      "source": "POL064",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-46331d53"
+    },
+    {
+      "source": "POL064",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-290a2520"
+    },
+    {
+      "source": "POL064",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3f6536a0"
+    },
+    {
+      "source": "POL064",
+      "relation": "RESULTS_IN",
+      "target": "OUT-7d68c258"
+    },
+    {
+      "source": "POL065",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-64fa9efa"
+    },
+    {
+      "source": "POL065",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-442e0830"
+    },
+    {
+      "source": "POL065",
+      "relation": "INVOLVES",
+      "target": "STK-d8e6f38d"
+    },
+    {
+      "source": "POL065",
+      "relation": "INVOLVES",
+      "target": "STK-f5722ca4"
+    },
+    {
+      "source": "POL065",
+      "relation": "INVOLVES",
+      "target": "STK-bd15f82f"
+    },
+    {
+      "source": "POL065",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e672c6c9"
+    },
+    {
+      "source": "POL065",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-bf3b0559"
+    },
+    {
+      "source": "POL065",
+      "relation": "RESULTS_IN",
+      "target": "OUT-14f27654"
+    },
+    {
+      "source": "POL065",
+      "relation": "RESULTS_IN",
+      "target": "OUT-40e08b12"
+    },
+    {
+      "source": "POL066",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-5e900875"
+    },
+    {
+      "source": "POL066",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-82db71ab"
+    },
+    {
+      "source": "POL066",
+      "relation": "INVOLVES",
+      "target": "STK-d54034c4"
+    },
+    {
+      "source": "POL066",
+      "relation": "INVOLVES",
+      "target": "STK-59772f17"
+    },
+    {
+      "source": "POL066",
+      "relation": "INVOLVES",
+      "target": "STK-56a24649"
+    },
+    {
+      "source": "POL066",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-35b3d413"
+    },
+    {
+      "source": "POL066",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-73bdab99"
+    },
+    {
+      "source": "POL066",
+      "relation": "RESULTS_IN",
+      "target": "OUT-dc08281a"
+    },
+    {
+      "source": "POL066",
+      "relation": "RESULTS_IN",
+      "target": "OUT-74f027a5"
+    },
+    {
+      "source": "POL067",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b450f88a"
+    },
+    {
+      "source": "POL067",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-1842503f"
+    },
+    {
+      "source": "POL067",
+      "relation": "INVOLVES",
+      "target": "STK-2056ca0b"
+    },
+    {
+      "source": "POL067",
+      "relation": "INVOLVES",
+      "target": "STK-76c65cf9"
+    },
+    {
+      "source": "POL067",
+      "relation": "INVOLVES",
+      "target": "STK-68f56795"
+    },
+    {
+      "source": "POL067",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-7de1b994"
+    },
+    {
+      "source": "POL067",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-63605553"
+    },
+    {
+      "source": "POL067",
+      "relation": "RESULTS_IN",
+      "target": "OUT-500f315b"
+    },
+    {
+      "source": "POL067",
+      "relation": "RESULTS_IN",
+      "target": "OUT-16e3ac68"
+    },
+    {
+      "source": "POL068",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-be02f572"
+    },
+    {
+      "source": "POL068",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-902cb6a8"
+    },
+    {
+      "source": "POL068",
+      "relation": "INVOLVES",
+      "target": "STK-b432700f"
+    },
+    {
+      "source": "POL068",
+      "relation": "INVOLVES",
+      "target": "STK-bd9f511c"
+    },
+    {
+      "source": "POL068",
+      "relation": "INVOLVES",
+      "target": "STK-6e5f18b8"
+    },
+    {
+      "source": "POL068",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-f7e2d2fe"
+    },
+    {
+      "source": "POL068",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-6809f4a5"
+    },
+    {
+      "source": "POL068",
+      "relation": "RESULTS_IN",
+      "target": "OUT-5825821f"
+    },
+    {
+      "source": "POL068",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ca34413e"
+    },
+    {
+      "source": "POL069",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-36380d9d"
+    },
+    {
+      "source": "POL069",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-51b8fa4d"
+    },
+    {
+      "source": "POL069",
+      "relation": "INVOLVES",
+      "target": "STK-39d83f2e"
+    },
+    {
+      "source": "POL069",
+      "relation": "INVOLVES",
+      "target": "STK-8b90700b"
+    },
+    {
+      "source": "POL069",
+      "relation": "INVOLVES",
+      "target": "STK-36f99acf"
+    },
+    {
+      "source": "POL069",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-6c9ef51e"
+    },
+    {
+      "source": "POL069",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-67676898"
+    },
+    {
+      "source": "POL069",
+      "relation": "RESULTS_IN",
+      "target": "OUT-7939938a"
+    },
+    {
+      "source": "POL069",
+      "relation": "RESULTS_IN",
+      "target": "OUT-5a227576"
+    },
+    {
+      "source": "POL070",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-81492d00"
+    },
+    {
+      "source": "POL070",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c3cfb9df"
+    },
+    {
+      "source": "POL070",
+      "relation": "INVOLVES",
+      "target": "STK-5c43e252"
+    },
+    {
+      "source": "POL070",
+      "relation": "INVOLVES",
+      "target": "STK-adc980c4"
+    },
+    {
+      "source": "POL070",
+      "relation": "INVOLVES",
+      "target": "STK-abf52fb4"
+    },
+    {
+      "source": "POL070",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-a7275857"
+    },
+    {
+      "source": "POL070",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-e1e9e05d"
+    },
+    {
+      "source": "POL070",
+      "relation": "RESULTS_IN",
+      "target": "OUT-9ff1ec0c"
+    },
+    {
+      "source": "POL070",
+      "relation": "RESULTS_IN",
+      "target": "OUT-4799048d"
+    },
+    {
+      "source": "POL071",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-fec7fd54"
+    },
+    {
+      "source": "POL071",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-0a129110"
+    },
+    {
+      "source": "POL071",
+      "relation": "INVOLVES",
+      "target": "STK-0ea9df8e"
+    },
+    {
+      "source": "POL071",
+      "relation": "INVOLVES",
+      "target": "STK-b9d0d892"
+    },
+    {
+      "source": "POL071",
+      "relation": "INVOLVES",
+      "target": "STK-e3d0ea78"
+    },
+    {
+      "source": "POL071",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ff6b69cb"
+    },
+    {
+      "source": "POL071",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-edeaddbb"
+    },
+    {
+      "source": "POL071",
+      "relation": "RESULTS_IN",
+      "target": "OUT-69458363"
+    },
+    {
+      "source": "POL071",
+      "relation": "RESULTS_IN",
+      "target": "OUT-8c9f921e"
+    },
+    {
+      "source": "POL072",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b62d4930"
+    },
+    {
+      "source": "POL072",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c0d40c17"
+    },
+    {
+      "source": "POL072",
+      "relation": "INVOLVES",
+      "target": "STK-9caa23c2"
+    },
+    {
+      "source": "POL072",
+      "relation": "INVOLVES",
+      "target": "STK-fb03eb48"
+    },
+    {
+      "source": "POL072",
+      "relation": "INVOLVES",
+      "target": "STK-b3ab4abc"
+    },
+    {
+      "source": "POL072",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-30cfe5fb"
+    },
+    {
+      "source": "POL072",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-c9d2f4e6"
+    },
+    {
+      "source": "POL072",
+      "relation": "RESULTS_IN",
+      "target": "OUT-aa28ebbc"
+    },
+    {
+      "source": "POL072",
+      "relation": "RESULTS_IN",
+      "target": "OUT-a6527f58"
+    },
+    {
+      "source": "POL073",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-006d79c2"
+    },
+    {
+      "source": "POL073",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c52caeea"
+    },
+    {
+      "source": "POL073",
+      "relation": "INVOLVES",
+      "target": "STK-2e04752f"
+    },
+    {
+      "source": "POL073",
+      "relation": "INVOLVES",
+      "target": "STK-f8f49027"
+    },
+    {
+      "source": "POL073",
+      "relation": "INVOLVES",
+      "target": "STK-1aa1d413"
+    },
+    {
+      "source": "POL073",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-a6f9e16b"
+    },
+    {
+      "source": "POL073",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-c863b2c9"
+    },
+    {
+      "source": "POL073",
+      "relation": "RESULTS_IN",
+      "target": "OUT-8f898319"
+    },
+    {
+      "source": "POL073",
+      "relation": "RESULTS_IN",
+      "target": "OUT-662c4362"
+    },
+    {
+      "source": "POL074",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-ad514e13"
+    },
+    {
+      "source": "POL074",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-572e4f58"
+    },
+    {
+      "source": "POL074",
+      "relation": "INVOLVES",
+      "target": "STK-1f2f4800"
+    },
+    {
+      "source": "POL074",
+      "relation": "INVOLVES",
+      "target": "STK-935ece8f"
+    },
+    {
+      "source": "POL074",
+      "relation": "INVOLVES",
+      "target": "STK-82eab42a"
+    },
+    {
+      "source": "POL074",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-ca6b8e38"
+    },
+    {
+      "source": "POL074",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-053b15d8"
+    },
+    {
+      "source": "POL074",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ef1c2017"
+    },
+    {
+      "source": "POL074",
+      "relation": "RESULTS_IN",
+      "target": "OUT-3e38e4af"
+    },
+    {
+      "source": "POL075",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-88f6f38b"
+    },
+    {
+      "source": "POL075",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-d8d5a059"
+    },
+    {
+      "source": "POL075",
+      "relation": "INVOLVES",
+      "target": "STK-4e8cbeb6"
+    },
+    {
+      "source": "POL075",
+      "relation": "INVOLVES",
+      "target": "STK-2cd1943a"
+    },
+    {
+      "source": "POL075",
+      "relation": "INVOLVES",
+      "target": "STK-4d3a7f98"
+    },
+    {
+      "source": "POL075",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-8d15b21a"
+    },
+    {
+      "source": "POL075",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-9a6f29d1"
+    },
+    {
+      "source": "POL075",
+      "relation": "RESULTS_IN",
+      "target": "OUT-097eb605"
+    },
+    {
+      "source": "POL075",
+      "relation": "RESULTS_IN",
+      "target": "OUT-156a10e4"
+    },
+    {
+      "source": "POL076",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-f57517ff"
+    },
+    {
+      "source": "POL076",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-6a05aa63"
+    },
+    {
+      "source": "POL076",
+      "relation": "INVOLVES",
+      "target": "STK-318c4908"
+    },
+    {
+      "source": "POL076",
+      "relation": "INVOLVES",
+      "target": "STK-99a522ee"
+    },
+    {
+      "source": "POL076",
+      "relation": "INVOLVES",
+      "target": "STK-f1216536"
+    },
+    {
+      "source": "POL076",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-527af834"
+    },
+    {
+      "source": "POL076",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-cba83641"
+    },
+    {
+      "source": "POL076",
+      "relation": "RESULTS_IN",
+      "target": "OUT-09d2152a"
+    },
+    {
+      "source": "POL076",
+      "relation": "RESULTS_IN",
+      "target": "OUT-18ad2917"
+    },
+    {
+      "source": "POL077",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-b74e8931"
+    },
+    {
+      "source": "POL077",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-4e7798bc"
+    },
+    {
+      "source": "POL077",
+      "relation": "INVOLVES",
+      "target": "STK-157fdab0"
+    },
+    {
+      "source": "POL077",
+      "relation": "INVOLVES",
+      "target": "STK-b711581a"
+    },
+    {
+      "source": "POL077",
+      "relation": "INVOLVES",
+      "target": "STK-b7995d26"
+    },
+    {
+      "source": "POL077",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-9fd3bb6a"
+    },
+    {
+      "source": "POL077",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-b4920e69"
+    },
+    {
+      "source": "POL077",
+      "relation": "RESULTS_IN",
+      "target": "OUT-32e1dea3"
+    },
+    {
+      "source": "POL077",
+      "relation": "RESULTS_IN",
+      "target": "OUT-193ec3fb"
+    },
+    {
+      "source": "POL078",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-81afd795"
+    },
+    {
+      "source": "POL078",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-320cf623"
+    },
+    {
+      "source": "POL078",
+      "relation": "INVOLVES",
+      "target": "STK-5dfc0013"
+    },
+    {
+      "source": "POL078",
+      "relation": "INVOLVES",
+      "target": "STK-4890081e"
+    },
+    {
+      "source": "POL078",
+      "relation": "INVOLVES",
+      "target": "STK-75480f57"
+    },
+    {
+      "source": "POL078",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-94d1fd87"
+    },
+    {
+      "source": "POL078",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-00ee1567"
+    },
+    {
+      "source": "POL078",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ad67304a"
+    },
+    {
+      "source": "POL078",
+      "relation": "RESULTS_IN",
+      "target": "OUT-ea2d86da"
+    },
+    {
+      "source": "POL079",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-eec52264"
+    },
+    {
+      "source": "POL079",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-c8e5c1c0"
+    },
+    {
+      "source": "POL079",
+      "relation": "INVOLVES",
+      "target": "STK-23748717"
+    },
+    {
+      "source": "POL079",
+      "relation": "INVOLVES",
+      "target": "STK-3d55f133"
+    },
+    {
+      "source": "POL079",
+      "relation": "INVOLVES",
+      "target": "STK-6cbcb8fe"
+    },
+    {
+      "source": "POL079",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-7f04f103"
+    },
+    {
+      "source": "POL079",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-165953c1"
+    },
+    {
+      "source": "POL079",
+      "relation": "RESULTS_IN",
+      "target": "OUT-fbc664db"
+    },
+    {
+      "source": "POL079",
+      "relation": "RESULTS_IN",
+      "target": "OUT-2748596a"
+    },
+    {
+      "source": "POL080",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-29db7c9b"
+    },
+    {
+      "source": "POL080",
+      "relation": "HAS_OBJECTIVE",
+      "target": "OBJ-fd0e169d"
+    },
+    {
+      "source": "POL080",
+      "relation": "INVOLVES",
+      "target": "STK-35212aed"
+    },
+    {
+      "source": "POL080",
+      "relation": "INVOLVES",
+      "target": "STK-68690506"
+    },
+    {
+      "source": "POL080",
+      "relation": "INVOLVES",
+      "target": "STK-365aa54c"
+    },
+    {
+      "source": "POL080",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-fb515a7d"
+    },
+    {
+      "source": "POL080",
+      "relation": "IMPLEMENTS",
+      "target": "ACT-af17e534"
+    },
+    {
+      "source": "POL080",
+      "relation": "RESULTS_IN",
+      "target": "OUT-cc87c8ef"
+    },
+    {
+      "source": "POL080",
+      "relation": "RESULTS_IN",
+      "target": "OUT-dac5c683"
+    }
+  ]
+}

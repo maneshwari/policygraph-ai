@@ -1,0 +1,64 @@
+{
+  "contradictions": [
+    {
+      "contradiction_id": "CON01",
+      "policy_a": "POL001",
+      "policy_b": "POL011",
+      "description": "Health Advancement Policy 1 increases subsidies while Economy Advancement Policy 11 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON02",
+      "policy_a": "POL002",
+      "policy_b": "POL012",
+      "description": "Education Advancement Policy 2 increases subsidies while Education Advancement Policy 12 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON03",
+      "policy_a": "POL003",
+      "policy_b": "POL013",
+      "description": "Technology Advancement Policy 3 increases subsidies while Agriculture Advancement Policy 13 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON04",
+      "policy_a": "POL004",
+      "policy_b": "POL014",
+      "description": "Health Advancement Policy 4 increases subsidies while Technology Advancement Policy 14 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON05",
+      "policy_a": "POL005",
+      "policy_b": "POL015",
+      "description": "Technology Advancement Policy 5 increases subsidies while Technology Advancement Policy 15 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON06",
+      "policy_a": "POL006",
+      "policy_b": "POL016",
+      "description": "Health Advancement Policy 6 increases subsidies while Economy Advancement Policy 16 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON07",
+      "policy_a": "POL007",
+      "policy_b": "POL017",
+      "description": "Technology Advancement Policy 7 increases subsidies while Energy Advancement Policy 17 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON08",
+      "policy_a": "POL008",
+      "policy_b": "POL018",
+      "description": "Environment Advancement Policy 8 increases subsidies while Technology Advancement Policy 18 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON09",
+      "policy_a": "POL009",
+      "policy_b": "POL019",
+      "description": "Agriculture Advancement Policy 9 increases subsidies while Health Advancement Policy 19 reduces subsidies in the same domain."
+    },
+    {
+      "contradiction_id": "CON10",
+      "policy_a": "POL010",
+      "policy_b": "POL020",
+      "description": "Education Advancement Policy 10 increases subsidies while Environment Advancement Policy 20 reduces subsidies in the same domain."
+    }
+  ]
+}
