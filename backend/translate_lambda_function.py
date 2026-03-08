@@ -1,0 +1,84 @@
+import json
+import boto3
+import os
+
+bedrock_client = boto3.client("bedrock-runtime", region_name="ap-south-1")
+MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
+
+STYLE_PROMPTS = {
+    "simple":      "Use simple, everyday language that a rural citizen with basic literacy can understand.",
+    "formal":      "Use formal government register, as would appear in official documents.",
+    "explanatory": "Translate and add a brief explanation in parentheses to help rural citizens understand what it means practically for them.",
+}
+
+def lambda_handler(event, context):
+    headers = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "POST,OPTIONS"
+    }
+    if event.get("httpMethod") == "OPTIONS":
+        return {"statusCode": 200, "headers": headers, "body": ""}
+
+    try:
+        body = json.loads(event.get("body", "{}"))
+        clauses   = body.get("clauses", [])
+        language  = body.get("language", "Hindi")
+        style     = body.get("style", "simple")
+
+        if not clauses:
+            return {"statusCode": 400, "headers": headers,
+                    "body": json.dumps({"error": "clauses array required"})}
+
+        style_instruction = STYLE_PROMPTS.get(style, STYLE_PROMPTS["simple"])
+        clause_lines = "\n".join(
+            f'[{c.get("clause_id", f"c{i+1:03d}")}] {c.get("text", json.dumps(c))}'
+            for i, c in enumerate(clauses)
+        )
+
+        prompt = f"""Translate the following government policy clauses into {language}.
+{style_instruction}
+
+Return ONLY a JSON array in this exact format, no markdown, no preamble:
+[{{"clause_id": "...", "translation": "..."}}]
+
+Clauses:
+{clause_lines}"""
+
+        bedrock_resp = bedrock_client.invoke_model(
+            modelId=MODEL_ID,
+            body=json.dumps({
+                "anthropic_version": "bedrock-2023-05-31",
+                "max_tokens": 3000,
+                "messages": [{"role": "user", "content": prompt}]
+            })
+        )
+
+        raw_output = json.loads(bedrock_resp["body"].read())["content"][0]["text"]
+
+        # Strip markdown fences if model adds them
+        cleaned = raw_output.strip()
+        if cleaned.startswith("```"):
+            cleaned = cleaned.split("```", 2)[-1]
+            if cleaned.startswith("json"):
+                cleaned = cleaned[4:]
+        cleaned = cleaned.strip().rstrip("```").strip()
+
+        translations = json.loads(cleaned)
+
+        return {
+            "statusCode": 200,
+            "headers": headers,
+            "body": json.dumps({
+                "language": language,
+                "style": style,
+                "translations": translations
+            })
+        }
+
+    except json.JSONDecodeError as e:
+        return {"statusCode": 500, "headers": headers,
+                "body": json.dumps({"error": f"Model returned invalid JSON: {str(e)}. Raw: {raw_output[:300]}"})}
+    except Exception as e:
+        return {"statusCode": 500, "headers": headers,
+                "body": json.dumps({"error": str(e)})}
