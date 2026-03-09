@@ -1431,13 +1431,13 @@ function layout(){
   gT={x:0,y:0,s:1};gp={};const W=gc.width,H=gc.height;
   const roots=gn.filter(n=>n.type==='POLICY'),others=gn.filter(n=>n.type!=='POLICY');
   if(roots.length)gp[roots[0].id]={x:W/2,y:68};
-  const typs=['ELIGIBILITY','DISQUALIFICATION','BENEFIT','OBLIGATION','DEFINITION','PROCEDURE','UNKNOWN'];
   const bt={};others.forEach(n=>{const t=n.type||'UNKNOWN';(bt[t]=bt[t]||[]).push(n);});
+  const typs=Object.keys(bt);
   let l=1;
   typs.forEach(t=>{
     const ns=bt[t]||[];if(!ns.length)return;
     const R=105+l*78;
-    ns.forEach((n,i)=>{const a=(Math.PI/(ns.length+1))*(i+1);gp[n.id]={x:cl(W/2+R*Math.cos(a-Math.PI/2)*1.55,28,W-28),y:cl(68+R*Math.sin(a)*1.1,28,H-28)};});l++;
+    ns.forEach((n,i)=>{const a=(2*Math.PI/ns.length)*i;gp[n.id]={x:cl(W/2+R*Math.cos(a),28,W-28),y:cl(H/2+R*Math.sin(a)*.7,28,H-28)};});l++;
   });
 }
 function draw(){
