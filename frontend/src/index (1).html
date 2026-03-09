@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PolicyGraph AI 2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#ffffff;--s1:#f7f9fc;--s2:#eef2f8;--s3:#e2e9f3;--s4:#d4deee;
+  --b1:#c8d6ea;--b2:#a8bdd8;
+  --gold:#0a1628;--goldd:#060e1a;--goldbg:rgba(10,22,40,.07);
+  --text:#0a1628;--sub:#4a5a7a;--dim:#a0b0c8;
+  --green:#16a34a;--red:#dc2626;--amber:#d97706;--blue:#1d4ed8;--purple:#4338ca;
+  --gbg:rgba(22,163,74,.08);--rbg:rgba(220,38,38,.08);--abg:rgba(217,119,6,.08);
+  --bbg:rgba(29,78,216,.08);--pbg:rgba(67,56,202,.08);
+  --rad:8px;--rad-s:5px;
+  --citizen:#1a3a6b;--gov:#0a1628;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 45% at 10% -5%,rgba(10,22,40,.03) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 90% 105%,rgba(29,78,216,.03) 0%,transparent 60%);}
+
+/* ═══════════════════════════
+   WELCOME PAGE
+═══════════════════════════ */
+#welcome-screen{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  background:#ffffff;
+  animation:fadeIn .5s ease;
+}
+#welcome-screen.hidden{display:none;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Welcome header */
+.w-header{
+  padding:28px 48px 0;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.w-logo{display:flex;align-items:center;gap:12px;}
+.w-mark{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--gold);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:16px;font-weight:700;
+  box-shadow:0 4px 16px rgba(10,22,40,.2);
+}
+.w-brand{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--text);letter-spacing:-.02em;}
+.w-brand b{color:var(--gold);}
+.w-version{font-size:12px;color:var(--sub);font-family:'DM Mono',monospace;padding:3px 9px;border-radius:20px;background:rgba(10,22,40,.07);border:1px solid rgba(10,22,40,.12);}
+
+/* Hero section */
+.w-hero{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:56px 24px 0;text-align:center;
+}
+.w-eyebrow{
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.w-eyebrow::before,.w-eyebrow::after{content:'';width:32px;height:1px;background:rgba(10,22,40,.2);}
+.w-headline{
+  font-family:'Fraunces',serif;font-size:clamp(32px,5vw,58px);font-weight:700;
+  color:var(--text);letter-spacing:-.03em;line-height:1.1;
+  max-width:740px;margin:0 auto 20px;
+}
+.w-headline em{color:var(--gold);font-style:normal;}
+.w-sub{
+  font-size:17px;color:var(--sub);font-weight:300;line-height:1.7;
+  max-width:520px;margin:0 auto 52px;
+}
+
+/* Dashboard choice cards */
+.w-cards{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  width:100%;max-width:860px;margin:0 auto;padding-bottom:60px;
+}
+.wcard{
+  background:var(--s1);border:1.5px solid var(--b1);border-radius:16px;
+  padding:36px 32px 32px;cursor:pointer;
+  transition:transform .22s, box-shadow .22s, border-color .22s;
+  position:relative;overflow:hidden;text-align:left;
+}
+.wcard::after{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .22s;pointer-events:none;
+  border-radius:16px;
+}
+.wcard.citizen::after{background:radial-gradient(ellipse 100% 80% at 50% -10%,rgba(26,58,107,.07),transparent 70%);}
+.wcard.analyst::after{background:radial-gradient(ellipse 100% 80% at 50% -10%,rgba(10,22,40,.09),transparent 70%);}
+.wcard:hover{transform:translateY(-5px);}
+.wcard.citizen:hover{border-color:rgba(26,58,107,.4);box-shadow:0 20px 60px rgba(26,58,107,.12);}
+.wcard.analyst:hover{border-color:rgba(10,22,40,.4);box-shadow:0 20px 60px rgba(10,22,40,.12);}
+.wcard:hover::after{opacity:1;}
+
+.wcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;}
+.wcard-icon{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+  position:relative;z-index:1;
+}
+.wcard.citizen .wcard-icon{background:rgba(26,58,107,.1);border:1px solid rgba(26,58,107,.2);}
+.wcard.analyst .wcard-icon{background:rgba(10,22,40,.1);border:1px solid rgba(10,22,40,.2);}
+.wcard-badge{
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;position:relative;z-index:1;
+}
+.wcard.citizen .wcard-badge{background:rgba(26,58,107,.1);color:var(--citizen);border:1px solid rgba(26,58,107,.2);}
+.wcard.analyst .wcard-badge{background:rgba(10,22,40,.1);color:var(--gov);border:1px solid rgba(10,22,40,.25);}
+
+.wcard-role{
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:8px;position:relative;z-index:1;
+}
+.wcard.citizen .wcard-role{color:var(--citizen);}
+.wcard.analyst .wcard-role{color:var(--gov);}
+.wcard-title{
+  font-family:'Fraunces',serif;font-size:24px;font-weight:700;
+  color:var(--text);margin-bottom:10px;line-height:1.2;position:relative;z-index:1;
+}
+.wcard-desc{font-size:13px;color:var(--sub);line-height:1.7;margin-bottom:24px;position:relative;z-index:1;}
+
+.wcard-features{list-style:none;margin-bottom:28px;position:relative;z-index:1;}
+.wcard-features li{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:var(--sub);padding:6px 0;
+  border-bottom:1px solid rgba(10,22,40,.06);
+}
+.wcard-features li:last-child{border-bottom:none;}
+.wcard-features li .feat-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.wcard.citizen .feat-dot{background:var(--citizen);}
+.wcard.analyst .feat-dot{background:var(--gov);}
+.wcard-features li b{color:var(--text);font-weight:600;}
+
+.wcard-btn{
+  width:100%;padding:14px;border:none;border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .18s;position:relative;z-index:1;
+  letter-spacing:.01em;
+}
+.wcard.citizen .wcard-btn{background:var(--citizen);color:#fff;}
+.wcard.citizen .wcard-btn:hover{background:#a93226;box-shadow:0 6px 20px rgba(26,58,107,.35);}
+.wcard.analyst .wcard-btn{background:var(--gov);color:#fff;}
+.wcard.analyst .wcard-btn:hover{background:#4a0000;box-shadow:0 6px 20px rgba(10,22,40,.35);}
+
+/* Analyst credential panel */
+.w-analyst-panel{
+  display:none;
+  width:100%;max-width:860px;margin:0 auto;padding:0 0 48px;
+  animation:slideDown .22s ease;
+}
+.w-analyst-panel.vis{display:block;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.wap-inner{
+  background:var(--s1);border:1.5px solid rgba(10,22,40,.25);
+  border-radius:14px;padding:28px 32px;
+  display:grid;grid-template-columns:1fr 1fr 120px;gap:16px;align-items:end;
+}
+.wap-title{
+  grid-column:1/-1;font-family:'Fraunces',serif;font-size:17px;font-weight:600;
+  color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:9px;
+}
+.wap-title span{font-size:13px;font-weight:400;color:var(--sub);}
+.wap-fld label{display:block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--sub);margin-bottom:6px;}
+.wap-fld input{
+  width:100%;background:var(--s2);border:1.5px solid var(--b1);border-radius:8px;
+  color:var(--text);padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;
+  outline:none;transition:border-color .14s;
+}
+.wap-fld input:focus{border-color:var(--gov);}
+.wap-fld input.shake{animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.wap-signin{
+  width:100%;padding:12px;background:var(--gov);color:#fff;
+  border:none;border-radius:8px;font-family:'DM Sans',sans-serif;
+  font-size:14px;font-weight:700;cursor:pointer;transition:background .14s;
+}
+.wap-signin:hover{background:#060e1a;}
+.wap-err{
+  grid-column:1/-1;font-size:12px;color:var(--red);
+  background:rgba(231,76,60,.07);border:1px solid rgba(231,76,60,.2);
+  padding:8px 12px;border-radius:6px;display:none;
+}
+.wap-err.vis{display:block;}
+.wap-hint{grid-column:1/-1;font-size:12px;color:var(--dim);text-align:center;}
+.wap-hint b{color:var(--sub);}
+.wap-back{
+  grid-column:1/-1;background:none;border:none;color:var(--sub);
+  font-size:13px;cursor:pointer;text-align:center;padding:4px;
+  transition:color .14s;
+}
+.wap-back:hover{color:var(--text);}
+
+/* Footer strip */
+.w-footer{
+  padding:18px 48px;border-top:1px solid var(--b1);
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;color:var(--dim);
+}
+.w-footer-feats{display:flex;gap:20px;flex-wrap:wrap;}
+.w-footer-feat{display:flex;align-items:center;gap:6px;}
+.w-footer-feat::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);}
+
+.login-mark{width:44px;height:44px;border-radius:10px;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:17px;font-weight:700;}
+.login-brand{font-family:'Fraunces',serif;font-size:28px;font-weight:600;letter-spacing:-.02em;}
+.login-brand b{color:var(--gold);}
+.login-tagline{font-size:14px;color:var(--sub);margin-bottom:44px;letter-spacing:.01em;}
+
+/* login-cards removed — replaced by welcome wcard system */
+
+.login-divider{display:flex;align-items:center;gap:16px;margin:10px 0 6px;width:100%;}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--b1);}
+.login-divider span{font-size:12px;color:var(--dim);}
+
+/* ── GOV LOGIN FORM (hidden by default) ── */
+.gov-form{
+  width:100%;max-width:400px;
+  background:var(--s1);border:1px solid rgba(10,22,40,.25);
+  border-radius:12px;padding:28px;margin-top:16px;
+  animation:slideUp .22s ease;
+}
+.gov-form.hidden{display:none;}
+@keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.gov-form-title{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.gov-form-sub{font-size:13px;color:var(--sub);margin-bottom:20px;}
+.gf-fld{margin-bottom:14px;}
+.gf-fld label{display:block;font-size:12px;font-weight:500;color:var(--sub);margin-bottom:5px;}
+.gf-fld input{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);color:var(--text);padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .14s;}
+.gf-fld input:focus{border-color:var(--gov);}
+.gf-fld input.err{border-color:var(--red);}
+.gf-err{font-size:12px;color:var(--red);margin-top:-8px;margin-bottom:10px;display:none;}
+.gf-err.vis{display:block;}
+.gov-signin-btn{width:100%;padding:12px;background:var(--gov);color:#fff;border:none;border-radius:var(--rad-s);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .14s;margin-top:4px;}
+.gov-signin-btn:hover{background:#a97ee8;}
+.gov-back{display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--sub);font-size:13px;cursor:pointer;margin-top:12px;padding:4px 0;transition:color .14s;}
+.gov-back:hover{color:var(--text);}
+.demo-hint{font-size:12px;color:var(--dim);text-align:center;margin-top:10px;}
+.demo-hint b{color:var(--sub);}
+
+/* ═══════════════════════════
+   APP SHELL (hidden until login)
+═══════════════════════════ */
+#app{display:none;}
+#app.visible{display:block;}
+
+/* ── HEADER ── */
+.hdr{position:sticky;top:0;z-index:200;height:58px;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--b1);padding:0 36px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.hdr-logo{display:flex;align-items:center;gap:11px;}
+.hdr-mark{width:30px;height:30px;border-radius:6px;background:var(--gold);color:var(--bg);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;font-weight:500;flex-shrink:0;}
+.hdr-title{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.01em;}
+.hdr-title b{color:var(--gold);}
+.hdr-title small{font-family:'DM Sans',sans-serif;font-weight:300;font-size:13px;color:var(--sub);margin-left:5px;}
+.hdr-right{display:flex;align-items:center;gap:14px;}
+.hdr-role-badge{
+  display:flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+  padding:5px 12px;border-radius:20px;
+}
+.hdr-role-badge.citizen{background:rgba(26,58,107,.1);color:var(--citizen);border:1px solid rgba(26,58,107,.2);}
+.hdr-role-badge.gov{background:rgba(10,22,40,.12);color:var(--gov);border:1px solid rgba(10,22,40,.22);}
+.hdr-role-dot{width:6px;height:6px;border-radius:50%;animation:blink 2.5s ease infinite;}
+.citizen .hdr-role-dot{background:var(--citizen);box-shadow:0 0 6px var(--citizen);}
+.gov .hdr-role-dot{background:var(--gov);box-shadow:0 0 6px var(--gov);}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.hdr-user{font-size:13px;color:var(--sub);}
+.hdr-user b{color:var(--text);}
+.logout-btn{padding:6px 13px;background:transparent;border:1px solid var(--b2);color:var(--sub);border-radius:var(--rad-s);font-size:12px;cursor:pointer;transition:all .14s;}
+.logout-btn:hover{color:var(--text);border-color:var(--b2);background:var(--s3);}
+.live{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2.5s ease infinite;}
+.hdr-conn{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub);font-family:'DM Mono',monospace;}
+
+/* ── DASHBOARD PANELS ── */
+.dashboard{display:none;}
+.dashboard.active{display:block;}
+
+/* ── PROGRESS RAIL ── */
+.rail{position:sticky;top:58px;z-index:180;height:48px;background:rgba(247,249,252,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--b1);padding:0 36px;display:flex;align-items:center;overflow-x:auto;gap:0;}
+.rail::-webkit-scrollbar{height:0;}
+.pill{display:flex;align-items:center;gap:7px;height:48px;padding:0 14px;font-size:13px;font-weight:500;color:var(--dim);cursor:pointer;border:none;background:none;white-space:nowrap;transition:color .18s;border-bottom:2px solid transparent;margin-bottom:-1px;}
+.pill:hover{color:var(--sub);}
+.pill.active-c{color:var(--citizen);border-bottom-color:var(--citizen);}
+.pill.active-g{color:var(--gov);border-bottom-color:var(--gov);}
+.pill.done{color:var(--sub);}
+.pill.locked{opacity:.3;cursor:not-allowed;pointer-events:none;}
+.pnum{width:19px;height:19px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0;transition:all .18s;}
+.pill.done .pnum{background:var(--green);border-color:var(--green);color:var(--bg);}
+.pill.active-c .pnum{background:var(--citizen);border-color:var(--citizen);color:var(--bg);}
+.pill.active-g .pnum{background:var(--gov);border-color:var(--gov);color:var(--bg);}
+.psep{color:var(--b1);padding:0 2px;font-size:11px;}
+.ntag{font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:var(--goldbg);color:var(--gold);border:1px solid var(--goldd);}
+.btag{font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:var(--bbg);color:var(--blue);border:1px solid rgba(78,142,224,.25);}
+.atag{font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:var(--pbg);color:var(--gov);border:1px solid rgba(155,111,224,.28);}
+
+/* ── MAIN ── */
+.main{position:relative;z-index:10;max-width:940px;margin:0 auto;padding:36px 36px 80px;}
+
+/* ── SECTIONS ── */
+.sec{display:none;animation:up .25s ease;}
+.sec.active{display:block;}
+@keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SEC HEADER ── */
+.shead{margin-bottom:26px;}
+.sey{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.sey.c{color:var(--citizen);}
+.sey.g{color:var(--gov);}
+.sh{font-family:'Fraunces',serif;font-size:25px;font-weight:600;color:var(--text);letter-spacing:-.01em;line-height:1.2;}
+.sd{font-size:14px;color:var(--sub);margin-top:6px;font-weight:300;line-height:1.6;max-width:580px;}
+
+/* ── CARDS ── */
+.card{background:#ffffff;border:1px solid var(--b1);border-radius:var(--rad);padding:22px;margin-bottom:14px;}
+.card.c-accent{border-color:rgba(62,200,122,.2);}
+.card.g-accent{border-color:rgba(10,22,40,.2);}
+.ctitle{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);margin-bottom:14px;}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.crow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.crow4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
+
+/* ── FIELDS ── */
+.fld{margin-bottom:14px;}
+.fld:last-child{margin-bottom:0;}
+.fld label{display:block;font-size:12px;font-weight:500;color:var(--sub);margin-bottom:5px;}
+.fld input,.fld select,.fld textarea{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);color:var(--text);padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .14s,background .14s;appearance:none;}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gold);background:var(--s3);}
+.fld textarea{resize:vertical;min-height:90px;font-size:13px;line-height:1.6;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+
+/* ── UPLOAD ZONE ── */
+.upz{border:2px dashed var(--b2);border-radius:var(--rad);padding:44px 32px;text-align:center;cursor:pointer;transition:all .2s;position:relative;background:var(--s2);}
+.upz:hover,.upz.drag{border-color:var(--gold);background:var(--goldbg);}
+.upz input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upz-ico{font-size:30px;margin-bottom:11px;line-height:1;}
+.upz-ttl{font-size:16px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.upz-sub{font-size:13px;color:var(--sub);}
+.fchip{display:none;align-items:center;gap:9px;padding:10px 13px;border-radius:var(--rad-s);background:var(--s3);border:1px solid var(--b1);margin-top:10px;font-size:13px;color:var(--gold);}
+.fchip.vis{display:flex;}
+.fchip-nm{font-weight:500;}
+.fchip-sz{color:var(--sub);margin-left:auto;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border:none;cursor:pointer;border-radius:var(--rad-s);transition:all .14s;white-space:nowrap;}
+.btn:disabled{opacity:.38;cursor:not-allowed;}
+.btn-p{background:var(--gold);color:var(--bg);}
+.btn-p:not(:disabled):hover{background:#d4b45c;}
+.btn-c{background:var(--citizen);color:var(--bg);}
+.btn-c:not(:disabled):hover{background:#0f2a52;}
+.btn-gv{background:var(--gov);color:var(--bg);}
+.btn-gv:not(:disabled):hover{background:#060e1a;}
+.btn-o{background:transparent;color:var(--sub);border:1px solid var(--b2);}
+.btn-o:not(:disabled):hover{color:var(--text);background:var(--s3);}
+.btn-ghost{background:transparent;color:var(--sub);padding:9px 14px;font-size:13px;border:none;cursor:pointer;}
+.btn-ghost:hover{color:var(--text);}
+.btn-next{width:100%;justify-content:center;margin-top:6px;padding:13px 24px;font-size:14px;font-weight:600;border-radius:var(--rad-s);border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .14s;}
+.btn-next:disabled{opacity:.38;cursor:not-allowed;}
+.btn-next.c{background:var(--citizen);color:var(--bg);}
+.btn-next.c:not(:disabled):hover{background:#0f2a52;}
+
+/* ── LOADER ── */
+.ldr{height:3px;border-radius:2px;background:var(--b1);margin:16px 0;overflow:hidden;display:none;}
+.ldr.on{display:block;}
+.ldr::after{content:'';display:block;height:100%;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:sw 1.4s ease infinite;width:40%;}
+.ldr.c::after{background:linear-gradient(90deg,transparent,var(--citizen),transparent);}
+.ldr.g::after{background:linear-gradient(90deg,transparent,var(--gov),transparent);}
+@keyframes sw{from{transform:translateX(-150%)}to{transform:translateX(350%)}}
+
+/* ── CHIPS ── */
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:500;}
+.cg{background:var(--gbg);color:var(--green);}
+.cr{background:var(--rbg);color:var(--red);}
+.ca{background:var(--abg);color:var(--amber);}
+.cb{background:var(--bbg);color:var(--blue);}
+.cp{background:var(--pbg);color:var(--gov);}
+.cgold{background:var(--goldbg);color:var(--gold);}
+
+/* ── STAT BOX ── */
+.sbox{background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);padding:16px 14px;text-align:center;}
+.sv{font-family:'Fraunces',serif;font-size:30px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px;}
+.sl{font-size:12px;color:var(--sub);}
+
+/* ── COMPLEXITY BAR ── */
+.cxw{margin-bottom:18px;}
+.cxhdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+.cxl{font-size:13px;color:var(--sub);}
+.cxtrack{height:8px;border-radius:4px;background:var(--s3);overflow:hidden;}
+.cxfill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--gold),var(--red));transition:width 1s cubic-bezier(.16,1,.3,1);}
+
+/* ── GRAPH ── */
+.gwrap{border-radius:var(--rad);overflow:hidden;border:1px solid var(--b1);background:var(--s2);}
+#gc{width:100%;height:470px;display:block;cursor:grab;}
+#gc:active{cursor:grabbing;}
+.gleg{display:flex;flex-wrap:wrap;gap:14px;padding:11px 16px;border-top:1px solid var(--b1);background:var(--s1);}
+.gli{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--sub);}
+.gld{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.gint{font-size:12px;color:var(--dim);padding:7px 16px;background:var(--s1);border-top:1px solid var(--b1);}
+.gtt{position:fixed;background:#ffffff;border:1px solid var(--b1);border-radius:var(--rad-s);padding:10px 14px;font-size:12px;color:var(--text);pointer-events:none;z-index:9999;max-width:210px;line-height:1.7;box-shadow:0 8px 24px rgba(0,0,0,.55);display:none;}
+
+/* ── CLAUSE ITEM ── */
+.clit{border:1px solid var(--b1);border-radius:var(--rad-s);background:var(--s2);padding:13px 15px;margin-bottom:9px;cursor:pointer;transition:border-color .14s;}
+.clit:hover{border-color:var(--b2);}
+.clit.open .clbody{display:block;}
+.cltop{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;}
+.clid{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);background:var(--goldbg);padding:2px 7px;border-radius:3px;flex-shrink:0;}
+.cltype{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;}
+.cltxt{font-size:14px;color:var(--text);line-height:1.5;margin:7px 0 6px;}
+.clmeta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.cmitem{font-size:12px;color:var(--sub);}
+.cmitem b{color:var(--text);font-weight:500;}
+.cbr{display:flex;align-items:center;gap:5px;margin-left:auto;}
+.cbt{width:60px;height:3px;border-radius:2px;background:var(--b1);overflow:hidden;}
+.cbf{height:100%;border-radius:2px;background:var(--gold);}
+.cpct{font-size:11px;color:var(--gold);min-width:27px;text-align:right;}
+.clbody{display:none;margin-top:9px;padding-top:9px;border-top:1px solid var(--b1);}
+.clgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.clg{background:var(--s3);padding:9px;border-radius:var(--rad-s);}
+.clgl{font-size:11px;color:var(--dim);margin-bottom:2px;}
+.clgv{font-size:13px;color:var(--text);}
+.ambadge{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 7px;border-radius:3px;background:var(--abg);color:var(--amber);margin-left:auto;}
+
+/* ── TRANSPARENCY GATE ── */
+.transparency-gate{
+  border:1px dashed rgba(10,22,40,.35);
+  border-radius:var(--rad);
+  padding:28px 22px;
+  text-align:center;
+  background:rgba(10,22,40,.03);
+  margin:18px 0;
+}
+.tg-ico{font-size:28px;margin-bottom:12px;line-height:1;}
+.tg-title{font-size:16px;font-weight:600;color:var(--gov);margin-bottom:6px;font-family:'Fraunces',serif;}
+.tg-desc{font-size:13px;color:var(--sub);line-height:1.6;max-width:400px;margin:0 auto 16px;}
+.tg-feats{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:18px;}
+.tg-feat{font-size:12px;padding:4px 10px;border-radius:20px;background:var(--pbg);color:var(--gov);border:1px solid rgba(10,22,40,.22);}
+
+/* ── VERDICT ── */
+.vcard{border-radius:var(--rad);padding:22px;margin-bottom:18px;display:flex;align-items:flex-start;gap:16px;border:1px solid transparent;}
+.vcard.elig{background:var(--gbg);border-color:rgba(62,200,122,.2);}
+.vcard.noelig{background:var(--rbg);border-color:rgba(224,80,80,.2);}
+.vcard.cond{background:var(--abg);border-color:rgba(224,152,64,.2);}
+.vico{font-size:34px;line-height:1;flex-shrink:0;}
+.vstatus{font-family:'Fraunces',serif;font-size:21px;font-weight:700;line-height:1.2;margin-bottom:5px;}
+.vplain{font-size:14px;color:var(--sub);line-height:1.6;}
+.cgreen{color:var(--green);}
+.cred{color:var(--red);}
+.camber{color:var(--amber);}
+
+/* ── TRACE ── */
+.titem{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--b1);}
+.titem:last-child{border-bottom:none;}
+.tnum{width:22px;height:22px;border-radius:50%;border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-size:10px;font-family:'DM Mono',monospace;color:var(--sub);flex-shrink:0;margin-top:2px;}
+.tcid{font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:2px;}
+.tcond{font-size:14px;color:var(--text);}
+.tres{font-size:12px;margin-top:3px;font-weight:500;}
+.tpass{color:var(--green);}
+.tfail{color:var(--red);}
+.tunk{color:var(--amber);}
+.twarn{font-size:12px;color:var(--amber);margin-top:2px;font-style:italic;}
+
+/* ── CONFLICT ── */
+.cflt{background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);border-left:3px solid var(--red);padding:15px 17px;margin-bottom:9px;}
+.cflt.med{border-left-color:var(--amber);}
+.cflthead{display:flex;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap;}
+.cflscheme{font-size:14px;font-weight:600;color:var(--text);}
+.cfltdesc{font-size:14px;color:var(--sub);line-height:1.55;margin-bottom:9px;}
+.cfltsides{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px;}
+.cflts{background:var(--s3);padding:9px 11px;border-radius:var(--rad-s);}
+.cflsl{font-size:11px;color:var(--dim);margin-bottom:2px;}
+.cflsv{font-size:13px;color:var(--text);}
+.recstrip{font-size:13px;color:#1a5276;padding:8px 11px;border-radius:var(--rad-s);background:rgba(41,128,185,.08);border:1px solid rgba(41,128,185,.2);margin-top:9px;}
+
+/* ── SCENARIO ── */
+.scitem{background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);padding:13px 17px;margin-bottom:9px;}
+.schead{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap;}
+.sclbl{font-size:14px;font-weight:600;color:var(--text);}
+.scchg{font-size:13px;color:var(--sub);}
+.flipbadge{font-size:11px;padding:2px 8px;border-radius:3px;background:var(--bbg);color:var(--blue);border:1px solid rgba(78,142,224,.22);}
+.scrow{display:flex;gap:8px;align-items:stretch;margin-bottom:8px;}
+.scrow input{flex:1;background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);color:var(--text);padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .14s;}
+.scrow input:focus{border-color:var(--gold);background:var(--s3);}
+.scrow input.mono{font-family:'DM Mono',monospace;font-size:13px;}
+
+/* ── SUMMARY / LANG ── */
+.snum{background:rgba(144,0,0,.06);border:1px solid rgba(10,22,40,.14);border-radius:var(--rad-s);padding:13px;}
+.snv{font-family:'Fraunces',serif;font-size:21px;font-weight:700;color:var(--gold);}
+.snl{font-size:12px;color:var(--sub);margin-top:2px;}
+.lchk{display:flex;gap:8px;margin-bottom:6px;font-size:14px;color:var(--text);}
+.lchk::before{content:'✓';color:var(--green);flex-shrink:0;font-weight:600;}
+.lcrs{display:flex;gap:8px;margin-bottom:6px;font-size:14px;color:var(--text);}
+.lcrs::before{content:'✗';color:var(--red);flex-shrink:0;font-weight:600;}
+.jtag{display:inline-block;font-size:12px;padding:3px 9px;border-radius:20px;background:var(--s3);border:1px solid var(--b1);color:var(--sub);margin:3px;}
+.langbar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--s3);border-radius:var(--rad-s);border:1px solid var(--b1);margin-bottom:14px;flex-wrap:wrap;}
+.langlbl{font-size:12px;color:var(--sub);margin-right:3px;}
+.langbtn{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--b1);background:transparent;color:var(--sub);cursor:pointer;transition:all .14s;}
+.langbtn:hover{border-color:var(--b2);color:var(--text);}
+.langbtn.on{background:rgba(10,22,40,.07);border-color:var(--gold);color:var(--gold);}
+
+/* ── RAW JSON ── */
+.rtog{font-size:12px;color:var(--dim);cursor:pointer;background:none;border:none;display:flex;align-items:center;gap:6px;padding:6px 0;margin-top:6px;transition:color .14s;}
+.rtog:hover{color:var(--sub);}
+.rpre{background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);padding:14px;margin-top:6px;font-family:'DM Mono',monospace;font-size:12px;color:#1e3a5f;white-space:pre-wrap;overflow-x:auto;max-height:250px;overflow-y:auto;display:none;line-height:1.8;}
+.rpre.open{display:block;animation:up .18s ease;}
+
+/* ── NOTICES ── */
+.note{display:flex;align-items:flex-start;gap:9px;padding:11px 14px;border-radius:var(--rad-s);font-size:13px;margin-bottom:14px;}
+.note-i{background:var(--goldbg);color:var(--sub);border:1px solid rgba(201,168,76,.18);}
+.note-c{background:rgba(26,58,107,.06);color:var(--citizen);border:1px solid rgba(26,58,107,.18);}
+.note-gv{background:rgba(10,22,40,.06);color:var(--gov);border:1px solid rgba(10,22,40,.18);}
+.note-e{background:var(--rbg);color:var(--red);border:1px solid rgba(224,80,80,.22);display:none;}
+.note-e.vis{display:flex;}
+.note-ok{background:var(--gbg);color:var(--green);border:1px solid rgba(62,200,122,.22);display:none;}
+.note-ok.vis{display:flex;}
+.nicon{flex-shrink:0;font-size:14px;}
+.qualrow{display:flex;align-items:center;gap:12px;padding:9px 13px;background:var(--s3);border-radius:var(--rad-s);border:1px solid var(--b1);flex-wrap:wrap;margin-bottom:14px;font-size:13px;color:var(--sub);}
+
+/* ── GOV TABLE ── */
+.gov-tbl{width:100%;border-collapse:collapse;font-size:14px;}
+.gov-tbl th{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--sub);padding:10px 14px;text-align:left;border-bottom:1px solid var(--b1);}
+.gov-tbl td{padding:13px 14px;border-bottom:1px solid var(--b1);color:var(--text);vertical-align:middle;}
+.gov-tbl tr:last-child td{border-bottom:none;}
+.gov-tbl tr:hover td{background:var(--s2);}
+.doc-name{font-weight:500;color:var(--text);}
+.doc-sub{font-size:12px;color:var(--sub);margin-top:2px;}
+.mini-bar{height:5px;border-radius:3px;background:var(--s3);overflow:hidden;width:80px;display:inline-block;vertical-align:middle;margin-right:6px;}
+.mini-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green),var(--gold),var(--red));}
+.act-btn{font-size:12px;padding:5px 11px;border-radius:4px;border:1px solid var(--b2);background:transparent;color:var(--sub);cursor:pointer;transition:all .14s;}
+.act-btn:hover{color:var(--text);background:var(--s3);}
+.exp-btn{padding:7px 14px;font-size:12px;font-weight:600;border-radius:var(--rad-s);border:1px solid var(--b2);background:transparent;color:var(--sub);cursor:pointer;transition:all .14s;display:inline-flex;align-items:center;gap:5px;}
+.exp-btn:hover{color:var(--text);background:var(--s3);}
+.exp-btn.primary{background:var(--gov);color:#fff;border-color:transparent;}
+.exp-btn.primary:hover{background:#060e1a;}
+
+/* ── MISC ── */
+.div{display:flex;align-items:center;gap:11px;margin:22px 0 18px;}
+.divl{flex:1;height:1px;background:var(--b1);}
+.divt{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);}
+.sfooter{margin-top:28px;padding-top:20px;border-top:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.sfhint{font-size:13px;color:var(--sub);}
+.lknote{text-align:center;padding:56px 20px;color:var(--dim);font-size:14px;}
+.lkico{font-size:28px;margin-bottom:10px;opacity:.35;}
+.lknote p{color:var(--sub);margin-top:5px;}
+
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--s1);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+
+@media(max-width:680px){
+  .hdr,.rail,.main{padding-left:16px;padding-right:16px;}
+  .crow,.crow3,.crow4,.frow,.frow3{grid-template-columns:1fr;}
+  .cfltsides{grid-template-columns:1fr;}
+  .clgrid{grid-template-columns:1fr 1fr;}
+  .login-cards{grid-template-columns:1fr;}
+  .w-cards{grid-template-columns:1fr;}
+  .wap-inner{grid-template-columns:1fr;}
+  .w-header{padding:20px 16px 0;}
+  .w-hero{padding:36px 16px 0;}
+  .w-footer{padding:16px;flex-direction:column;gap:10px;}
+}
+
+/* ── CRIMSON THEME OVERRIDES ── */
+.btn-p{background:var(--gold);color:#fff;}
+.btn-p:not(:disabled):hover{background:#060e1a;}
+.btn-c{background:var(--citizen);color:#fff;}
+.btn-gv{background:var(--gov);color:#fff;}
+.btn-next.c{background:var(--citizen);color:#fff;}
+.login-mark{background:var(--gold);color:#fff;}
+.hdr-mark{background:var(--gold);color:#fff;}
+.sv{color:var(--gold);}
+.clid{color:var(--gold);background:rgba(10,22,40,.07);}
+.cpct{color:var(--gold);}
+.cbf{background:var(--gold);}
+.snv{color:var(--gold);}
+.lchk::before{color:var(--green);}
+.lcrs::before{color:var(--red);}
+.ntag{background:rgba(10,22,40,.07);color:var(--gold);border:1px solid rgba(10,22,40,.2);}
+.atag{background:rgba(10,22,40,.08);color:var(--gov);border:1px solid rgba(10,22,40,.25);}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gold);background:var(--s2);}
+.upz:hover,.upz.drag{border-color:var(--gold);background:rgba(10,22,40,.03);}
+.fchip{color:var(--gold);}
+.gov-signin-btn{background:var(--gov);color:#fff;}
+.gov-signin-btn:hover{background:#060e1a;}
+.lcard-enter{color:#fff !important;}
+
+/* ── HOW IT WORKS ── */
+.hiw-wrap{
+  margin-top:28px;
+  border:1px solid var(--b1);border-radius:var(--rad);
+  background:var(--s1);padding:22px 24px;
+}
+.hiw-title{
+  font-family:'Fraunces',serif;font-size:16px;font-weight:700;
+  color:var(--text);margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.hiw-title::before{content:'💡';font-size:18px;}
+.hiw-steps{
+  display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
+  align-items:start;gap:8px;
+}
+.hiw-step{
+  background:#ffffff;border:1px solid var(--b1);
+  border-radius:var(--rad);padding:16px 14px;
+  text-align:center;position:relative;
+}
+.hiw-num{
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:#fff;
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  padding:2px 8px;border-radius:10px;letter-spacing:.05em;
+}
+.hiw-ico{font-size:26px;margin:8px 0 10px;line-height:1;}
+.hiw-label{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.hiw-desc{font-size:12px;color:var(--sub);line-height:1.6;}
+.hiw-arrow{
+  font-size:20px;color:var(--b2);
+  align-self:center;padding-top:24px;
+  font-weight:300;
+}
+
+/* ── EXPLAIN SECTION ── */
+.exp-clause-card{
+  background:#ffffff;border:1px solid var(--b1);border-radius:var(--rad);
+  padding:18px 20px;margin-bottom:10px;
+  transition:border-color .18s;
+}
+.exp-clause-card:hover{border-color:var(--b2);}
+.exp-clause-card.explained{border-color:rgba(26,58,107,.25);background:rgba(26,58,107,.02);}
+.exp-card-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.exp-clause-id{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
+  color:var(--gold);background:var(--goldbg);
+  padding:2px 8px;border-radius:4px;flex-shrink:0;
+}
+.exp-clause-type{
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 8px;border-radius:4px;flex-shrink:0;
+}
+.exp-type-ELIGIBILITY{background:rgba(22,163,74,.1);color:#16a34a;}
+.exp-type-DISQUALIFICATION{background:rgba(220,38,38,.1);color:#dc2626;}
+.exp-type-BENEFIT{background:rgba(29,78,216,.1);color:#1d4ed8;}
+.exp-type-OBLIGATION{background:rgba(217,119,6,.1);color:#d97706;}
+.exp-type-DEFINITION{background:rgba(67,56,202,.1);color:#4338ca;}
+.exp-clause-raw{font-size:13px;color:var(--sub);line-height:1.6;flex:1;}
+.exp-btn-explain{
+  background:none;border:1.5px solid var(--b1);border-radius:var(--rad-s);
+  color:var(--sub);font-size:12px;font-family:'DM Sans',sans-serif;
+  padding:6px 12px;cursor:pointer;transition:all .15s;flex-shrink:0;
+  display:flex;align-items:center;gap:5px;
+}
+.exp-btn-explain:hover{border-color:var(--citizen);color:var(--citizen);background:rgba(26,58,107,.05);}
+.exp-btn-explain.loading{opacity:.5;pointer-events:none;}
+.exp-explanation-box{
+  margin-top:12px;padding:14px 16px;
+  background:linear-gradient(135deg,rgba(26,58,107,.04),rgba(10,22,40,.03));
+  border:1px solid rgba(26,58,107,.15);border-radius:var(--rad-s);
+  border-left:3px solid var(--citizen);
+  animation:fadeInUp .2s ease;
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.exp-exp-label{
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--citizen);margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.exp-exp-label::before{content:'✨';}
+.exp-exp-text{font-size:14px;color:var(--text);line-height:1.7;}
+.exp-exp-example{
+  margin-top:10px;padding:10px 12px;background:rgba(10,22,40,.03);
+  border-radius:var(--rad-s);font-size:13px;color:var(--sub);line-height:1.6;
+  border:1px solid var(--b1);
+}
+.exp-exp-example::before{content:'📌 Example: ';font-weight:600;color:var(--text);}
+@media(max-width:680px){
+  .hiw-steps{grid-template-columns:1fr;}
+  .hiw-arrow{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="gtt" id="gtt"></div>
+
+<!-- ══════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════ -->
+<div id="welcome-screen">
+
+  <!-- Welcome Header -->
+  <header class="w-header">
+    <div class="w-logo">
+      <div class="w-mark">PG</div>
+      <div class="w-brand">Policy<b>Graph</b> AI</div>
+    </div>
+    <div class="w-version">v2.0 · India Policy Intelligence</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="w-hero">
+    <div class="w-eyebrow">AI-Powered Policy Intelligence</div>
+    <h1 class="w-headline">
+      Understand any <em>government scheme</em><br>in minutes, not months
+    </h1>
+    <p class="w-sub">
+      Upload a policy PDF. Our AI extracts every eligibility clause, builds a knowledge graph, and tells you exactly whether you qualify — in plain language.
+    </p>
+
+    <!-- Two dashboard cards -->
+    <div class="w-cards">
+
+      <!-- CITIZEN -->
+      <div class="wcard citizen" onclick="loginAs('citizen')">
+        <div class="wcard-top">
+          <div class="wcard-icon">👤</div>
+          <div class="wcard-badge">● Free Access</div>
+        </div>
+        <div class="wcard-role">For Citizens</div>
+        <div class="wcard-title">Check Your Eligibility</div>
+        <div class="wcard-desc">Upload a policy, enter your details, and get a plain-language verdict. No jargon, no confusion.</div>
+        <ul class="wcard-features">
+          <li><div class="feat-dot"></div><b>PDF Upload</b> — any government scheme</li>
+          <li><div class="feat-dot"></div><b>Eligibility Verdict</b> — instant pass/fail with reasoning</li>
+          <li><div class="feat-dot"></div><b>What-If Simulator</b> — change income, age, category</li>
+          <li><div class="feat-dot"></div><b>7 Languages</b> — Hindi, Tamil, Bengali &amp; more</li>
+          <li><div class="feat-dot"></div><b>Knowledge Graph</b> — visual clause map</li>
+        </ul>
+        <button class="wcard-btn">Enter Citizen Dashboard →</button>
+      </div>
+
+      <!-- ANALYST -->
+      <div class="wcard analyst" onclick="toggleAnalystPanel()">
+        <div class="wcard-top">
+          <div class="wcard-icon">🏛️</div>
+          <div class="wcard-badge">🔒 Restricted</div>
+        </div>
+        <div class="wcard-role">For Policy Analysts</div>
+        <div class="wcard-title">Governance &amp; Transparency</div>
+        <div class="wcard-desc">Full transparency mode — raw clause data, confidence scores, conflict detection, and export tools.</div>
+        <ul class="wcard-features">
+          <li><div class="feat-dot"></div><b>Transparency Mode</b> — clause IR + confidence scores</li>
+          <li><div class="feat-dot"></div><b>Complexity Breakdown</b> — type-level scoring</li>
+          <li><div class="feat-dot"></div><b>Full Reasoning Trace</b> — every inference step</li>
+          <li><div class="feat-dot"></div><b>Conflict Detection</b> — cross-scheme comparison</li>
+          <li><div class="feat-dot"></div><b>Export</b> — JSON, CSV, Graph data</li>
+        </ul>
+        <button class="wcard-btn" onclick="toggleAnalystPanel();event.stopPropagation()">Sign In as Analyst →</button>
+      </div>
+
+    </div><!-- /w-cards -->
+
+    <!-- Analyst credential panel (slides in below cards) -->
+    <div class="w-analyst-panel" id="w-analyst-panel">
+      <div class="wap-inner">
+        <div class="wap-title">🔐 Analyst Sign In <span>— Enter your organisation credentials</span></div>
+        <div class="wap-fld">
+          <label>Email</label>
+          <input type="email" id="wap-email" placeholder="analyst@gov.in" autocomplete="email" onkeydown="if(event.key==='Enter')doWapLogin()"/>
+        </div>
+        <div class="wap-fld">
+          <label>Password</label>
+          <input type="password" id="wap-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doWapLogin()"/>
+        </div>
+        <button class="wap-signin" onclick="doWapLogin()">Sign In →</button>
+        <div class="wap-err" id="wap-err">Incorrect credentials. Use <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4a2b242b2633393e0a2d253c642324">[email&#160;protected]</a> / analyst123</div>
+        <div class="wap-hint">Demo credentials: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2d3dcd3decbc1c6f2d5ddc49cdbdc">[email&#160;protected]</a></b> / <b>analyst123</b></div>
+        <button class="wap-back" onclick="toggleAnalystPanel()">✕ Cancel</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="w-footer">
+    <div>PolicyGraph AI 2.0 — Built on AWS Bedrock · Textract · NetworkX</div>
+    <div class="w-footer-feats">
+      <span class="w-footer-feat">Neuro-Symbolic Reasoning</span>
+      <span class="w-footer-feat">7 Indian Languages</span>
+      <span class="w-footer-feat">Real-time PDF Analysis</span>
+    </div>
+  </footer>
+
+</div><!-- /welcome-screen -->
+
+
+<!-- ══════════════════════════════════════
+     APP SHELL
+══════════════════════════════════════ -->
+<div id="app">
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-logo">
+    <div class="hdr-mark">PG</div>
+    <div class="hdr-title">Policy<b>Graph</b> AI <small>2.0</small></div>
+  </div>
+  <div class="hdr-right">
+    <div class="hdr-conn"><div class="live"></div><span style="font-size:12px;color:var(--sub);font-family:'DM Mono',monospace">Live API</span></div>
+    <div class="hdr-role-badge citizen" id="hdr-role-badge">
+      <div class="hdr-role-dot"></div>
+      <span id="hdr-role-txt">Citizen</span>
+    </div>
+    <div class="hdr-user" id="hdr-user"></div>
+    <button class="logout-btn" onclick="doLogout()">Sign Out</button>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════
+     CITIZEN DASHBOARD
+════════════════════════════════════════ -->
+<div class="dashboard active" id="dash-citizen">
+  <nav class="rail">
+    <button class="pill active-c" id="cpill-upload"   onclick="cgo('upload')"><span class="pnum">1</span>Upload</button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="cpill-analyze"  onclick="cgo('analyze')"><span class="pnum">2</span>Analyse</button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="cpill-graph"    onclick="cgo('graph')"><span class="pnum">3</span>Graph</button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="cpill-elig"     onclick="cgo('elig')"><span class="pnum">4</span>Eligibility</button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="cpill-explain"  onclick="cgo('explain')"><span class="pnum">5</span>Explain <span class="ntag" style="background:rgba(29,78,216,.1);color:#1d4ed8;border-color:rgba(29,78,216,.25)">New</span></button>
+    <button class="pill locked"   id="cpill-simulate" onclick="cgo('simulate')"><span class="pnum">6</span>What-If <span class="ntag">New</span></button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="cpill-summary"  onclick="cgo('summary')"><span class="pnum">7</span>Summary <span class="btag">Beta</span></button>
+  </nav>
+  <main class="main">
+
+  <!-- C1: UPLOAD -->
+  <section class="sec active" id="csec-upload">
+    <div class="shead">
+      <div class="sey c">Citizen · Step 1 of 6</div>
+      <div class="sh">Upload a Policy Document</div>
+      <div class="sd">Drop a government policy PDF. Uploads directly to AWS S3 — your file never passes through the app server.</div>
+    </div>
+    <div class="note note-c"><span class="nicon">👤</span>You're in <b>Citizen mode</b> — check if you qualify for this scheme in plain language with a full verdict.</div>
+    <div class="card">
+      <div class="upz" id="upz">
+        <input type="file" id="pdfinp" accept=".pdf" onchange="onFile()"/>
+        <div class="upz-ico">📄</div>
+        <div class="upz-ttl">Drop your PDF here, or click to browse</div>
+        <div class="upz-sub">Government policy documents · PDF only</div>
+      </div>
+      <div class="fchip" id="fchip"><span>📄</span><span class="fchip-nm" id="fnm"></span><span class="fchip-sz" id="fsz"></span></div>
+    </div>
+    <div class="note note-e" id="err-up"><span class="nicon">⚠</span><span id="err-up-t"></span></div>
+    <div class="note note-ok" id="ok-up"><span class="nicon">✓</span>File ready — click <strong>Upload &amp; Continue</strong>.</div>
+    <div class="ldr c" id="ld-up"></div>
+    <button class="btn-next c" id="btn-up" disabled onclick="doUpload()">Upload &amp; Continue →</button>
+
+    <!-- HOW IT WORKS -->
+    <div class="hiw-wrap">
+      <div class="hiw-title">How it Works</div>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-num">01</div>
+          <div class="hiw-ico">📄</div>
+          <div class="hiw-label">Upload PDF</div>
+          <div class="hiw-desc">Drop any government scheme PDF. It uploads securely to AWS S3 — the app never stores your file.</div>
+        </div>
+        <div class="hiw-arrow">→</div>
+        <div class="hiw-step">
+          <div class="hiw-num">02</div>
+          <div class="hiw-ico">🤖</div>
+          <div class="hiw-label">AI Reads Clauses</div>
+          <div class="hiw-desc">AWS Textract extracts the text. Amazon Bedrock (Claude 3 Haiku) parses every eligibility rule into structured logic.</div>
+        </div>
+        <div class="hiw-arrow">→</div>
+        <div class="hiw-step">
+          <div class="hiw-num">03</div>
+          <div class="hiw-ico">🔗</div>
+          <div class="hiw-label">Graph Built</div>
+          <div class="hiw-desc">Clauses become a knowledge graph — showing how every rule connects, and which ones block or allow eligibility.</div>
+        </div>
+        <div class="hiw-arrow">→</div>
+        <div class="hiw-step">
+          <div class="hiw-num">04</div>
+          <div class="hiw-ico">✅</div>
+          <div class="hiw-label">Instant Verdict</div>
+          <div class="hiw-desc">Enter your details. The symbolic engine checks every clause and tells you exactly whether you qualify — in plain language.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C2: ANALYSE -->
+  <section class="sec" id="csec-analyze">
+    <div class="shead">
+      <div class="sey c">Citizen · Step 2 of 6</div>
+      <div class="sh">Analysing Your Document</div>
+      <div class="sd">Textract reads the PDF, Bedrock extracts structured clauses, and NetworkX builds the knowledge graph. Takes 10–25 seconds.</div>
+    </div>
+    <div class="card" id="ancard">
+      <div class="note note-c" style="margin-bottom:14px;"><span class="nicon">⬡</span>File uploaded successfully. Start the AI analysis pipeline.</div>
+      <button class="btn btn-c" id="btn-an" onclick="doAnalyze()">▶ Run Analysis</button>
+    </div>
+    <div class="ldr c" id="ld-an"></div>
+    <div class="note note-e" id="err-an"><span class="nicon">⚠</span><span id="err-an-t"></span></div>
+    <div id="an-res" style="display:none">
+      <div class="crow4" id="an-stats" style="margin-bottom:14px;"></div>
+      <div class="card">
+        <div class="ctitle">Policy Complexity</div>
+        <div class="cxw">
+          <div class="cxhdr"><span class="cxl" id="cxl">Score: —</span><span id="cxchip"></span></div>
+          <div class="cxtrack"><div class="cxfill" id="cxf" style="width:0%"></div></div>
+        </div>
+        <div id="qualrow" class="qualrow"></div>
+      </div>
+      <div class="sfooter">
+        <span class="sfhint">Analysis complete.</span>
+        <button class="btn btn-c" onclick="cgo('graph')">View Knowledge Graph →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- C3: GRAPH -->
+  <section class="sec" id="csec-graph">
+    <div class="shead">
+      <div class="sey c">Citizen · Step 3 of 6</div>
+      <div class="sh">Knowledge Graph</div>
+      <div class="sd">A visual map of how every clause connects. Colour-coded by type. Scroll to zoom, drag to pan, hover for details.</div>
+    </div>
+    <div id="glocked" class="lknote" style="display:none"><div class="lkico">🔒</div>Complete Step 2 first.</div>
+    <div id="gcont" style="display:none">
+      <div class="gwrap">
+        <canvas id="gc"></canvas>
+        <div class="gleg">
+          <div class="gli"><div class="gld" style="background:#0a1628"></div>Policy</div>
+          <div class="gli"><div class="gld" style="background:#27ae60"></div>Eligibility</div>
+          <div class="gli"><div class="gld" style="background:#e74c3c"></div>Disqualification</div>
+          <div class="gli"><div class="gld" style="background:#2980b9"></div>Benefit</div>
+          <div class="gli"><div class="gld" style="background:#e67e22"></div>Obligation</div>
+          <div class="gli"><div class="gld" style="background:#8e6060"></div>Other</div>
+        </div>
+        <div class="gint">Scroll to zoom · Drag to pan · Hover a node for details</div>
+      </div>
+      <div class="sfooter">
+        <span class="sfhint" id="gnodecount"></span>
+        <button class="btn btn-c" onclick="cgo('elig')">Check My Eligibility →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- C4: ELIGIBILITY -->
+  <section class="sec" id="csec-elig">
+    <div class="shead">
+      <div class="sey c">Citizen · Step 4 of 6</div>
+      <div class="sh">Eligibility Check</div>
+      <div class="sd">Enter your profile. The AI evaluates every clause and gives you a plain-language verdict with reasons.</div>
+    </div>
+    <div id="elocked" class="lknote" style="display:none"><div class="lkico">🔒</div>Complete Step 2 first.</div>
+    <div id="econt" style="display:none">
+      <div class="card c-accent">
+        <div class="ctitle">Your Profile</div>
+        <div class="frow">
+          <div class="fld"><label>Age</label><input type="number" id="e-age" placeholder="21"/></div>
+          <div class="fld"><label>Annual Income (₹)</label><input type="number" id="e-inc" placeholder="450000"/></div>
+        </div>
+        <div class="frow3">
+          <div class="fld"><label>Academic Marks (%)</label><input type="number" id="e-mks" placeholder="85"/></div>
+          <div class="fld"><label>Category</label>
+            <select id="e-cat"><option value="">General</option><option value="sc">SC</option><option value="st">ST</option><option value="obc">OBC</option><option value="ews">EWS</option></select>
+          </div>
+          <div class="fld"><label>State / Domicile</label><input id="e-st" placeholder="Maharashtra"/></div>
+        </div>
+        <button class="btn btn-c" id="btn-el" onclick="doElig()">Check My Eligibility</button>
+      </div>
+      <div class="ldr c" id="ld-el"></div>
+      <div class="note note-e" id="err-el"><span class="nicon">⚠</span><span id="err-el-t"></span></div>
+      <div id="el-res" style="display:none">
+        <div class="vcard" id="vcard">
+          <div class="vico" id="vico"></div>
+          <div><div class="vstatus" id="vstatus"></div><div class="vplain" id="vplain"></div></div>
+        </div>
+
+        <!-- CITIZEN SEES: Simple pass/fail summary only -->
+        <div class="crow3" id="el-stats" style="margin-bottom:14px;"></div>
+
+        <!-- TRANSPARENCY GATE — replaces full reasoning trace for citizens -->
+        <div class="transparency-gate">
+          <div class="tg-ico">🔍</div>
+          <div class="tg-title">Transparency Mode — Analyst Only</div>
+          <div class="tg-desc">The full reasoning trace, clause-level decisions, confidence scores, and raw inference data are reserved for verified policy analysts.</div>
+          <div class="tg-feats">
+            <span class="tg-feat">Reasoning Trace</span>
+            <span class="tg-feat">Clause Citations</span>
+            <span class="tg-feat">Confidence Scores</span>
+            <span class="tg-feat">Ambiguity Flags</span>
+            <span class="tg-feat">Raw JSON</span>
+          </div>
+          <button class="btn btn-gv" style="margin:0 auto;" onclick="doLogout()">Sign In as Analyst to Access →</button>
+        </div>
+
+        <div class="sfooter">
+          <span class="sfhint">Eligibility evaluated.</span>
+          <button class="btn btn-c" onclick="cgo('simulate')">Try What-If Scenarios →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- C5: EXPLAIN (View Explanation) -->
+  <section class="sec" id="csec-explain">
+    <div class="shead">
+      <div class="sey c">Citizen · Step 5 of 7 · <span class="ntag" style="background:rgba(29,78,216,.1);color:#1d4ed8;border-color:rgba(29,78,216,.25);vertical-align:middle">New</span></div>
+      <div class="sh">View Explanation</div>
+      <div class="sd">Understand what each clause in this policy actually means — in plain, everyday language. No legal jargon.</div>
+    </div>
+    <div id="explocked" class="lknote"><div class="lkico">🔒</div>Complete Step 2 (Analyse) first to unlock clause explanations.</div>
+    <div id="expcont" style="display:none">
+
+      <!-- Search / filter bar -->
+      <div class="card" style="padding:14px 18px;">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <input id="exp-search" placeholder="Search clauses… e.g. income, age, category"
+            style="flex:1;min-width:200px;background:var(--s2);border:1.5px solid var(--b1);border-radius:var(--rad-s);
+                   color:var(--text);padding:9px 13px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;"
+            oninput="filterExplain()"/>
+          <select id="exp-filter" onchange="filterExplain()"
+            style="background:var(--s2);border:1.5px solid var(--b1);border-radius:var(--rad-s);
+                   color:var(--text);padding:9px 13px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;">
+            <option value="all">All Clauses</option>
+            <option value="ELIGIBILITY">Eligibility</option>
+            <option value="DISQUALIFICATION">Disqualification</option>
+            <option value="BENEFIT">Benefit</option>
+            <option value="OBLIGATION">Obligation</option>
+            <option value="DEFINITION">Definition</option>
+          </select>
+          <span id="exp-count" style="font-size:13px;color:var(--sub);white-space:nowrap;"></span>
+        </div>
+      </div>
+
+      <!-- Explain all button -->
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:4px;">
+        <button class="btn btn-c" id="btn-expall" onclick="doExplainAll()">✨ Explain All Clauses in Plain Language</button>
+        <div class="ldr c" id="ld-exp" style="flex:1;margin:0;"></div>
+      </div>
+      <div class="note note-e" id="err-exp"><span class="nicon">⚠</span><span id="err-exp-t"></span></div>
+
+      <!-- Clause cards list -->
+      <div id="exp-list"></div>
+
+      <div class="sfooter" id="exp-footer" style="display:none">
+        <span class="sfhint">All clauses explained.</span>
+        <button class="btn btn-c" onclick="cgo('simulate')">Try What-If Scenarios →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- C6: SIMULATE -->
+  <section class="sec" id="csec-simulate">
+    <div class="shead">
+      <div class="sey c">Citizen · Step 6 of 7 · <span class="ntag" style="vertical-align:middle">New</span></div>
+      <div class="sh">What-If Scenario Simulation</div>
+      <div class="sd">Change income, age, or marks — see instantly whether your eligibility flips.</div>
+    </div>
+    <div id="slocked" class="lknote" style="display:none"><div class="lkico">🔒</div>Complete Step 4 first.</div>
+    <div id="scont" style="display:none">
+      <div class="card c-accent">
+        <div class="ctitle">Base Profile <span style="font-weight:400;color:var(--dim);text-transform:none;letter-spacing:0;">(pre-filled from Step 4)</span></div>
+        <div class="frow">
+          <div class="fld"><label>Age</label><input type="number" id="sc-age"/></div>
+          <div class="fld"><label>Income (₹)</label><input type="number" id="sc-inc"/></div>
+        </div>
+        <div class="frow">
+          <div class="fld"><label>Marks (%)</label><input type="number" id="sc-mks"/></div>
+          <div class="fld"><label>Category</label>
+            <select id="sc-cat"><option value="">General</option><option value="sc">SC</option><option value="st">ST</option><option value="obc">OBC</option><option value="ews">EWS</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ctitle">What-If Scenarios</div>
+        <p style="font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:12px;">Give each scenario a name and a JSON object of changes — e.g. <code style="background:var(--s3);padding:1px 5px;border-radius:3px;font-family:DM Mono,monospace">{"income":280000}</code></p>
+        <div id="scrows"><div class="scrow" id="scrow-0"><input placeholder='Label — "Lower income"' id="sc0-lbl"/><input placeholder='{"income":280000}' id="sc0-chg" class="mono"/></div></div>
+        <button class="btn-ghost" onclick="addSc()" style="margin-top:6px;">+ Add scenario</button>
+      </div>
+      <button class="btn btn-c" id="btn-sc" onclick="doSim()">▶ Run Simulation</button>
+      <div class="ldr c" id="ld-sc"></div>
+      <div class="note note-e" id="err-sc"><span class="nicon">⚠</span><span id="err-sc-t"></span></div>
+      <div id="sc-res" style="display:none">
+        <div class="div"><div class="divl"></div><div class="divt">Results</div><div class="divl"></div></div>
+        <div class="card" style="margin-bottom:10px;"><div class="ctitle">Base Case</div><div id="sc-base-v"></div><div id="sc-base-p" style="font-size:14px;color:var(--sub);margin-top:5px;"></div></div>
+        <div id="sc-slist"></div>
+        <!-- Transparency gate on simulation raw JSON too -->
+        <div class="transparency-gate" style="margin-top:14px;">
+          <div class="tg-ico">🔍</div>
+          <div class="tg-title">Raw Inference Data — Analyst Only</div>
+          <div class="tg-desc">Detailed per-scenario clause evaluation, confidence changes, and reasoning JSON are available in the Governance Dashboard.</div>
+          <div class="tg-feats">
+            <span class="tg-feat">Per-Clause Diff</span>
+            <span class="tg-feat">Confidence Delta</span>
+            <span class="tg-feat">Raw JSON</span>
+          </div>
+        </div>
+        <div class="sfooter">
+          <span class="sfhint">Simulation complete.</span>
+          <button class="btn btn-c" onclick="cgo('summary')">Plain Language Summary →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C6: SUMMARY -->
+  <section class="sec" id="csec-summary">
+    <div class="shead">
+      <div class="sey c">Citizen · Step 7 of 7 · <span class="btag" style="vertical-align:middle">Beta</span></div>
+      <div class="sh">Plain Language Summary</div>
+      <div class="sd">The policy explained simply — who qualifies, what the benefits are, and what jargon means.</div>
+    </div>
+    <div id="mlocked" class="lknote" style="display:none"><div class="lkico">🔒</div>Complete Step 2 first.</div>
+    <div id="mcont" style="display:none">
+      <div class="langbar">
+        <span class="langlbl">Language:</span>
+        <button class="langbtn on" onclick="setLang(this,'en')">English</button>
+        <button class="langbtn" onclick="setLang(this,'hi')">हिंदी</button>
+        <button class="langbtn" onclick="setLang(this,'mr')">मराठी</button>
+        <button class="langbtn" onclick="setLang(this,'ta')">தமிழ்</button>
+        <button class="langbtn" onclick="setLang(this,'te')">తెలుగు</button>
+        <button class="langbtn" onclick="setLang(this,'bn')">বাংলা</button>
+        <button class="langbtn" onclick="setLang(this,'gu')">ગુજรાતી</button>
+        <span style="font-size:12px;color:var(--dim);margin-left:6px;">Verify before use</span>
+      </div>
+      <button class="btn btn-c" id="btn-ml" onclick="doSum()">Generate Summary</button>
+      <div class="ldr c" id="ld-ml"></div>
+      <div class="note note-e" id="err-ml"><span class="nicon">⚠</span><span id="err-ml-t"></span></div>
+      <div id="ml-res" style="display:none">
+        <div class="card" style="margin-top:14px;"><div class="ctitle">What is this scheme?</div>
+          <div id="ml-one" style="font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--text);line-height:1.55;"></div>
+        </div>
+        <div class="crow" style="margin-top:0;">
+          <div class="card"><div class="ctitle">Who Can Apply</div><div id="ml-who"></div></div>
+          <div class="card"><div class="ctitle">Who Cannot Apply</div><div id="ml-whonot"></div></div>
+        </div>
+        <div class="crow" style="margin-top:0;">
+          <div class="card"><div class="ctitle">Key Benefits</div><div id="ml-ben"></div></div>
+          <div class="card"><div class="ctitle">Important Conditions</div><div id="ml-cond"></div></div>
+        </div>
+        <div class="card"><div class="ctitle">Key Numbers</div><div id="ml-nums" class="crow3" style="gap:10px;"></div></div>
+        <div class="card"><div class="ctitle">Jargon &amp; Ambiguous Terms</div><div id="ml-jarg"></div></div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+</div><!-- /dash-citizen -->
+
+
+<!-- ════════════════════════════════════════
+     GOVERNANCE DASHBOARD (Analyst Only)
+════════════════════════════════════════ -->
+<div class="dashboard" id="dash-gov">
+  <nav class="rail">
+    <button class="pill active-g" id="gpill-overview"   onclick="ggo('overview')"><span class="pnum">1</span>Overview</button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="gpill-clauses"    onclick="ggo('clauses')"><span class="pnum">2</span>Clauses <span class="atag">Transparency</span></button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="gpill-complexity" onclick="ggo('complexity')"><span class="pnum">3</span>Complexity <span class="atag">Transparency</span></button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="gpill-elig"       onclick="ggo('gelig')"><span class="pnum">4</span>Eligibility Trace <span class="atag">Transparency</span></button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="gpill-conflicts"  onclick="ggo('conflicts')"><span class="pnum">5</span>Conflicts <span class="ntag">New</span></button>
+    <span class="psep">›</span>
+    <button class="pill locked"   id="gpill-export"     onclick="ggo('export')"><span class="pnum">6</span>Export</button>
+  </nav>
+  <main class="main">
+
+  <!-- G1: OVERVIEW -->
+  <section class="sec active" id="gsec-overview">
+    <div class="shead">
+      <div class="sey g">Governance · Policy Overview Dashboard</div>
+      <div class="sh">Policy Overview Dashboard</div>
+      <div class="sd">Track analysed policy documents — complexity, clause counts, and conflict flags at a glance.</div>
+    </div>
+    <div class="note note-gv"><span class="nicon">🏛️</span><b>Analyst mode</b> — full transparency access enabled. Upload documents via Citizen layer first, then return here to inspect.</div>
+    <div id="gov-no-data" class="lknote">
+      <div class="lkico">📋</div>No policies analysed yet.
+      <p>Switch to Citizen layer → Upload → Run Analysis, then return here.</p>
+      <button class="btn btn-gv" style="margin-top:16px;" onclick="showCitizenLayer()">Go to Citizen Layer →</button>
+    </div>
+    <div id="gov-has-data" style="display:none">
+      <div class="crow4" id="gov-stats" style="margin-bottom:20px;"></div>
+      <div class="card g-accent">
+        <div class="ctitle">Analysed Policies</div>
+        <table class="gov-tbl"><thead><tr><th>Policy Name</th><th>Clauses</th><th>Complexity</th><th>Ambiguous</th><th>Actions</th></tr></thead>
+        <tbody id="gov-tbl-body"></tbody></table>
+      </div>
+      <div class="sfooter">
+        <span class="sfhint">All analysed documents listed.</span>
+        <button class="btn btn-gv" onclick="ggo('clauses')">Transparency Mode →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- G2: CLAUSES — TRANSPARENCY MODE -->
+  <section class="sec" id="gsec-clauses">
+    <div class="shead">
+      <div class="sey g">Governance · Step 2 · Transparency Mode</div>
+      <div class="sh">Clause-Level Transparency</div>
+      <div class="sd">Every machine-parsed clause with internal representation — variable, operator, threshold, confidence score, ambiguity flags, and source sentence.</div>
+    </div>
+    <div class="note note-gv"><span class="nicon">🔍</span><b>Analyst only</b> — this raw internal representation is not shown to citizens.</div>
+    <div id="gcllocked" class="lknote" style="display:none"><div class="lkico">🔒</div>Run analysis first.</div>
+    <div id="gclcont" style="display:none">
+      <div id="gcllist"></div>
+      <div class="sfooter"><span class="sfhint" id="gclcount"></span><button class="btn btn-gv" onclick="ggo('complexity')">Complexity Analysis →</button></div>
+    </div>
+  </section>
+
+  <!-- G3: COMPLEXITY — TRANSPARENCY MODE -->
+  <section class="sec" id="gsec-complexity">
+    <div class="shead">
+      <div class="sey g">Governance · Step 3 · Transparency Mode</div>
+      <div class="sh">Complexity Breakdown</div>
+      <div class="sd">Score 0–100 with per-type clause distribution. High-complexity policies are flagged for legal review.</div>
+    </div>
+    <div class="note note-gv"><span class="nicon">🔍</span><b>Analyst only</b> — full complexity decomposition and ambiguity audit.</div>
+    <div id="gcxlocked" class="lknote" style="display:none"><div class="lkico">🔒</div>Run analysis first.</div>
+    <div id="gcxcont" style="display:none">
+      <div class="card g-accent">
+        <div class="ctitle">Overall Complexity Score</div>
+        <div class="cxw">
+          <div class="cxhdr"><span class="cxl" id="gcxl">Score: —</span><span id="gcxchip"></span></div>
+          <div class="cxtrack"><div class="cxfill" id="gcxf" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="crow3" id="gcx-type-stats" style="margin-bottom:14px;"></div>
+      <div class="card">
+        <div class="ctitle">Clause Type Distribution</div>
+        <div id="gcx-breakdown"></div>
+      </div>
+      <div class="card">
+        <div class="ctitle">Ambiguous Clauses <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:11px;color:var(--amber);">— require legal review</span></div>
+        <div id="gcx-ambig"></div>
+      </div>
+      <div class="sfooter"><span class="sfhint">Complexity analysis complete.</span><button class="btn btn-gv" onclick="ggo('gelig')">Eligibility Trace →</button></div>
+    </div>
+  </section>
+
+  <!-- G4: ELIGIBILITY TRACE — FULL TRANSPARENCY -->
+  <section class="sec" id="gsec-gelig">
+    <div class="shead">
+      <div class="sey g">Governance · Step 4 · Transparency Mode</div>
+      <div class="sh">Full Eligibility Reasoning Trace</div>
+      <div class="sd">Run a citizen profile check and inspect every clause decision — with confidence scores, ambiguity flags, and raw inference JSON.</div>
+    </div>
+    <div class="note note-gv"><span class="nicon">🔍</span><b>Analyst only</b> — citizens see only the final verdict. You see everything.</div>
+    <div id="gelocked" class="lknote" style="display:none"><div class="lkico">🔒</div>Run analysis first.</div>
+    <div id="gecont" style="display:none">
+      <div class="card g-accent">
+        <div class="ctitle">Test Profile</div>
+        <div class="frow">
+          <div class="fld"><label>Age</label><input type="number" id="ge-age" placeholder="21"/></div>
+          <div class="fld"><label>Annual Income (₹)</label><input type="number" id="ge-inc" placeholder="450000"/></div>
+        </div>
+        <div class="frow3">
+          <div class="fld"><label>Academic Marks (%)</label><input type="number" id="ge-mks" placeholder="85"/></div>
+          <div class="fld"><label>Category</label>
+            <select id="ge-cat"><option value="">General</option><option value="sc">SC</option><option value="st">ST</option><option value="obc">OBC</option><option value="ews">EWS</option></select>
+          </div>
+          <div class="fld"><label>State / Domicile</label><input id="ge-st" placeholder="Maharashtra"/></div>
+        </div>
+        <button class="btn btn-gv" id="btn-gel" onclick="doGovElig()">Run Eligibility Trace</button>
+      </div>
+      <div class="ldr g" id="ld-gel"></div>
+      <div class="note note-e" id="err-gel"><span class="nicon">⚠</span><span id="err-gel-t"></span></div>
+      <div id="gel-res" style="display:none">
+        <div class="vcard" id="gvcard">
+          <div class="vico" id="gvico"></div>
+          <div><div class="vstatus" id="gvstatus"></div><div class="vplain" id="gvplain"></div></div>
+        </div>
+        <div class="crow3" id="gel-stats" style="margin-bottom:14px;"></div>
+        <!-- FULL REASONING TRACE — ANALYST ONLY -->
+        <div class="card g-accent">
+          <div class="ctitle">Full Reasoning Trace <span class="atag" style="vertical-align:middle">Transparency</span></div>
+          <div id="gtlist"></div>
+        </div>
+        <button class="rtog" onclick="tog('raw-gel')">⊞ Raw Inference JSON</button>
+        <div class="rpre" id="raw-gel"></div>
+        <div class="sfooter"><span class="sfhint">Full trace rendered.</span><button class="btn btn-gv" onclick="ggo('conflicts')">Conflict Detection →</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- G5: CONFLICTS -->
+  <section class="sec" id="gsec-conflicts">
+    <div class="shead">
+      <div class="sey g">Governance · Step 5 · <span class="ntag" style="vertical-align:middle">New</span></div>
+      <div class="sh">Cross-Scheme Conflict Detection</div>
+      <div class="sd">Compare this policy against a second document. Finds contradictions, incompatible thresholds, and dual-qualification traps.</div>
+    </div>
+    <div class="note note-gv"><span class="nicon">💡</span>Your uploaded document is pre-loaded as Document 1. Add a second scheme to compare.</div>
+    <div class="card g-accent">
+      <div class="ctitle">Second Document</div>
+      <div class="fld"><label>Title</label><input id="cfl-t2" placeholder="State Merit Scholarship 2024"/></div>
+      <div class="fld"><label>Clauses (JSON array)</label>
+        <textarea id="cfl-c2" placeholder='[{"clause_id":"c001","variable":"age","operator":"GTE","threshold_value":"21","clause_type":"ELIGIBILITY"}]'></textarea>
+      </div>
+      <button class="btn btn-gv" id="btn-cfl" onclick="doCfl()">Detect Conflicts</button>
+    </div>
+    <div class="ldr g" id="ld-cfl"></div>
+    <div class="note note-e" id="err-cfl"><span class="nicon">⚠</span><span id="err-cfl-t"></span></div>
+    <div id="cfl-res" style="display:none">
+      <div class="crow4" id="cfl-stats" style="margin-bottom:14px;"></div>
+      <div id="cfl-list"></div>
+      <button class="rtog" onclick="tog('raw-cfl')">⊞ Raw JSON</button>
+      <div class="rpre" id="raw-cfl"></div>
+      <div class="sfooter"><span class="sfhint">Conflict report ready.</span><button class="btn btn-gv" onclick="ggo('export')">Export Analysis →</button></div>
+    </div>
+  </section>
+
+  <!-- G6: EXPORT -->
+  <section class="sec" id="gsec-export">
+    <div class="shead">
+      <div class="sey g">Governance · Step 6 of 6</div>
+      <div class="sh">Export Analysis</div>
+      <div class="sd">Download the full analysis package — clauses, complexity, conflict report, and graph data.</div>
+    </div>
+    <div id="gexlocked" class="lknote" style="display:none"><div class="lkico">🔒</div>Run analysis first.</div>
+    <div id="gexcont" style="display:none">
+      <div class="card g-accent">
+        <div class="ctitle">Export Options</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);">
+            <div><div style="font-size:14px;font-weight:500;color:var(--text);">📋 Full Analysis JSON</div><div style="font-size:12px;color:var(--sub);margin-top:2px;">Clauses, graph, complexity, metadata</div></div>
+            <button class="exp-btn primary" onclick="exportJSON()">Download JSON</button>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);">
+            <div><div style="font-size:14px;font-weight:500;color:var(--text);">📊 Clauses CSV</div><div style="font-size:12px;color:var(--sub);margin-top:2px;">Spreadsheet-ready clause data</div></div>
+            <button class="exp-btn" onclick="exportCSV()">Download CSV</button>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--rad-s);">
+            <div><div style="font-size:14px;font-weight:500;color:var(--text);">🕸️ Graph JSON</div><div style="font-size:12px;color:var(--sub);margin-top:2px;">NetworkX nodes and edges for Neo4j import</div></div>
+            <button class="exp-btn" onclick="exportGraph()">Download Graph</button>
+          </div>
+        </div>
+      </div>
+      <div class="card"><div class="ctitle">Analysis Summary</div><div id="exp-summary"></div></div>
+    </div>
+  </section>
+
+  </main>
+</div><!-- /dash-gov -->
+
+</div><!-- /app -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+/* ══ EXPLAIN (View Explanation) ══ */
+let _explainClauses = [];
+let _explainCache = {};
+
+function initExplain(){
+  const clauses = _analysisData?.clauses || [];
+  _explainClauses = clauses;
+  _explainCache = {};
+  const locked = document.getElementById('explocked');
+  const cont = document.getElementById('expcont');
+  if(!clauses.length){
+    locked.style.display='block';
+    cont.style.display='none';
+    return;
+  }
+  locked.style.display='none';
+  cont.style.display='block';
+  renderExpList(clauses);
+  document.getElementById('exp-count').textContent = clauses.length + ' clauses';
+}
+
+function renderExpList(clauses){
+  const list = document.getElementById('exp-list');
+  if(!clauses.length){
+    list.innerHTML='<div class="lknote"><div class="lkico">🔍</div>No clauses match your filter.</div>';
+    return;
+  }
+  list.innerHTML = clauses.map((cl,i) => `
+    <div class="exp-clause-card" id="expcard-${i}">
+      <div class="exp-card-top">
+        <span class="exp-clause-id">${cl.id||('CL-'+(i+1))}</span>
+        <span class="exp-clause-type exp-type-${cl.type||'ELIGIBILITY'}">${cl.type||'ELIGIBILITY'}</span>
+        <span class="exp-clause-raw">${cl.text||cl.condition||'(no text)'}</span>
+        <button class="exp-btn-explain" id="expbtn-${i}" onclick="explainOne(${i})">✨ Explain</button>
+      </div>
+      <div class="exp-explanation-box" id="expbox-${i}" style="display:none"></div>
+    </div>
+  `).join('');
+}
+
+function filterExplain(){
+  const q = document.getElementById('exp-search').value.toLowerCase();
+  const f = document.getElementById('exp-filter').value;
+  const filtered = _explainClauses.filter(cl => {
+    const txt = (cl.text||cl.condition||'').toLowerCase();
+    const matchQ = !q || txt.includes(q);
+    const matchF = f==='all' || (cl.type||'ELIGIBILITY')===f;
+    return matchQ && matchF;
+  });
+  document.getElementById('exp-count').textContent = filtered.length + ' / ' + _explainClauses.length + ' clauses';
+  renderExpList(filtered);
+}
+
+async function explainOne(idx){
+  const cl = _explainClauses[idx];
+  if(!cl) return;
+  const key = cl.id||idx;
+  const box = document.getElementById('expbox-'+idx);
+  const btn = document.getElementById('expbtn-'+idx);
+  const card = document.getElementById('expcard-'+idx);
+  if(_explainCache[key]){
+    showExplanation(box, _explainCache[key]);
+    card.classList.add('explained');
+    return;
+  }
+  btn.classList.add('loading');
+  btn.textContent = '⏳ Explaining…';
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:`You are a policy explainer for Indian citizens. A government policy has this clause:
+
+TYPE: ${cl.type||'ELIGIBILITY'}
+CLAUSE: ${cl.text||cl.condition||''}
+${cl.operator?'OPERATOR: '+cl.operator:''}
+${cl.threshold!==undefined?'THRESHOLD: '+cl.threshold:''}
+
+Explain this clause in 2-3 simple sentences that any Indian citizen can understand. Use simple, friendly language — no legal jargon. Then give one concrete real-world example of who this clause applies to.
+
+Respond ONLY in this JSON format (no markdown, no preamble):
+{"explanation":"...","example":"..."}`}]
+      })
+    });
+    const data = await resp.json();
+    const raw = data.content?.map(b=>b.text||'').join('') || '';
+    let parsed;
+    try{ parsed = JSON.parse(raw.replace(/\`\`\`json|\`\`\`/g,'')); }
+    catch(e){ parsed = {explanation: raw, example:''}; }
+    _explainCache[key] = parsed;
+    showExplanation(box, parsed);
+    card.classList.add('explained');
+  } catch(e){
+    box.innerHTML='<div style="color:var(--red);font-size:13px;">⚠ Could not fetch explanation. Check your API or network.</div>';
+    box.style.display='block';
+  }
+  btn.classList.remove('loading');
+  btn.innerHTML='✅ Explained';
+  btn.disabled=true;
+}
+
+function showExplanation(box, parsed){
+  box.innerHTML = `
+    <div class="exp-exp-label">Plain Language Explanation</div>
+    <div class="exp-exp-text">${parsed.explanation||''}</div>
+    ${parsed.example?`<div class="exp-exp-example">${parsed.example}</div>`:''}
+  `;
+  box.style.display='block';
+}
+
+async function doExplainAll(){
+  const btn = document.getElementById('btn-expall');
+  btn.disabled=true;
+  btn.textContent='⏳ Explaining all…';
+  document.getElementById('ld-exp').classList.add('on');
+  for(let i=0;i<_explainClauses.length;i++){
+    await explainOne(i);
+  }
+  document.getElementById('ld-exp').classList.remove('on');
+  document.getElementById('exp-footer').style.display='flex';
+  btn.textContent='✅ All Explained';
+}
+
+</script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const API='https://m8dbfucuzj.execute-api.ap-south-1.amazonaws.com/prod';
+
+/* ══ AUTH STATE ══ */
+let currentRole=null;
+let currentUser='';
+
+const DEMO_ANALYSTS=[
+  {email:'analyst@gov.in',pass:'analyst123',name:'Priya Sharma'},
+  {email:'admin@policygraph.ai',pass:'admin2024',name:'Admin'},
+];
+
+/* ── Welcome page functions ── */
+function toggleAnalystPanel(){
+  const panel=document.getElementById('w-analyst-panel');
+  const isVis=panel.classList.toggle('vis');
+  if(isVis){
+    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+    setTimeout(()=>document.getElementById('wap-email').focus(),120);
+  } else {
+    document.getElementById('wap-err').classList.remove('vis');
+    document.getElementById('wap-email').value='';
+    document.getElementById('wap-pass').value='';
+  }
+}
+
+function doWapLogin(){
+  const email=document.getElementById('wap-email').value.trim().toLowerCase();
+  const pass=document.getElementById('wap-pass').value;
+  const match=DEMO_ANALYSTS.find(a=>a.email===email&&a.pass===pass);
+  if(!match){
+    document.getElementById('wap-err').classList.add('vis');
+    const inp=document.getElementById('wap-pass');
+    inp.classList.add('shake');
+    setTimeout(()=>inp.classList.remove('shake'),320);
+    return;
+  }
+  currentUser=match.name;
+  loginAs('gov');
+}
+
+function loginAs(role){
+  currentRole=role;
+  if(role==='citizen')currentUser='Citizen';
+  // Hide welcome, show app
+  document.getElementById('welcome-screen').classList.add('hidden');
+  document.getElementById('app').classList.add('visible');
+  // Header badge
+  const badge=document.getElementById('hdr-role-badge');
+  const rtxt=document.getElementById('hdr-role-txt');
+  const user=document.getElementById('hdr-user');
+  badge.className='hdr-role-badge '+(role==='citizen'?'citizen':'gov');
+  rtxt.textContent=role==='citizen'?'Citizen':'Policy Analyst';
+  user.innerHTML=currentUser?`<b>${currentUser}</b>`:'';
+  // Show correct dashboard only
+  document.getElementById('dash-citizen').classList.toggle('active',role==='citizen');
+  document.getElementById('dash-gov').classList.toggle('active',role==='gov');
+  if(role==='gov')refreshGovDash();
+}
+
+function doLogout(){
+  currentRole=null;currentUser='';
+  document.getElementById('app').classList.remove('visible');
+  document.getElementById('welcome-screen').classList.remove('hidden');
+  // Reset analyst panel
+  document.getElementById('w-analyst-panel').classList.remove('vis');
+  // Reset gov nav
+  gunlocked.clear();gunlocked.add('overview');
+  GSTEPS.forEach(s=>{const p=document.getElementById(`gpill-${s}`);if(p){p.classList.remove('active-g','done');p.classList.toggle('locked',s!=='overview');}});
+}
+
+function showCitizenLayer(){
+  doLogout();
+  loginAs('citizen');
+}
+
+/* Stubs kept for compatibility */
+function showGovLogin(){}
+function hideGovLogin(){}
+
+/* ══ APP STATE ══ */
+const S={
+  presignedUrl:'',s3Key:'',fileName:'',
+  clauses:[],graph:null,title:'',docId:'',
+  eligInputs:{},currentLang:'en',
+  sumCache:{},scN:1,
+  complexity_score:0,complexity_category:'',
+  ambiguous_clauses:0,analysisFull:null,
+};
+
+/* ══ CITIZEN NAV ══ */
+const CSTEPS=['upload','analyze','graph','elig','explain','simulate','summary'];
+const cunlocked=new Set(['upload']);
+function cgo(name){
+  if(name==='explain') initExplain();
+  if(!cunlocked.has(name))return;
+  CSTEPS.forEach(s=>{
+    const el=document.getElementById(`csec-${s}`);if(el)el.classList.toggle('active',s===name);
+    const p=document.getElementById(`cpill-${s}`);if(!p)return;
+    p.classList.remove('active-c','done','locked');
+    if(s===name)p.classList.add('active-c');
+    else if(cunlocked.has(s))p.classList.add('done');
+    else p.classList.add('locked');
+  });
+  const pill=document.getElementById(`cpill-${name}`);
+  if(pill)pill.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+  if(name==='graph')renderGraph();
+  if(name==='simulate')prefillSim();
+  if(name==='summary')showSum();
+  if(name==='elig')showEligOnEnter();
+}
+function cunlock(n){cunlocked.add(n);const p=document.getElementById(`cpill-${n}`);if(p)p.classList.remove('locked');}
+
+/* ══ GOV NAV ══ */
+const GSTEPS=['overview','clauses','complexity','gelig','conflicts','export'];
+const gunlocked=new Set(['overview']);
+function ggo(name){
+  if(!gunlocked.has(name))return;
+  GSTEPS.forEach(s=>{
+    const el=document.getElementById(`gsec-${s}`);if(el)el.classList.toggle('active',s===name);
+    const p=document.getElementById(`gpill-${s==='gelig'?'elig':s}`);if(!p)return;
+    p.classList.remove('active-g','done','locked');
+    if(s===name)p.classList.add('active-g');
+    else if(gunlocked.has(s))p.classList.add('done');
+    else p.classList.add('locked');
+  });
+  const pill=document.getElementById(`gpill-${name==='gelig'?'elig':name}`);
+  if(pill)pill.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+  if(name==='clauses')renderGovClauses();
+  if(name==='complexity')renderGovComplexity();
+  if(name==='gelig')showGovEligSection();
+  if(name==='export')renderExport();
+}
+function gunlock(n){gunlocked.add(n);const pId=n==='gelig'?'elig':n;const p=document.getElementById(`gpill-${pId}`);if(p)p.classList.remove('locked');}
+
+/* ══ GOV REFRESH ══ */
+function refreshGovDash(){
+  const hasData=S.clauses.length>0;
+  document.getElementById('gov-no-data').style.display=hasData?'none':'block';
+  document.getElementById('gov-has-data').style.display=hasData?'block':'none';
+  if(!hasData)return;
+  ['clauses','complexity','gelig','conflicts','export'].forEach(gunlock);
+  const amb=S.clauses.filter(c=>c.ambiguity_flag).length;
+  document.getElementById('gov-stats').innerHTML=[
+    {v:S.clauses.length,l:'Total Clauses',c:'var(--gold)'},
+    {v:S.complexity_score||'—',l:'Complexity Score',c:S.complexity_category==='High'?'var(--red)':S.complexity_category==='Low'?'var(--green)':'var(--amber)'},
+    {v:amb,l:'Ambiguous Clauses',c:amb>0?'var(--amber)':'var(--green)'},
+    {v:S.graph?((S.graph.nodes||[]).length):'—',l:'Graph Nodes',c:'var(--blue)'},
+  ].map(s=>`<div class="sbox"><div class="sv" style="color:${s.c}">${s.v}</div><div class="sl">${s.l}</div></div>`).join('');
+  document.getElementById('gov-tbl-body').innerHTML=`<tr>
+    <td><div class="doc-name">${S.title||'Policy Document'}</div><div class="doc-sub">${S.fileName||''}</div></td>
+    <td><span class="chip cgold">${S.clauses.length}</span></td>
+    <td><div style="display:flex;align-items:center;gap:8px;"><div class="mini-bar"><div class="mini-fill" style="width:${S.complexity_score||0}%"></div></div><span>${S.complexity_score||'—'}/100</span><span class="chip ${S.complexity_category==='High'?'cr':S.complexity_category==='Low'?'cg':'ca'}">${S.complexity_category||'—'}</span></div></td>
+    <td><span class="chip ${amb>0?'ca':'cg'}">${amb} flagged</span></td>
+    <td><button class="act-btn" onclick="ggo('clauses')">Transparency Mode →</button></td>
+  </tr>`;
+}
+
+/* ══ UPLOAD ══ */
+async function onFile(){
+  const file=document.getElementById('pdfinp').files[0];
+  if(!file)return;
+  if(!file.name.toLowerCase().endsWith('.pdf')){showE('up','Only PDF files are supported.');return;}
+  S.fileName=file.name;
+  document.getElementById('fnm').textContent=file.name;
+  document.getElementById('fsz').textContent=fmtBytes(file.size);
+  document.getElementById('fchip').classList.add('vis');
+  ld('up',true);hideN('up');document.getElementById('btn-up').disabled=true;
+  try{
+    const r=await fetch(`${API}/upload-url?filename=${encodeURIComponent(S.fileName||'document.pdf')}`);if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const d=await r.json();
+      if(d.clauses||d.graph) _analysisData=d;S.presignedUrl=d.upload_url||d.presigned_url||'';S.s3Key=d.s3_key||d.key||'';
+    document.getElementById('ok-up').classList.add('vis');document.getElementById('btn-up').disabled=false;
+  }catch(e){showE('up',`Could not get upload URL: ${e.message}`);}
+  finally{ld('up',false);}
+}
+async function doUpload(){
+  const file=document.getElementById('pdfinp').files[0];
+  if(!file||!S.presignedUrl)return;
+  const btn=document.getElementById('btn-up');btn.disabled=true;ld('up',true);hideN('up');
+  try{
+    const r=await fetch(S.presignedUrl,{method:'PUT',headers:{'Content-Type':'application/pdf'},body:file});
+    if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    cunlock('analyze');cgo('analyze');
+  }catch(e){showE('up',e.message);btn.disabled=false;}
+  finally{ld('up',false);}
+}
+
+/* ══ ANALYSE ══ */
+async function doAnalyze(){
+  const btn=document.getElementById('btn-an');btn.disabled=true;ld('an',true);hideN('an');
+  document.getElementById('ancard').style.display='none';
+  try{
+    // Step 1: Start async job
+    const r=await fetch(`${API}/analyze/start`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({s3_key:S.s3Key})});
+    if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const {job_id}=await r.json();
+    if(!job_id)throw new Error('No job_id returned');
+
+    // Step 2: Poll status
+    const STAGE_LABELS={PENDING:'Queued…',textract:'Extracting text…',bedrock:'Analysing with AI…',done:'Finalising…'};
+    let polls=0;
+    while(polls<80){
+      await new Promise(res=>setTimeout(res,3000));
+      polls++;
+      const sr=await fetch(`${API}/analyze/status/${job_id}`);
+      if(!sr.ok)continue;
+      const sd=await sr.json();
+      const stageMsg=STAGE_LABELS[sd.stage]||sd.stage||'Processing…';
+      const ldEl=document.getElementById('ld-an');
+      if(ldEl)ldEl.title=stageMsg;
+      if(sd.status==='COMPLETE'){
+        const d=normaliseAnalysis(sd.result||{});
+        S.clauses=d.clauses||[];S.graph=d.graph||null;S.title=d.title||S.fileName||'Policy Document';
+        S.docId=d.document_id||'doc001';S.complexity_score=d.complexity_score||0;
+        S.complexity_category=d.complexity_category||'';S.ambiguous_clauses=(d.ambiguous_clauses||[]).length||0;
+        S.analysisFull=d;
+        renderAn(d);['graph','elig','explain','simulate','summary'].forEach(cunlock);
+        document.getElementById('an-res').style.display='block';
+        refreshGovDash();
+        return;
+      }
+      if(sd.status==='FAILED'){
+        throw new Error(sd.error||'Analysis failed');
+      }
+    }
+    throw new Error('Analysis timed out after 4 minutes');
+  }catch(e){
+    showE('an',e.message);
+    document.getElementById('ancard').style.display='block';
+    btn.disabled=false;
+  }finally{ld('an',false);}
+}
+
+// Normalise backend response to match frontend's expected clause structure
+function normaliseAnalysis(d){
+  const clauses=(d.clauses||[]).map((c,i)=>{
+    if(typeof c==='string') return {clause_id:`c${i+1}`,clause_type:'GENERAL',text:c,ambiguity_flag:false};
+    return {
+      clause_id: c.id||`c${i+1}`,
+      clause_type: (c.category||c.type||'GENERAL').toUpperCase(),
+      text: c.text||c.title||'',
+      variable: c.variable||'',
+      operator: c.operator||'',
+      threshold_value: c.threshold_value||'',
+      confidence: c.confidence||0.9,
+      ambiguity_flag: (d.ambiguous_clauses||[]).includes(c.id)||c.ambiguity_flag||false,
+    };
+  });
+  return {
+    ...d,
+    clauses,
+    title: d.title||d.policy_type||'Policy Document',
+    document_id: d.document_id||'doc001',
+    complexity_score: d.complexity_score||0,
+    complexity_category: d.complexity_category||'Medium',
+    ambiguous_clauses: d.ambiguous_clauses||[],
+    graph: d.graph||null,
+    clauses_extracted: d.clauses_extracted||clauses.length,
+  };
+}
+function renderAn(d){
+  document.getElementById('an-stats').innerHTML=[
+    {v:d.clauses_extracted??S.clauses.length??'—',l:'Clauses'},
+    {v:d.complexity_score??'—',l:'Complexity'},
+    {v:d.ambiguous_clauses??'0',l:'Ambiguous'},
+    {v:d.graph?.metrics?.node_count??d.graph?.nodes?.length??'—',l:'Graph Nodes'},
+  ].map(s=>`<div class="sbox"><div class="sv">${s.v}</div><div class="sl">${s.l}</div></div>`).join('');
+  const sc=d.complexity_score||0,cat=d.complexity_category||'';
+  document.getElementById('cxf').style.width=`${sc}%`;document.getElementById('cxl').textContent=`Score: ${sc} / 100`;
+  const cc=document.getElementById('cxchip');cc.className='chip '+(cat==='Low'?'cg':cat==='High'?'cr':'ca');cc.textContent=cat;
+  const ext=d.extraction||{};
+  if(ext.quality_score!==undefined){
+    const q=ext.quality_score,col=q>.7?'var(--green)':q>.4?'var(--amber)':'var(--red)';
+    document.getElementById('qualrow').innerHTML=`<span>📄 ${ext.page_count??'?'} pages · ${(ext.word_count||0).toLocaleString()} words</span><span>OCR quality: <b style="color:${col}">${Math.round(q*100)}%</b></span>${(ext.quality_warnings||[]).map(w=>`<span style="color:var(--amber)">⚠ ${w}</span>`).join('')}`;
+  }
+}
+
+/* ══ GRAPH ══ */
+const NC={POLICY:'#0a1628',ELIGIBILITY:'#27ae60',DISQUALIFICATION:'#e74c3c',BENEFIT:'#2980b9',OBLIGATION:'#e67e22',DEFINITION:'#8e6060',PROCEDURE:'#8e6060',UNKNOWN:'#c09090'};
+const NR={POLICY:26,ELIGIBILITY:18,DISQUALIFICATION:18,BENEFIT:15,OBLIGATION:15,DEFINITION:13,PROCEDURE:13,UNKNOWN:13};
+let gc,gx,gn=[],ge=[],gp={},gT={x:0,y:0,s:1},drag=false,dFrom={x:0,y:0},hov=null,ginit=false;
+function renderGraph(){
+  if(!S.graph){document.getElementById('glocked').style.display='block';document.getElementById('gcont').style.display='none';return;}
+  document.getElementById('glocked').style.display='none';document.getElementById('gcont').style.display='block';
+  gn=S.graph.nodes||[];ge=S.graph.edges||[];
+  document.getElementById('gnodecount').textContent=`${gn.length} nodes · ${ge.length} edges`;
+  if(!ginit){gc=document.getElementById('gc');gx=gc.getContext('2d');gc.width=gc.offsetWidth||880;gc.height=470;setupGE();ginit=true;}
+  else{gc.width=gc.offsetWidth||880;}
+  layout();draw();
+}
+function layout(){
+  gT={x:0,y:0,s:1};gp={};const W=gc.width,H=gc.height;
+  const roots=gn.filter(n=>n.type==='POLICY'),others=gn.filter(n=>n.type!=='POLICY');
+  if(roots.length)gp[roots[0].id]={x:W/2,y:68};
+  const typs=['ELIGIBILITY','DISQUALIFICATION','BENEFIT','OBLIGATION','DEFINITION','PROCEDURE','UNKNOWN'];
+  const bt={};others.forEach(n=>{const t=n.type||'UNKNOWN';(bt[t]=bt[t]||[]).push(n);});
+  let l=1;
+  typs.forEach(t=>{
+    const ns=bt[t]||[];if(!ns.length)return;
+    const R=105+l*78;
+    ns.forEach((n,i)=>{const a=(Math.PI/(ns.length+1))*(i+1);gp[n.id]={x:cl(W/2+R*Math.cos(a-Math.PI/2)*1.55,28,W-28),y:cl(68+R*Math.sin(a)*1.1,28,H-28)};});l++;
+  });
+}
+function draw(){
+  if(!gx)return;gx.clearRect(0,0,gc.width,gc.height);gx.save();gx.translate(gT.x,gT.y);gx.scale(gT.s,gT.s);
+  ge.forEach(e=>{
+    const s=gp[e.source],t=gp[e.target];if(!s||!t)return;
+    const cx=(s.x+t.x)/2,cy=(s.y+t.y)/2-26;
+    gx.beginPath();gx.moveTo(s.x,s.y);gx.quadraticCurveTo(cx,cy,t.x,t.y);
+    gx.strokeStyle=e.type==='DEPENDS_ON'?'rgba(41,128,185,.18)':'rgba(10,22,40,.14)';
+    gx.lineWidth=e.type==='HAS_CLAUSE'?1.5:1;gx.setLineDash(e.type==='DEPENDS_ON'?[4,3]:[]);gx.stroke();gx.setLineDash([]);
+    const ang=Math.atan2(t.y-cy,t.x-cx);
+    gx.beginPath();gx.moveTo(t.x,t.y);gx.lineTo(t.x-7*Math.cos(ang-.4),t.y-7*Math.sin(ang-.4));gx.lineTo(t.x-7*Math.cos(ang+.4),t.y-7*Math.sin(ang+.4));
+    gx.closePath();gx.fillStyle=e.type==='DEPENDS_ON'?'rgba(41,128,185,.28)':'rgba(10,22,40,.2)';gx.fill();
+  });
+  gn.forEach(n=>{
+    const p=gp[n.id];if(!p)return;const r=NR[n.type]||13,col=NC[n.type]||'#c09090';const h=hov&&hov.id===n.id;
+    if(h){const gr=gx.createRadialGradient(p.x,p.y,r,p.x,p.y,r+13);gr.addColorStop(0,col+'28');gr.addColorStop(1,'transparent');gx.beginPath();gx.arc(p.x,p.y,r+13,0,Math.PI*2);gx.fillStyle=gr;gx.fill();}
+    gx.beginPath();gx.arc(p.x,p.y,r,0,Math.PI*2);gx.fillStyle=col+'16';gx.fill();
+    gx.strokeStyle=h?col:col+'60';gx.lineWidth=h?2.5:1.5;gx.stroke();
+    gx.beginPath();gx.arc(p.x,p.y,r*.36,0,Math.PI*2);gx.fillStyle=col;gx.fill();
+    gx.fillStyle='rgba(224,221,212,.6)';gx.font=`${n.type==='POLICY'?'500 11px':'400 10px'} DM Sans,sans-serif`;
+    gx.textAlign='center';gx.fillText((n.label||n.id||'').slice(0,20),p.x,p.y+r+12);
+  });
+  gx.restore();
+}
+function setupGE(){
+  gc.addEventListener('wheel',e=>{e.preventDefault();gT.s=cl(gT.s*(e.deltaY>0?.9:1.1),.18,4);draw();});
+  gc.addEventListener('mousedown',e=>{drag=true;dFrom={x:e.clientX-gT.x,y:e.clientY-gT.y};});
+  gc.addEventListener('mousemove',e=>{
+    if(drag){gT.x=e.clientX-dFrom.x;gT.y=e.clientY-dFrom.y;draw();return;}
+    const rect=gc.getBoundingClientRect(),mx=(e.clientX-rect.left-gT.x)/gT.s,my=(e.clientY-rect.top-gT.y)/gT.s;
+    hov=null;
+    for(const n of gn){const p=gp[n.id];if(!p)continue;if(Math.hypot(mx-p.x,my-p.y)<(NR[n.type]||13)+5){hov=n;break;}}
+    const tt=document.getElementById('gtt');
+    if(hov){
+      tt.style.display='block';tt.style.left=(e.clientX+15)+'px';tt.style.top=(e.clientY-10)+'px';
+      tt.innerHTML=`<strong style="color:var(--gold)">${hov.id}</strong><br>Type: ${hov.type||'—'}<br>${hov.variable?`Variable: <b>${hov.variable}</b><br>`:''}${hov.operator?`Op: ${hov.operator}<br>`:''}${hov.threshold_value?`Threshold: ${hov.threshold_value}<br>`:''}${hov.confidence!==undefined?`Confidence: ${Math.round(hov.confidence*100)}%<br>`:''}${hov.ambiguity_flag?`<span style="color:var(--amber)">⚠ Ambiguous</span>`:''}`;
+      gc.style.cursor='pointer';
+    }else{tt.style.display='none';gc.style.cursor=drag?'grabbing':'grab';}
+    draw();
+  });
+  gc.addEventListener('mouseup',()=>drag=false);
+  gc.addEventListener('mouseleave',()=>{drag=false;hov=null;document.getElementById('gtt').style.display='none';draw();});
+}
+
+/* ══ CLAUSE RENDERER ══ */
+const TC={ELIGIBILITY:'var(--green)',DISQUALIFICATION:'var(--red)',BENEFIT:'var(--blue)',OBLIGATION:'var(--amber)',DEFINITION:'var(--sub)',PROCEDURE:'var(--sub)'};
+function clauseHTML(c){
+  const conf=parseFloat(c.confidence??.9),col=TC[c.clause_type]||'var(--sub)';
+  return `<div class="clit" onclick="this.classList.toggle('open')">
+    <div class="cltop"><span class="clid">${c.clause_id||'—'}</span><span class="cltype" style="color:${col}">${c.clause_type||''}</span>${c.ambiguity_flag?`<span class="ambadge">⚠ Ambiguous</span>`:''}</div>
+    <div class="cltxt">${c.text||'—'}</div>
+    <div class="clmeta">
+      ${c.variable?`<span class="cmitem">var <b>${c.variable}</b></span>`:''}
+      ${c.operator?`<span class="cmitem">op <b>${c.operator}</b></span>`:''}
+      ${c.threshold_value?`<span class="cmitem">threshold <b>${c.threshold_value}</b></span>`:''}
+      <div class="cbr"><div class="cbt"><div class="cbf" style="width:${Math.round(conf*100)}%"></div></div><span class="cpct">${Math.round(conf*100)}%</span></div>
+    </div>
+    <div class="clbody"><div class="clgrid">
+      <div class="clg"><div class="clgl">Source sentence</div><div class="clgv">${c.source_sentence||'—'}</div></div>
+      <div class="clg"><div class="clgl">Ambiguity reason</div><div class="clgv">${c.ambiguity_reason||'None'}</div></div>
+      <div class="clg"><div class="clgl">Confidence</div><div class="clgv" style="color:var(--gold)">${Math.round(conf*100)}%</div></div>
+    </div></div>
+  </div>`;
+}
+
+/* ══ GOV: CLAUSES ══ */
+function renderGovClauses(){
+  if(!S.clauses.length){document.getElementById('gcllocked').style.display='block';document.getElementById('gclcont').style.display='none';return;}
+  document.getElementById('gcllocked').style.display='none';document.getElementById('gclcont').style.display='block';
+  document.getElementById('gclcount').textContent=`${S.clauses.length} clauses extracted`;
+  document.getElementById('gcllist').innerHTML=S.clauses.map(clauseHTML).join('');
+}
+
+/* ══ GOV: COMPLEXITY ══ */
+function renderGovComplexity(){
+  if(!S.clauses.length){document.getElementById('gcxlocked').style.display='block';document.getElementById('gcxcont').style.display='none';return;}
+  document.getElementById('gcxlocked').style.display='none';document.getElementById('gcxcont').style.display='block';
+  const sc=S.complexity_score,cat=S.complexity_category;
+  document.getElementById('gcxf').style.width=`${sc}%`;document.getElementById('gcxl').textContent=`Score: ${sc} / 100`;
+  const cc=document.getElementById('gcxchip');cc.className='chip '+(cat==='Low'?'cg':cat==='High'?'cr':'ca');cc.textContent=cat||'—';
+  const types=['ELIGIBILITY','DISQUALIFICATION','BENEFIT','OBLIGATION','DEFINITION','PROCEDURE'];
+  const counts={};S.clauses.forEach(c=>{const t=c.clause_type||'OTHER';counts[t]=(counts[t]||0)+1;});
+  document.getElementById('gcx-type-stats').innerHTML=types.map(t=>`<div class="sbox"><div class="sv" style="font-size:22px;color:${TC[t]||'var(--sub)'}">${counts[t]||0}</div><div class="sl">${t}</div></div>`).join('');
+  document.getElementById('gcx-breakdown').innerHTML=types.filter(t=>counts[t]).map(t=>{
+    const pct=Math.round(((counts[t]||0)/S.clauses.length)*100);
+    return `<div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span style="color:${TC[t]||'var(--sub)'}">${t}</span><span style="color:var(--sub)">${counts[t]} (${pct}%)</span></div><div class="cxtrack"><div class="cxfill" style="width:${pct}%;background:${TC[t]||'var(--sub)'}"></div></div></div>`;
+  }).join('');
+  const ambig=S.clauses.filter(c=>c.ambiguity_flag);
+  document.getElementById('gcx-ambig').innerHTML=!ambig.length
+    ?`<p style="color:var(--green);font-size:14px;">✓ No ambiguous clauses detected.</p>`
+    :ambig.map(c=>`<div style="padding:9px 12px;background:var(--abg);border:1px solid rgba(224,152,64,.2);border-radius:var(--rad-s);margin-bottom:8px;"><span class="clid" style="color:var(--amber)">${c.clause_id}</span><span style="font-size:13px;color:var(--text);margin-left:8px;">${c.text||'—'}</span>${c.ambiguity_reason?`<div style="font-size:12px;color:var(--amber);margin-top:4px;">⚠ ${c.ambiguity_reason}</div>`:''}</div>`).join('');
+}
+
+/* ══ GOV: ELIGIBILITY TRACE (full transparency) ══ */
+function showGovEligSection(){
+  if(!S.clauses.length){document.getElementById('gelocked').style.display='block';document.getElementById('gecont').style.display='none';return;}
+  document.getElementById('gelocked').style.display='none';document.getElementById('gecont').style.display='block';
+}
+async function doGovElig(){
+  if(!S.clauses.length)return;
+  const inp={};
+  const a=document.getElementById('ge-age').value,i=document.getElementById('ge-inc').value,
+        m=document.getElementById('ge-mks').value,c=document.getElementById('ge-cat').value,
+        st=document.getElementById('ge-st').value;
+  if(a)inp.age=+a;if(i)inp.income=+i;if(m)inp.marks=+m;if(c)inp.category=c;if(st)inp.state=st;
+  const btn=document.getElementById('btn-gel');btn.disabled=true;ld('gel',true);hideN('gel');
+  document.getElementById('gel-res').style.display='none';
+  try{
+    const r=await fetch(`${API}/eligibility`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clauses:S.clauses,user_inputs:inp})});
+    if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const d=await r.json();renderGovElig(d);document.getElementById('gel-res').style.display='block';
+  }catch(e){showE('gel',`Failed: ${e.message}`);}
+  finally{btn.disabled=false;ld('gel',false);}
+}
+function renderGovElig(d){
+  const st=(d.eligibility_status||'').toUpperCase();
+  const vc=document.getElementById('gvcard');vc.className='vcard';
+  if(st.includes('NOT')||st==='INELIGIBLE'){vc.classList.add('noelig');document.getElementById('gvico').textContent='✕';document.getElementById('gvstatus').className='vstatus cred';document.getElementById('gvstatus').textContent='Not Eligible';}
+  else if(st==='CONDITIONAL'){vc.classList.add('cond');document.getElementById('gvico').textContent='◐';document.getElementById('gvstatus').className='vstatus camber';document.getElementById('gvstatus').textContent='Conditionally Eligible';}
+  else{vc.classList.add('elig');document.getElementById('gvico').textContent='✓';document.getElementById('gvstatus').className='vstatus cgreen';document.getElementById('gvstatus').textContent='Eligible';}
+  document.getElementById('gvplain').textContent=d.plain_language_summary||d.summary||'';
+  const stats=d.statistics||{};
+  document.getElementById('gel-stats').innerHTML=[
+    {v:stats.clauses_evaluated??'—',l:'Evaluated'},{v:stats.eligibility_passed??'—',l:'Passed'},{v:stats.eligibility_failed??'—',l:'Failed'},
+  ].map(s=>`<div class="sbox"><div class="sv" style="font-size:24px">${s.v}</div><div class="sl">${s.l}</div></div>`).join('');
+  // FULL REASONING TRACE — analyst only
+  document.getElementById('gtlist').innerHTML=(d.reasoning_trace||[]).map((t,i)=>`
+    <div class="titem">
+      <div class="tnum">${String(i+1).padStart(2,'0')}</div>
+      <div>
+        <div class="tcid">${t.clause_id||''} · ${t.clause_type||''}</div>
+        <div class="tcond">${t.condition||t.text||''}</div>
+        ${t.outcome==='PASS'?`<div class="tres tpass">✓ ${t.outcome_reason||'Passed'}</div>`:t.outcome==='FAIL'?`<div class="tres tfail">✕ ${t.outcome_reason||'Failed'}</div>`:`<div class="tres tunk">◐ ${t.outcome_reason||'Unknown'}</div>`}
+        ${t.confidence_warning?`<div class="twarn">⚠ ${t.confidence_warning}</div>`:''}
+        ${t.ambiguity_flag&&t.ambiguity_reason?`<div class="twarn">${t.ambiguity_reason}</div>`:''}
+      </div>
+    </div>`).join('');
+  document.getElementById('raw-gel').textContent=JSON.stringify(d,null,2);
+}
+
+/* ══ CITIZEN ELIGIBILITY (verdict only, no trace) ══ */
+function showEligOnEnter(){
+  if(!S.clauses.length){document.getElementById('elocked').style.display='block';document.getElementById('econt').style.display='none';}
+  else{document.getElementById('elocked').style.display='none';document.getElementById('econt').style.display='block';}
+}
+async function doElig(){
+  if(!S.clauses.length)return;
+  const inp={};
+  const a=document.getElementById('e-age').value,i=document.getElementById('e-inc').value,
+        m=document.getElementById('e-mks').value,c=document.getElementById('e-cat').value,
+        st=document.getElementById('e-st').value;
+  if(a)inp.age=+a;if(i)inp.income=+i;if(m)inp.marks=+m;if(c)inp.category=c;if(st)inp.state=st;
+  S.eligInputs=inp;
+  const btn=document.getElementById('btn-el');btn.disabled=true;ld('el',true);hideN('el');
+  document.getElementById('el-res').style.display='none';
+  try{
+    const r=await fetch(`${API}/eligibility`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clauses:S.clauses,user_inputs:inp})});
+    if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const d=await r.json();renderCitizenElig(d);document.getElementById('el-res').style.display='block';
+  }catch(e){showE('el',`Failed: ${e.message}`);}
+  finally{btn.disabled=false;ld('el',false);}
+}
+function renderCitizenElig(d){
+  const st=(d.eligibility_status||'').toUpperCase();
+  const vc=document.getElementById('vcard');vc.className='vcard';
+  if(st.includes('NOT')||st==='INELIGIBLE'){vc.classList.add('noelig');document.getElementById('vico').textContent='✕';document.getElementById('vstatus').className='vstatus cred';document.getElementById('vstatus').textContent='Not Eligible';}
+  else if(st==='CONDITIONAL'){vc.classList.add('cond');document.getElementById('vico').textContent='◐';document.getElementById('vstatus').className='vstatus camber';document.getElementById('vstatus').textContent='Conditionally Eligible';}
+  else{vc.classList.add('elig');document.getElementById('vico').textContent='✓';document.getElementById('vstatus').className='vstatus cgreen';document.getElementById('vstatus').textContent='Eligible';}
+  document.getElementById('vplain').textContent=d.plain_language_summary||d.summary||'';
+  // Citizens only see aggregate stats — NOT individual clause trace
+  const stats=d.statistics||{};
+  document.getElementById('el-stats').innerHTML=[
+    {v:stats.clauses_evaluated??'—',l:'Rules Checked'},{v:stats.eligibility_passed??'—',l:'Rules Passed'},{v:stats.eligibility_failed??'—',l:'Rules Failed'},
+  ].map(s=>`<div class="sbox"><div class="sv" style="font-size:24px">${s.v}</div><div class="sl">${s.l}</div></div>`).join('');
+  // NOTE: reasoning trace, clause citations, raw JSON intentionally NOT rendered here
+}
+
+/* ══ CONFLICTS ══ */
+async function doCfl(){
+  let c2=[];
+  try{c2=JSON.parse(document.getElementById('cfl-c2').value||'[]');}catch{showE('cfl','Invalid JSON.');return;}
+  const t2=document.getElementById('cfl-t2').value||'Document 2';
+  const docs=[{document_id:S.docId,title:S.title,clauses:S.clauses},{document_id:'doc002',title:t2,clauses:c2}];
+  const btn=document.getElementById('btn-cfl');btn.disabled=true;ld('cfl',true);hideN('cfl');
+  document.getElementById('cfl-res').style.display='none';
+  try{
+    const r=await fetch(`${API}/conflicts`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({documents:docs})});
+    if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const d=await r.json();renderCfl(d);document.getElementById('cfl-res').style.display='block';
+  }catch(e){showE('cfl',e.message);}
+  finally{btn.disabled=false;ld('cfl',false);}
+}
+function renderCfl(d){
+  const cfls=d.conflicts||[],sev=d.severity_summary||{};
+  document.getElementById('cfl-stats').innerHTML=[
+    {v:cfls.length,l:'Total Conflicts',c:cfls.length>0?'var(--red)':'var(--green)'},
+    {v:sev.HIGH||0,l:'High Severity',c:'var(--red)'},{v:sev.MEDIUM||0,l:'Medium',c:'var(--amber)'},
+    {v:d.documents_compared||'—',l:'Docs Compared',c:'var(--gold)'},
+  ].map(s=>`<div class="sbox"><div class="sv" style="color:${s.c}">${s.v}</div><div class="sl">${s.l}</div></div>`).join('');
+  document.getElementById('cfl-list').innerHTML=!cfls.length
+    ?`<div style="text-align:center;padding:36px;border:1px dashed var(--b1);border-radius:var(--rad);"><div style="font-size:26px;margin-bottom:7px;">✓</div><div style="font-size:16px;font-weight:600;color:var(--green)">No conflicts detected</div></div>`
+    :cfls.map(c=>`<div class="cflt${c.severity==='HIGH'?'':' med'}">
+      <div class="cflthead"><span class="chip ${c.severity==='HIGH'?'cr':'ca'}">${c.conflict_type||'CONFLICT'}</span><span class="chip ${c.severity==='HIGH'?'cr':'ca'}">${c.severity||''}</span><span class="cflscheme">${c.document1_title||'Doc A'} ↔ ${c.document2_title||'Doc B'}</span></div>
+      <div class="cfltdesc">${c.description||''}</div>
+      ${c.variable?`<div class="cfltsides"><div class="cflts"><div class="cflsl">${c.document1_title||'Doc 1'}</div><div class="cflsv">${c.variable} ${c.operator1||''} ${c.threshold1||''}</div></div><div class="cflts"><div class="cflsl">${c.document2_title||'Doc 2'}</div><div class="cflsv">${c.variable} ${c.operator2||''} ${c.threshold2||''}</div></div></div>`:''}
+      ${c.recommendation?`<div class="recstrip">→ ${c.recommendation}</div>`:''}
+    </div>`).join('');
+  document.getElementById('raw-cfl').textContent=JSON.stringify(d,null,2);
+}
+
+/* ══ SIMULATE ══ */
+function prefillSim(){
+  if(!S.clauses.length){document.getElementById('slocked').style.display='block';document.getElementById('scont').style.display='none';return;}
+  document.getElementById('slocked').style.display='none';document.getElementById('scont').style.display='block';
+  const i=S.eligInputs;
+  if(i.age)document.getElementById('sc-age').value=i.age;
+  if(i.income)document.getElementById('sc-inc').value=i.income;
+  if(i.marks)document.getElementById('sc-mks').value=i.marks;
+  if(i.category)document.getElementById('sc-cat').value=i.category;
+}
+function addSc(){
+  const id=S.scN++;const c=document.getElementById('scrows');
+  const row=document.createElement('div');row.className='scrow';row.id=`scrow-${id}`;
+  row.innerHTML=`<input placeholder='Label' id="sc${id}-lbl"/><input placeholder='{"income":300000}' id="sc${id}-chg" class="mono"/><button class="btn-ghost" onclick="this.closest('.scrow').remove()" style="flex-shrink:0;padding:8px 12px;">✕</button>`;
+  c.appendChild(row);
+}
+async function doSim(){
+  if(!S.clauses.length)return;
+  const base={};
+  const a=document.getElementById('sc-age').value,i=document.getElementById('sc-inc').value,
+        m=document.getElementById('sc-mks').value,c=document.getElementById('sc-cat').value;
+  if(a)base.age=+a;if(i)base.income=+i;if(m)base.marks=+m;if(c)base.category=c;
+  const scens=[];
+  document.querySelectorAll('[id$="-lbl"]').forEach(el=>{
+    if(!el.id.startsWith('sc')||!el.id.endsWith('-lbl'))return;
+    const idx=el.id.replace('sc','').replace('-lbl','');
+    const chgEl=document.getElementById(`sc${idx}-chg`);if(!chgEl)return;
+    const lbl=el.value.trim(),chg=chgEl.value.trim();if(!lbl||!chg)return;
+    try{scens.push({label:lbl,changes:JSON.parse(chg)});}catch{}
+  });
+  if(!scens.length){showE('sc','Add at least one scenario with valid JSON.');return;}
+  const btn=document.getElementById('btn-sc');btn.disabled=true;ld('sc',true);hideN('sc');
+  document.getElementById('sc-res').style.display='none';
+  try{
+    const br=await fetch(`${API}/eligibility`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clauses:S.clauses,user_inputs:base})});
+    if(!br.ok)throw new Error(`HTTP ${br.status}`);const bd=await br.json();
+    const scenResults=[];
+    for(const sc of scens){
+      const merged=Object.assign({},base,sc.changes);
+      const sr=await fetch(`${API}/eligibility`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clauses:S.clauses,user_inputs:merged})});
+      if(!sr.ok)throw new Error(`HTTP ${sr.status}`);const sd=await sr.json();
+      const baseStatus=(bd.eligibility_status||'').toUpperCase(),scStatus=(sd.eligibility_status||'').toUpperCase();
+      scenResults.push({label:sc.label,eligibility_status:sd.eligibility_status,plain_language_summary:sd.plain_language_summary||sd.summary||'',changes_applied:sc.changes,status_changed_from_base:baseStatus!==scStatus});
+    }
+    renderSim({base_case:bd,scenarios:scenResults});document.getElementById('sc-res').style.display='block';
+  }catch(e){showE('sc',e.message);}
+  finally{btn.disabled=false;ld('sc',false);}
+}
+function renderSim(d){
+  const bc=d.base_case||{};
+  document.getElementById('sc-base-v').innerHTML=vchip(bc.eligibility_status);
+  document.getElementById('sc-base-p').textContent=bc.plain_language_summary||bc.summary||'';
+  document.getElementById('sc-slist').innerHTML=(d.scenarios||[]).map(s=>{
+    const chg=Object.entries(s.changes_applied||{}).map(([k,v])=>`${k}: ${v}`).join(', ');
+    return `<div class="scitem"><div class="schead"><span class="sclbl">${s.label||'Scenario'}</span>${vchip(s.eligibility_status)}${s.status_changed_from_base?'<span class="flipbadge">↑ Status changed</span>':''}</div><div class="scchg">Changes: ${chg||'none'}</div><div style="font-size:13px;color:var(--sub);margin-top:5px;">${s.plain_language_summary||s.summary||''}</div></div>`;
+  }).join('');
+}
+function vchip(st){
+  const s=(st||'').toUpperCase();
+  if(s.includes('NOT')||s==='INELIGIBLE')return`<span class="chip cr">Not Eligible</span>`;
+  if(s==='CONDITIONAL')return`<span class="chip ca">Conditional</span>`;
+  return`<span class="chip cg">Eligible</span>`;
+}
+
+/* ══ SUMMARY ══ */
+function showSum(){
+  if(!S.clauses.length){document.getElementById('mlocked').style.display='block';document.getElementById('mcont').style.display='none';return;}
+  document.getElementById('mlocked').style.display='none';document.getElementById('mcont').style.display='block';
+  if(S.sumCache[S.currentLang]){renderSum(S.sumCache[S.currentLang]);document.getElementById('ml-res').style.display='block';}
+}
+function setLang(btn,lang){
+  document.querySelectorAll('.langbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');S.currentLang=lang;
+  if(S.sumCache[lang]){renderSum(S.sumCache[lang]);document.getElementById('ml-res').style.display='block';}
+  else document.getElementById('ml-res').style.display='none';
+}
+async function doSum(){
+  const btn=document.getElementById('btn-ml');btn.disabled=true;ld('ml',true);hideN('ml');
+  document.getElementById('ml-res').style.display='none';
+  try{
+    const elig=S.clauses.filter(c=>c.clause_type==='ELIGIBILITY');
+    const disq=S.clauses.filter(c=>c.clause_type==='DISQUALIFICATION');
+    const bens=S.clauses.filter(c=>c.clause_type==='BENEFIT');
+    const nums=S.clauses.filter(c=>c.threshold_value).map(c=>({value:c.threshold_value+(c.variable==='income'?' ₹':''),label:c.variable||c.clause_id}));
+    const jarg=S.clauses.filter(c=>c.ambiguity_flag).map(c=>c.variable||c.clause_id).filter(Boolean);
+    const d={summary:{
+      one_line_summary:`${S.title||'Policy'} — ${S.clauses.length} clauses (${elig.length} eligibility, ${bens.length} benefits).`,
+      who_can_apply:elig.length?elig.map(c=>c.text||`${c.variable} ${c.operator} ${c.threshold_value}`).join('; '):'See policy document.',
+      who_cannot_apply:disq.length?disq.map(c=>c.text||`${c.variable} ${c.operator} ${c.threshold_value}`).join('; '):'No explicit disqualification clauses found.',
+      key_benefits:bens.length?bens.map(c=>c.text||c.clause_id):['See policy document for benefit details.'],
+      important_conditions:S.clauses.filter(c=>c.clause_type==='OBLIGATION').map(c=>c.text||c.clause_id),
+      key_numbers:nums.slice(0,6),jargon_flags:jarg
+    }};
+    S.sumCache[S.currentLang]=d;renderSum(d);document.getElementById('ml-res').style.display='block';
+  }catch(e){showE('ml',`Failed: ${e.message}`);}
+  finally{btn.disabled=false;ld('ml',false);}
+}
+function renderSum(d){
+  const s=d.summary||{};
+  document.getElementById('ml-one').textContent=s.one_line_summary||'—';
+  document.getElementById('ml-who').innerHTML=`<p style="font-size:14px;color:var(--text);line-height:1.6;">${s.who_can_apply||'—'}</p>`;
+  document.getElementById('ml-whonot').innerHTML=`<p style="font-size:14px;color:var(--text);line-height:1.6;">${s.who_cannot_apply||'—'}</p>`;
+  document.getElementById('ml-ben').innerHTML=(s.key_benefits||[]).map(b=>`<div class="lchk">${b}</div>`).join('');
+  document.getElementById('ml-cond').innerHTML=(s.important_conditions||[]).map(c=>`<div class="lcrs">${c}</div>`).join('');
+  document.getElementById('ml-nums').innerHTML=(s.key_numbers||[]).map(n=>`<div class="snum"><div class="snv">${n.value||'—'}</div><div class="snl">${n.label||''}</div></div>`).join('')||`<span style="color:var(--dim);font-size:13px">No key numbers found.</span>`;
+  document.getElementById('ml-jarg').innerHTML=(s.jargon_flags||[]).map(j=>`<span class="jtag">${j}</span>`).join('')||`<span style="color:var(--dim);font-size:13px">No jargon flagged.</span>`;
+}
+
+/* ══ EXPORT ══ */
+function renderExport(){
+  if(!S.clauses.length){document.getElementById('gexlocked').style.display='block';document.getElementById('gexcont').style.display='none';return;}
+  document.getElementById('gexlocked').style.display='none';document.getElementById('gexcont').style.display='block';
+  const amb=S.clauses.filter(c=>c.ambiguity_flag).length;
+  document.getElementById('exp-summary').innerHTML=`
+    <div class="crow3" style="gap:10px;margin-bottom:10px;">
+      <div class="sbox"><div class="sv">${S.clauses.length}</div><div class="sl">Total Clauses</div></div>
+      <div class="sbox"><div class="sv" style="color:${S.complexity_category==='High'?'var(--red)':S.complexity_category==='Low'?'var(--green)':'var(--amber)'}">${S.complexity_score||'—'}</div><div class="sl">Complexity</div></div>
+      <div class="sbox"><div class="sv" style="color:${amb>0?'var(--amber)':'var(--green)'}">${amb}</div><div class="sl">Ambiguous</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--sub);padding:9px 13px;background:var(--s3);border-radius:var(--rad-s);border:1px solid var(--b1);">Document: <b style="color:var(--text)">${S.title}</b> · ID: <span style="font-family:'DM Mono',monospace;color:var(--gold)">${S.docId}</span></div>`;
+}
+function exportJSON(){dlFile(JSON.stringify({document_id:S.docId,title:S.title,fileName:S.fileName,clauses:S.clauses,graph:S.graph,complexity_score:S.complexity_score,complexity_category:S.complexity_category,exported_at:new Date().toISOString()},null,2),`${S.docId||'analysis'}_full.json`,'application/json');}
+function exportCSV(){
+  const rows=[['clause_id','clause_type','variable','operator','threshold_value','confidence','ambiguity_flag','text']];
+  S.clauses.forEach(c=>rows.push([c.clause_id,c.clause_type,c.variable||'',c.operator||'',c.threshold_value||'',c.confidence||'',c.ambiguity_flag?'true':'false',`"${(c.text||'').replace(/"/g,'""')}"`]));
+  dlFile(rows.map(r=>r.join(',')).join('\n'),`${S.docId||'clauses'}.csv`,'text/csv');
+}
+function exportGraph(){dlFile(JSON.stringify(S.graph||{},null,2),`${S.docId||'graph'}_graph.json`,'application/json');}
+function dlFile(content,filename,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=filename;a.click();}
+
+/* ══ UTILS ══ */
+function ld(id,on){const el=document.getElementById(`ld-${id}`);if(el)el.classList.toggle('on',on);}
+function showE(id,msg){const el=document.getElementById(`err-${id}`),t=document.getElementById(`err-${id}-t`);if(el)el.classList.add('vis');if(t)t.textContent=msg;else if(el)el.textContent='⚠ '+msg;}
+function hideN(id){['err-','ok-'].forEach(p=>{const el=document.getElementById(`${p}${id}`);if(el)el.classList.remove('vis');});}
+function tog(id){document.getElementById(id).classList.toggle('open');}
+function fmtBytes(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(1)+' MB';}
+function cl(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
+
+/* ══ DRAG-DROP ══ */
+document.addEventListener('DOMContentLoaded',()=>{
+  const upz=document.getElementById('upz');
+  if(upz){
+    upz.addEventListener('dragover',e=>{e.preventDefault();upz.classList.add('dra
