@@ -582,99 +582,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .gov-signin-btn{background:var(--gov);color:#fff;}
 .gov-signin-btn:hover{background:#060e1a;}
 .lcard-enter{color:#fff !important;}
-
-/* ── HOW IT WORKS ── */
-.hiw-wrap{
-  margin-top:28px;
-  border:1px solid var(--b1);border-radius:var(--rad);
-  background:var(--s1);padding:22px 24px;
-}
-.hiw-title{
-  font-family:'Fraunces',serif;font-size:16px;font-weight:700;
-  color:var(--text);margin-bottom:20px;
-  display:flex;align-items:center;gap:10px;
-}
-.hiw-title::before{content:'💡';font-size:18px;}
-.hiw-steps{
-  display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
-  align-items:start;gap:8px;
-}
-.hiw-step{
-  background:#ffffff;border:1px solid var(--b1);
-  border-radius:var(--rad);padding:16px 14px;
-  text-align:center;position:relative;
-}
-.hiw-num{
-  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
-  background:var(--gold);color:#fff;
-  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
-  padding:2px 8px;border-radius:10px;letter-spacing:.05em;
-}
-.hiw-ico{font-size:26px;margin:8px 0 10px;line-height:1;}
-.hiw-label{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
-.hiw-desc{font-size:12px;color:var(--sub);line-height:1.6;}
-.hiw-arrow{
-  font-size:20px;color:var(--b2);
-  align-self:center;padding-top:24px;
-  font-weight:300;
-}
-
-/* ── EXPLAIN SECTION ── */
-.exp-clause-card{
-  background:#ffffff;border:1px solid var(--b1);border-radius:var(--rad);
-  padding:18px 20px;margin-bottom:10px;
-  transition:border-color .18s;
-}
-.exp-clause-card:hover{border-color:var(--b2);}
-.exp-clause-card.explained{border-color:rgba(26,58,107,.25);background:rgba(26,58,107,.02);}
-.exp-card-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
-.exp-clause-id{
-  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
-  color:var(--gold);background:var(--goldbg);
-  padding:2px 8px;border-radius:4px;flex-shrink:0;
-}
-.exp-clause-type{
-  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  padding:3px 8px;border-radius:4px;flex-shrink:0;
-}
-.exp-type-ELIGIBILITY{background:rgba(22,163,74,.1);color:#16a34a;}
-.exp-type-DISQUALIFICATION{background:rgba(220,38,38,.1);color:#dc2626;}
-.exp-type-BENEFIT{background:rgba(29,78,216,.1);color:#1d4ed8;}
-.exp-type-OBLIGATION{background:rgba(217,119,6,.1);color:#d97706;}
-.exp-type-DEFINITION{background:rgba(67,56,202,.1);color:#4338ca;}
-.exp-clause-raw{font-size:13px;color:var(--sub);line-height:1.6;flex:1;}
-.exp-btn-explain{
-  background:none;border:1.5px solid var(--b1);border-radius:var(--rad-s);
-  color:var(--sub);font-size:12px;font-family:'DM Sans',sans-serif;
-  padding:6px 12px;cursor:pointer;transition:all .15s;flex-shrink:0;
-  display:flex;align-items:center;gap:5px;
-}
-.exp-btn-explain:hover{border-color:var(--citizen);color:var(--citizen);background:rgba(26,58,107,.05);}
-.exp-btn-explain.loading{opacity:.5;pointer-events:none;}
-.exp-explanation-box{
-  margin-top:12px;padding:14px 16px;
-  background:linear-gradient(135deg,rgba(26,58,107,.04),rgba(10,22,40,.03));
-  border:1px solid rgba(26,58,107,.15);border-radius:var(--rad-s);
-  border-left:3px solid var(--citizen);
-  animation:fadeInUp .2s ease;
-}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.exp-exp-label{
-  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--citizen);margin-bottom:8px;display:flex;align-items:center;gap:6px;
-}
-.exp-exp-label::before{content:'✨';}
-.exp-exp-text{font-size:14px;color:var(--text);line-height:1.7;}
-.exp-exp-example{
-  margin-top:10px;padding:10px 12px;background:rgba(10,22,40,.03);
-  border-radius:var(--rad-s);font-size:13px;color:var(--sub);line-height:1.6;
-  border:1px solid var(--b1);
-}
-.exp-exp-example::before{content:'📌 Example: ';font-weight:600;color:var(--text);}
-@media(max-width:680px){
-  .hiw-steps{grid-template-columns:1fr;}
-  .hiw-arrow{display:none;}
-}
 </style>
 </head>
 <body>
@@ -760,8 +667,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           <input type="password" id="wap-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doWapLogin()"/>
         </div>
         <button class="wap-signin" onclick="doWapLogin()">Sign In →</button>
-        <div class="wap-err" id="wap-err">Incorrect credentials. Use <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4a2b242b2633393e0a2d253c642324">[email&#160;protected]</a> / analyst123</div>
-        <div class="wap-hint">Demo credentials: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2d3dcd3decbc1c6f2d5ddc49cdbdc">[email&#160;protected]</a></b> / <b>analyst123</b></div>
+        <div class="wap-err" id="wap-err">Incorrect credentials. Use <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="55343b34392c262115323a237b3c3b">[email&#160;protected]</a> / analyst123</div>
+        <div class="wap-hint">Demo credentials: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="53323d323f2a202713343c257d3a3d">[email&#160;protected]</a></b> / <b>analyst123</b></div>
         <button class="wap-back" onclick="toggleAnalystPanel()">✕ Cancel</button>
       </div>
     </div>
@@ -816,10 +723,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <span class="psep">›</span>
     <button class="pill locked"   id="cpill-elig"     onclick="cgo('elig')"><span class="pnum">4</span>Eligibility</button>
     <span class="psep">›</span>
-    <button class="pill locked"   id="cpill-explain"  onclick="cgo('explain')"><span class="pnum">5</span>Explain <span class="ntag" style="background:rgba(29,78,216,.1);color:#1d4ed8;border-color:rgba(29,78,216,.25)">New</span></button>
-    <button class="pill locked"   id="cpill-simulate" onclick="cgo('simulate')"><span class="pnum">6</span>What-If <span class="ntag">New</span></button>
+    <button class="pill locked"   id="cpill-simulate" onclick="cgo('simulate')"><span class="pnum">5</span>What-If <span class="ntag">New</span></button>
     <span class="psep">›</span>
-    <button class="pill locked"   id="cpill-summary"  onclick="cgo('summary')"><span class="pnum">7</span>Summary <span class="btag">Beta</span></button>
+    <button class="pill locked"   id="cpill-summary"  onclick="cgo('summary')"><span class="pnum">6</span>Summary <span class="btag">Beta</span></button>
   </nav>
   <main class="main">
 
@@ -844,40 +750,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="note note-ok" id="ok-up"><span class="nicon">✓</span>File ready — click <strong>Upload &amp; Continue</strong>.</div>
     <div class="ldr c" id="ld-up"></div>
     <button class="btn-next c" id="btn-up" disabled onclick="doUpload()">Upload &amp; Continue →</button>
-
-    <!-- HOW IT WORKS -->
-    <div class="hiw-wrap">
-      <div class="hiw-title">How it Works</div>
-      <div class="hiw-steps">
-        <div class="hiw-step">
-          <div class="hiw-num">01</div>
-          <div class="hiw-ico">📄</div>
-          <div class="hiw-label">Upload PDF</div>
-          <div class="hiw-desc">Drop any government scheme PDF. It uploads securely to AWS S3 — the app never stores your file.</div>
-        </div>
-        <div class="hiw-arrow">→</div>
-        <div class="hiw-step">
-          <div class="hiw-num">02</div>
-          <div class="hiw-ico">🤖</div>
-          <div class="hiw-label">AI Reads Clauses</div>
-          <div class="hiw-desc">AWS Textract extracts the text. Amazon Bedrock (Claude 3 Haiku) parses every eligibility rule into structured logic.</div>
-        </div>
-        <div class="hiw-arrow">→</div>
-        <div class="hiw-step">
-          <div class="hiw-num">03</div>
-          <div class="hiw-ico">🔗</div>
-          <div class="hiw-label">Graph Built</div>
-          <div class="hiw-desc">Clauses become a knowledge graph — showing how every rule connects, and which ones block or allow eligibility.</div>
-        </div>
-        <div class="hiw-arrow">→</div>
-        <div class="hiw-step">
-          <div class="hiw-num">04</div>
-          <div class="hiw-ico">✅</div>
-          <div class="hiw-label">Instant Verdict</div>
-          <div class="hiw-desc">Enter your details. The symbolic engine checks every clause and tells you exactly whether you qualify — in plain language.</div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- C2: ANALYSE -->
@@ -996,59 +868,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </section>
 
-
-  <!-- C5: EXPLAIN (View Explanation) -->
-  <section class="sec" id="csec-explain">
-    <div class="shead">
-      <div class="sey c">Citizen · Step 5 of 7 · <span class="ntag" style="background:rgba(29,78,216,.1);color:#1d4ed8;border-color:rgba(29,78,216,.25);vertical-align:middle">New</span></div>
-      <div class="sh">View Explanation</div>
-      <div class="sd">Understand what each clause in this policy actually means — in plain, everyday language. No legal jargon.</div>
-    </div>
-    <div id="explocked" class="lknote"><div class="lkico">🔒</div>Complete Step 2 (Analyse) first to unlock clause explanations.</div>
-    <div id="expcont" style="display:none">
-
-      <!-- Search / filter bar -->
-      <div class="card" style="padding:14px 18px;">
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-          <input id="exp-search" placeholder="Search clauses… e.g. income, age, category"
-            style="flex:1;min-width:200px;background:var(--s2);border:1.5px solid var(--b1);border-radius:var(--rad-s);
-                   color:var(--text);padding:9px 13px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;"
-            oninput="filterExplain()"/>
-          <select id="exp-filter" onchange="filterExplain()"
-            style="background:var(--s2);border:1.5px solid var(--b1);border-radius:var(--rad-s);
-                   color:var(--text);padding:9px 13px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;">
-            <option value="all">All Clauses</option>
-            <option value="ELIGIBILITY">Eligibility</option>
-            <option value="DISQUALIFICATION">Disqualification</option>
-            <option value="BENEFIT">Benefit</option>
-            <option value="OBLIGATION">Obligation</option>
-            <option value="DEFINITION">Definition</option>
-          </select>
-          <span id="exp-count" style="font-size:13px;color:var(--sub);white-space:nowrap;"></span>
-        </div>
-      </div>
-
-      <!-- Explain all button -->
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:4px;">
-        <button class="btn btn-c" id="btn-expall" onclick="doExplainAll()">✨ Explain All Clauses in Plain Language</button>
-        <div class="ldr c" id="ld-exp" style="flex:1;margin:0;"></div>
-      </div>
-      <div class="note note-e" id="err-exp"><span class="nicon">⚠</span><span id="err-exp-t"></span></div>
-
-      <!-- Clause cards list -->
-      <div id="exp-list"></div>
-
-      <div class="sfooter" id="exp-footer" style="display:none">
-        <span class="sfhint">All clauses explained.</span>
-        <button class="btn btn-c" onclick="cgo('simulate')">Try What-If Scenarios →</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- C6: SIMULATE -->
+  <!-- C5: SIMULATE -->
   <section class="sec" id="csec-simulate">
     <div class="shead">
-      <div class="sey c">Citizen · Step 6 of 7 · <span class="ntag" style="vertical-align:middle">New</span></div>
+      <div class="sey c">Citizen · Step 5 of 6 · <span class="ntag" style="vertical-align:middle">New</span></div>
       <div class="sh">What-If Scenario Simulation</div>
       <div class="sd">Change income, age, or marks — see instantly whether your eligibility flips.</div>
     </div>
@@ -1102,7 +925,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   <!-- C6: SUMMARY -->
   <section class="sec" id="csec-summary">
     <div class="shead">
-      <div class="sey c">Citizen · Step 7 of 7 · <span class="btag" style="vertical-align:middle">Beta</span></div>
+      <div class="sey c">Citizen · Step 6 of 6 · <span class="btag" style="vertical-align:middle">Beta</span></div>
       <div class="sh">Plain Language Summary</div>
       <div class="sd">The policy explained simply — who qualifies, what the benefits are, and what jargon means.</div>
     </div>
@@ -1342,134 +1165,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 </div><!-- /app -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-/* ══ EXPLAIN (View Explanation) ══ */
-let _explainClauses = [];
-let _explainCache = {};
-
-function initExplain(){
-  const clauses = _analysisData?.clauses || [];
-  _explainClauses = clauses;
-  _explainCache = {};
-  const locked = document.getElementById('explocked');
-  const cont = document.getElementById('expcont');
-  if(!clauses.length){
-    locked.style.display='block';
-    cont.style.display='none';
-    return;
-  }
-  locked.style.display='none';
-  cont.style.display='block';
-  renderExpList(clauses);
-  document.getElementById('exp-count').textContent = clauses.length + ' clauses';
-}
-
-function renderExpList(clauses){
-  const list = document.getElementById('exp-list');
-  if(!clauses.length){
-    list.innerHTML='<div class="lknote"><div class="lkico">🔍</div>No clauses match your filter.</div>';
-    return;
-  }
-  list.innerHTML = clauses.map((cl,i) => `
-    <div class="exp-clause-card" id="expcard-${i}">
-      <div class="exp-card-top">
-        <span class="exp-clause-id">${cl.id||('CL-'+(i+1))}</span>
-        <span class="exp-clause-type exp-type-${cl.type||'ELIGIBILITY'}">${cl.type||'ELIGIBILITY'}</span>
-        <span class="exp-clause-raw">${cl.text||cl.condition||'(no text)'}</span>
-        <button class="exp-btn-explain" id="expbtn-${i}" onclick="explainOne(${i})">✨ Explain</button>
-      </div>
-      <div class="exp-explanation-box" id="expbox-${i}" style="display:none"></div>
-    </div>
-  `).join('');
-}
-
-function filterExplain(){
-  const q = document.getElementById('exp-search').value.toLowerCase();
-  const f = document.getElementById('exp-filter').value;
-  const filtered = _explainClauses.filter(cl => {
-    const txt = (cl.text||cl.condition||'').toLowerCase();
-    const matchQ = !q || txt.includes(q);
-    const matchF = f==='all' || (cl.type||'ELIGIBILITY')===f;
-    return matchQ && matchF;
-  });
-  document.getElementById('exp-count').textContent = filtered.length + ' / ' + _explainClauses.length + ' clauses';
-  renderExpList(filtered);
-}
-
-async function explainOne(idx){
-  const cl = _explainClauses[idx];
-  if(!cl) return;
-  const key = cl.id||idx;
-  const box = document.getElementById('expbox-'+idx);
-  const btn = document.getElementById('expbtn-'+idx);
-  const card = document.getElementById('expcard-'+idx);
-  if(_explainCache[key]){
-    showExplanation(box, _explainCache[key]);
-    card.classList.add('explained');
-    return;
-  }
-  btn.classList.add('loading');
-  btn.textContent = '⏳ Explaining…';
-  try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:`You are a policy explainer for Indian citizens. A government policy has this clause:
-
-TYPE: ${cl.type||'ELIGIBILITY'}
-CLAUSE: ${cl.text||cl.condition||''}
-${cl.operator?'OPERATOR: '+cl.operator:''}
-${cl.threshold!==undefined?'THRESHOLD: '+cl.threshold:''}
-
-Explain this clause in 2-3 simple sentences that any Indian citizen can understand. Use simple, friendly language — no legal jargon. Then give one concrete real-world example of who this clause applies to.
-
-Respond ONLY in this JSON format (no markdown, no preamble):
-{"explanation":"...","example":"..."}`}]
-      })
-    });
-    const data = await resp.json();
-    const raw = data.content?.map(b=>b.text||'').join('') || '';
-    let parsed;
-    try{ parsed = JSON.parse(raw.replace(/\`\`\`json|\`\`\`/g,'')); }
-    catch(e){ parsed = {explanation: raw, example:''}; }
-    _explainCache[key] = parsed;
-    showExplanation(box, parsed);
-    card.classList.add('explained');
-  } catch(e){
-    box.innerHTML='<div style="color:var(--red);font-size:13px;">⚠ Could not fetch explanation. Check your API or network.</div>';
-    box.style.display='block';
-  }
-  btn.classList.remove('loading');
-  btn.innerHTML='✅ Explained';
-  btn.disabled=true;
-}
-
-function showExplanation(box, parsed){
-  box.innerHTML = `
-    <div class="exp-exp-label">Plain Language Explanation</div>
-    <div class="exp-exp-text">${parsed.explanation||''}</div>
-    ${parsed.example?`<div class="exp-exp-example">${parsed.example}</div>`:''}
-  `;
-  box.style.display='block';
-}
-
-async function doExplainAll(){
-  const btn = document.getElementById('btn-expall');
-  btn.disabled=true;
-  btn.textContent='⏳ Explaining all…';
-  document.getElementById('ld-exp').classList.add('on');
-  for(let i=0;i<_explainClauses.length;i++){
-    await explainOne(i);
-  }
-  document.getElementById('ld-exp').classList.remove('on');
-  document.getElementById('exp-footer').style.display='flex';
-  btn.textContent='✅ All Explained';
-}
-
-</script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const API='https://m8dbfucuzj.execute-api.ap-south-1.amazonaws.com/prod';
 
 /* ══ AUTH STATE ══ */
@@ -1560,10 +1256,9 @@ const S={
 };
 
 /* ══ CITIZEN NAV ══ */
-const CSTEPS=['upload','analyze','graph','elig','explain','simulate','summary'];
+const CSTEPS=['upload','analyze','graph','elig','simulate','summary'];
 const cunlocked=new Set(['upload']);
 function cgo(name){
-  if(name==='explain') initExplain();
   if(!cunlocked.has(name))return;
   CSTEPS.forEach(s=>{
     const el=document.getElementById(`csec-${s}`);if(el)el.classList.toggle('active',s===name);
@@ -1638,9 +1333,8 @@ async function onFile(){
   document.getElementById('fchip').classList.add('vis');
   ld('up',true);hideN('up');document.getElementById('btn-up').disabled=true;
   try{
-    const r=await fetch(`${API}/upload-url`);if(!r.ok)throw new Error(`HTTP ${r.status}`);
-    const d=await r.json();
-      if(d.clauses||d.graph) _analysisData=d;S.presignedUrl=d.upload_url||d.presigned_url||'';S.s3Key=d.s3_key||d.key||'';
+    const r=await fetch(`${API}/upload-url?filename=${encodeURIComponent(S.fileName||'document.pdf')}`);if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const d=await r.json();S.presignedUrl=d.upload_url||d.presigned_url||'';S.s3Key=d.s3_key||d.key||'';
     document.getElementById('ok-up').classList.add('vis');document.getElementById('btn-up').disabled=false;
   }catch(e){showE('up',`Could not get upload URL: ${e.message}`);}
   finally{ld('up',false);}
@@ -1662,16 +1356,46 @@ async function doAnalyze(){
   const btn=document.getElementById('btn-an');btn.disabled=true;ld('an',true);hideN('an');
   document.getElementById('ancard').style.display='none';
   try{
-    const r=await fetch(`${API}/analyze`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({s3_key:S.s3Key})});
+    const r=await fetch(`${API}/analyze/start`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({s3_key:S.s3Key})});
     if(!r.ok)throw new Error(`HTTP ${r.status}`);
-    const d=await r.json();
-    S.clauses=d.clauses||[];S.graph=d.graph||null;S.title=d.title||'Policy Document';
-    S.docId=d.document_id||'doc001';S.complexity_score=d.complexity_score||0;
-    S.complexity_category=d.complexity_category||'';S.ambiguous_clauses=d.ambiguous_clauses||0;S.analysisFull=d;
-    renderAn(d);['graph','elig','explain','simulate','summary'].forEach(cunlock);
-    document.getElementById('an-res').style.display='block';
-  }catch(e){showE('an',e.message);document.getElementById('ancard').style.display='block';btn.disabled=false;}
-  finally{ld('an',false);}
+    const {job_id}=await r.json();
+    if(!job_id)throw new Error('No job_id returned');
+    const STAGE_LABELS={PENDING:'Queued…',textract:'Extracting text…',bedrock:'Analysing with AI…',done:'Finalising…'};
+    let polls=0;
+    while(polls<80){
+      await new Promise(res=>setTimeout(res,3000));
+      polls++;
+      const sr=await fetch(`${API}/analyze/status/${job_id}`);
+      if(!sr.ok)continue;
+      const sd=await sr.json();
+      const stageMsg=STAGE_LABELS[sd.stage]||sd.stage||'Processing…';
+      const ldEl=document.getElementById('ld-an');if(ldEl)ldEl.title=stageMsg;
+      if(sd.status==='COMPLETE'){
+        const raw=sd.result||{};
+        const clauses=(raw.clauses||[]).map((c,i)=>({
+          clause_id:c.id||`c${i+1}`,
+          clause_type:(c.category||c.type||'GENERAL').toUpperCase(),
+          text:c.text||'',
+          ambiguity_flag:c.ambiguous||false,
+          confidence:0.9
+        }));
+        const d={...raw,clauses,title:raw.title||S.fileName||'Policy Document',document_id:'doc001'};
+        S.clauses=d.clauses;S.graph=d.graph||null;S.title=d.title;
+        S.docId=d.document_id;S.complexity_score=d.complexity_score||0;
+        S.complexity_category=d.complexity_category||'';S.ambiguous_clauses=d.ambiguous_clauses||0;
+        S.analysisFull=d;
+        renderAn(d);['graph','elig','simulate','summary'].forEach(cunlock);
+        document.getElementById('an-res').style.display='block';
+        return;
+      }
+      if(sd.status==='FAILED'){throw new Error(sd.error||'Analysis failed');}
+    }
+    throw new Error('Analysis timed out');
+  }catch(e){
+    showE('an',e.message);
+    document.getElementById('ancard').style.display='block';
+    btn.disabled=false;
+  }finally{ld('an',false);}
 }
 function renderAn(d){
   document.getElementById('an-stats').innerHTML=[
@@ -2067,4 +1791,11 @@ function cl(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
 document.addEventListener('DOMContentLoaded',()=>{
   const upz=document.getElementById('upz');
   if(upz){
-    upz.addEventListener('dragover',e=>{e.preventDefault();upz.classList.add('dra
+    upz.addEventListener('dragover',e=>{e.preventDefault();upz.classList.add('dragover');});
+  upz.addEventListener('dragleave',()=>{upz.classList.remove('dragover');});
+  upz.addEventListener('drop',e=>{e.preventDefault();upz.classList.remove('dragover');const file=e.dataTransfer.files[0];if(file){const dt=new DataTransfer();dt.items.add(file);document.getElementById('pdfinp').files=dt.files;onFile();}});
+}
+});
+</script>
+</body>
+</html>
