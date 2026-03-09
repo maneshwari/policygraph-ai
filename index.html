@@ -2126,4 +2126,19 @@ function cl(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
 document.addEventListener('DOMContentLoaded',()=>{
   const upz=document.getElementById('upz');
   if(upz){
-    upz.addEventListener('dragover',e=>{e.preventDefault();upz.classList.add('dragover'
+    upz.addEventListener('dragover',e=>{e.preventDefault();upz.classList.add('dragover');});
+    upz.addEventListener('dragleave',()=>{upz.classList.remove('dragover');});
+    upz.addEventListener('drop',e=>{
+      e.preventDefault();upz.classList.remove('dragover');
+      const file=e.dataTransfer.files[0];
+      if(file){document.getElementById('pdfinp').files;
+        const dt=new DataTransfer();dt.items.add(file);
+        document.getElementById('pdfinp').files=dt.files;
+        onFile();
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
