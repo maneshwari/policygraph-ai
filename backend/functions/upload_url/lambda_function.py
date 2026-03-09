@@ -20,11 +20,18 @@ def lambda_handler(event, context):
         return {"statusCode": 200, "headers": headers, "body": ""}
     try:
         file_key = f"uploads/{uuid.uuid4()}.pdf"
+        # FIX: Removed "ContentType" from Params — when ContentType is included,
+        # the signature locks in that header and the browser PUT must match exactly.
+        # Without it, X-Amz-SignedHeaders=host only, and the PUT works from any browser.
         presigned_url = s3_client.generate_presigned_url(
             "put_object",
-            Params={"Bucket": BUCKET_NAME, "Key": file_key, "ContentType": "application/pdf"},
+            Params={"Bucket": BUCKET_NAME, "Key": file_key},
             ExpiresIn=600
         )
-        return {"statusCode": 200, "headers": headers, "body": json.dumps({"upload_url": presigned_url, "s3_key": file_key})}
+        return {
+            "statusCode": 200,
+            "headers": headers,
+            "body": json.dumps({"upload_url": presigned_url, "s3_key": file_key})
+        }
     except Exception as e:
         return {"statusCode": 500, "headers": headers, "body": json.dumps({"error": str(e)})}

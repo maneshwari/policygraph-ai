@@ -1,0 +1,12 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "policygraph-ai"
+resolve_s3 = true
+s3_prefix = "policygraph-ai"
+region = "ap-south-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+
+[default.global.parameters]
+region = "ap-south-1"
