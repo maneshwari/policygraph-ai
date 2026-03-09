@@ -1342,7 +1342,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 </div><!-- /app -->
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
 /* ══ EXPLAIN (View Explanation) ══ */
 let _explainClauses = [];
 let _explainCache = {};
@@ -1469,9 +1469,7 @@ async function doExplainAll(){
   btn.textContent='✅ All Explained';
 }
 
-
-/* merged */
-
+</script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const API='https://m8dbfucuzj.execute-api.ap-south-1.amazonaws.com/prod';
 
 /* ══ AUTH STATE ══ */
@@ -1640,7 +1638,7 @@ async function onFile(){
   document.getElementById('fchip').classList.add('vis');
   ld('up',true);hideN('up');document.getElementById('btn-up').disabled=true;
   try{
-    const r=await fetch(`${API}/upload-url?filename=${encodeURIComponent(S.fileName||'document.pdf')}`);if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const r=await fetch(`${API}/upload-url`);if(!r.ok)throw new Error(`HTTP ${r.status}`);
     const d=await r.json();
       if(d.clauses||d.graph) _analysisData=d;S.presignedUrl=d.upload_url||d.presigned_url||'';S.s3Key=d.s3_key||d.key||'';
     document.getElementById('ok-up').classList.add('vis');document.getElementById('btn-up').disabled=false;
@@ -1664,73 +1662,16 @@ async function doAnalyze(){
   const btn=document.getElementById('btn-an');btn.disabled=true;ld('an',true);hideN('an');
   document.getElementById('ancard').style.display='none';
   try{
-    // Step 1: Start async job
-    const r=await fetch(`${API}/analyze/start`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({s3_key:S.s3Key})});
+    const r=await fetch(`${API}/analyze`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({s3_key:S.s3Key})});
     if(!r.ok)throw new Error(`HTTP ${r.status}`);
-    const {job_id}=await r.json();
-    if(!job_id)throw new Error('No job_id returned');
-
-    // Step 2: Poll status
-    const STAGE_LABELS={PENDING:'Queued…',textract:'Extracting text…',bedrock:'Analysing with AI…',done:'Finalising…'};
-    let polls=0;
-    while(polls<80){
-      await new Promise(res=>setTimeout(res,3000));
-      polls++;
-      const sr=await fetch(`${API}/analyze/status/${job_id}`);
-      if(!sr.ok)continue;
-      const sd=await sr.json();
-      const stageMsg=STAGE_LABELS[sd.stage]||sd.stage||'Processing…';
-      const ldEl=document.getElementById('ld-an');
-      if(ldEl)ldEl.title=stageMsg;
-      if(sd.status==='COMPLETE'){
-        const d=normaliseAnalysis(sd.result||{});
-        S.clauses=d.clauses||[];S.graph=d.graph||null;S.title=d.title||S.fileName||'Policy Document';
-        S.docId=d.document_id||'doc001';S.complexity_score=d.complexity_score||0;
-        S.complexity_category=d.complexity_category||'';S.ambiguous_clauses=(d.ambiguous_clauses||[]).length||0;
-        S.analysisFull=d;
-        renderAn(d);['graph','elig','explain','simulate','summary'].forEach(cunlock);
-        document.getElementById('an-res').style.display='block';
-        refreshGovDash();
-        return;
-      }
-      if(sd.status==='FAILED'){
-        throw new Error(sd.error||'Analysis failed');
-      }
-    }
-    throw new Error('Analysis timed out after 4 minutes');
-  }catch(e){
-    showE('an',e.message);
-    document.getElementById('ancard').style.display='block';
-    btn.disabled=false;
-  }finally{ld('an',false);}
-}
-
-// Normalise backend response to match frontend's expected clause structure
-function normaliseAnalysis(d){
-  const clauses=(d.clauses||[]).map((c,i)=>{
-    if(typeof c==='string') return {clause_id:`c${i+1}`,clause_type:'GENERAL',text:c,ambiguity_flag:false};
-    return {
-      clause_id: c.id||`c${i+1}`,
-      clause_type: (c.category||c.type||'GENERAL').toUpperCase(),
-      text: c.text||c.title||'',
-      variable: c.variable||'',
-      operator: c.operator||'',
-      threshold_value: c.threshold_value||'',
-      confidence: c.confidence||0.9,
-      ambiguity_flag: (d.ambiguous_clauses||[]).includes(c.id)||c.ambiguity_flag||false,
-    };
-  });
-  return {
-    ...d,
-    clauses,
-    title: d.title||d.policy_type||'Policy Document',
-    document_id: d.document_id||'doc001',
-    complexity_score: d.complexity_score||0,
-    complexity_category: d.complexity_category||'Medium',
-    ambiguous_clauses: d.ambiguous_clauses||[],
-    graph: d.graph||null,
-    clauses_extracted: d.clauses_extracted||clauses.length,
-  };
+    const d=await r.json();
+    S.clauses=d.clauses||[];S.graph=d.graph||null;S.title=d.title||'Policy Document';
+    S.docId=d.document_id||'doc001';S.complexity_score=d.complexity_score||0;
+    S.complexity_category=d.complexity_category||'';S.ambiguous_clauses=d.ambiguous_clauses||0;S.analysisFull=d;
+    renderAn(d);['graph','elig','explain','simulate','summary'].forEach(cunlock);
+    document.getElementById('an-res').style.display='block';
+  }catch(e){showE('an',e.message);document.getElementById('ancard').style.display='block';btn.disabled=false;}
+  finally{ld('an',false);}
 }
 function renderAn(d){
   document.getElementById('an-stats').innerHTML=[
@@ -2126,19 +2067,4 @@ function cl(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
 document.addEventListener('DOMContentLoaded',()=>{
   const upz=document.getElementById('upz');
   if(upz){
-    upz.addEventListener('dragover',e=>{e.preventDefault();upz.classList.add('dragover');});
-    upz.addEventListener('dragleave',()=>{upz.classList.remove('dragover');});
-    upz.addEventListener('drop',e=>{
-      e.preventDefault();upz.classList.remove('dragover');
-      const file=e.dataTransfer.files[0];
-      if(file){document.getElementById('pdfinp').files;
-        const dt=new DataTransfer();dt.items.add(file);
-        document.getElementById('pdfinp').files=dt.files;
-        onFile();
-      }
-    });
-  }
-});
-</script>
-</body>
-</html>
+    upz.addEventListener('dragover',e=>{e.preventDefault();upz.classList.add('dra
