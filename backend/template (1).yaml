@@ -1,0 +1,225 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: PolicyGraph AI 2.0 - Backend
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 512
+    Runtime: python3.11
+    Environment:
+      Variables:
+        BUCKET_NAME: !Ref PolicyDocsBucket
+        REGION: ap-south-1
+        JOBS_TABLE: !Ref JobsTable
+
+Resources:
+
+  # ── S3 BUCKET ──────────────────────────────────────────────────────────────
+  PolicyDocsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "policygraph-ai-docs-${AWS::AccountId}"
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: ["*"]
+            AllowedMethods: [GET, PUT, POST]
+            AllowedOrigins: ["*"]
+            MaxAge: 3000
+
+  # ── DYNAMODB TABLE ─────────────────────────────────────────────────────────
+  JobsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: policygraph-jobs
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: job_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: job_id
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+
+  # ── IAM ROLE ───────────────────────────────────────────────────────────────
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: PolicyGraphAIPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource: !Sub "arn:aws:s3:::policygraph-ai-docs-${AWS::AccountId}/*"
+              - Effect: Allow
+                Action:
+                  - textract:DetectDocumentText
+                  - textract:AnalyzeDocument
+                  - textract:StartDocumentTextDetection
+                  - textract:GetDocumentTextDetection
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                Resource: "arn:aws:bedrock:ap-south-1::foundation-model/*"
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                  - dynamodb:GetItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:Query
+                Resource: !GetAtt JobsTable.Arn
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource: !Sub "arn:aws:lambda:ap-south-1:${AWS::AccountId}:function:policygraph-analyze-worker"
+
+  # ── API GATEWAY ────────────────────────────────────────────────────────────
+  PolicyGraphAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization'"
+        AllowOrigin: "'*'"
+
+  # ── LAMBDA: PRESIGNED URL ──────────────────────────────────────────────────
+  GetUploadUrlFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: policygraph-get-upload-url
+      CodeUri: functions/upload_url/
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PolicyGraphAPI
+            Path: /upload-url
+            Method: GET
+
+  # ── LAMBDA: ANALYZE START ──────────────────────────────────────────────────
+  AnalyzeStartFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: policygraph-analyze-start
+      CodeUri: functions/analyze_start/
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Timeout: 30
+      Environment:
+        Variables:
+          WORKER_FUNCTION_NAME: policygraph-analyze-worker
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PolicyGraphAPI
+            Path: /analyze/start
+            Method: POST
+
+  # ── LAMBDA: ANALYZE WORKER ─────────────────────────────────────────────────
+  AnalyzeWorkerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: policygraph-analyze-worker
+      CodeUri: functions/analyze_worker/
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Timeout: 300
+      MemorySize: 1024
+
+  # ── LAMBDA: ANALYZE STATUS ─────────────────────────────────────────────────
+  AnalyzeStatusFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: policygraph-analyze-status
+      CodeUri: functions/analyze_status/
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Timeout: 10
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PolicyGraphAPI
+            Path: /analyze/status/{job_id}
+            Method: GET
+
+  # ── LAMBDA: ELIGIBILITY ────────────────────────────────────────────────────
+  EligibilityFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: policygraph-eligibility
+      CodeUri: functions/eligibility/
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PolicyGraphAPI
+            Path: /eligibility
+            Method: POST
+
+  # ── LAMBDA: CONFLICTS ─────────────────────────────────────────────────────
+  ConflictsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: policygraph-conflicts
+      CodeUri: functions/conflicts/
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PolicyGraphAPI
+            Path: /conflicts
+            Method: POST
+
+  # ── LAMBDA: TRANSLATE ──────────────────────────────────────────────────────
+  TranslateFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: policygraph-translate
+      CodeUri: functions/translate/
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Timeout: 30
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PolicyGraphAPI
+            Path: /translate
+            Method: POST
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${PolicyGraphAPI}.execute-api.ap-south-1.amazonaws.com/prod"
+  BucketName:
+    Description: "S3 Bucket for policy documents"
+    Value: !Ref PolicyDocsBucket
+  JobsTableName:
+    Description: "DynamoDB table for async jobs"
+    Value: !Ref JobsTable
