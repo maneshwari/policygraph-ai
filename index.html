@@ -1421,7 +1421,7 @@ let gc,gx,gn=[],ge=[],gp={},gT={x:0,y:0,s:1},drag=false,dFrom={x:0,y:0},hov=null
 function renderGraph(){
   if(!S.graph){document.getElementById('glocked').style.display='block';document.getElementById('gcont').style.display='none';return;}
   document.getElementById('glocked').style.display='none';document.getElementById('gcont').style.display='block';
-  gn=S.graph.nodes||[];ge=S.graph.edges||[];
+  gn=(S.graph.nodes||[]).map(n=>({...n,type:(n.type||'UNKNOWN').toUpperCase()}));ge=S.graph.edges||[];
   document.getElementById('gnodecount').textContent=`${gn.length} nodes · ${ge.length} edges`;
   if(!ginit){gc=document.getElementById('gc');gx=gc.getContext('2d');gc.width=gc.offsetWidth||880;gc.height=470;setupGE();ginit=true;}
   else{gc.width=gc.offsetWidth||880;}
