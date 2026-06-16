@@ -14,7 +14,7 @@ JOB_TABLE  = os.environ.get('JOB_TABLE', 'policygraph-jobs')
 BUCKET     = os.environ.get('BUCKET_NAME', '')
 CF_ACCOUNT = os.environ.get('CF_ACCOUNT_ID', '')
 CF_TOKEN   = os.environ.get('CF_API_TOKEN', '')
-CF_MODEL   = '@cf/meta/llama-3.1-8b-instruct'
+CF_MODEL = '@cf/meta/llama-3.3-70b-instruct-fp8-fast'
 
 
 def update_job(table, job_id, updates):
