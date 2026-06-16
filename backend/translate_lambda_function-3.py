@@ -7,7 +7,7 @@ import urllib.error
 
 CF_ACCOUNT = os.environ.get('CF_ACCOUNT_ID', '')
 CF_TOKEN   = os.environ.get('CF_API_TOKEN', '')
-CF_MODEL   = '@cf/meta/llama-3.1-8b-instruct'
+CF_MODEL = '@cf/meta/llama-3.3-70b-instruct-fp8-fast'
 
 CORS = {
     'Access-Control-Allow-Origin':  '*',
