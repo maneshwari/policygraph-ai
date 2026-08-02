@@ -139,9 +139,18 @@ POLICY TEXT:
 {text}"""
 
     raw = call_cloudflare(prompt)
-    raw = re.sub(r'^```json\s*', '', raw.strip())
-    raw = re.sub(r'\s*```$', '', raw)
+
+if isinstance(raw, dict):
+    data = raw
+
+elif isinstance(raw, str):
+    raw = raw.strip()
+    raw = re.sub(r"^```json\s*", "", raw)
+    raw = re.sub(r"\s*```$", "", raw)
     data = json.loads(raw)
+
+else:
+    raise TypeError(f"Unexpected Cloudflare response type: {type(raw)}")
     # Deduplicate clauses by text
     seen = set()
     unique = []
